@@ -43,11 +43,34 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+    #GMAIL
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.gmail.com
+        port: 587
+        username: someaccount@gmail.com  #Replace this field with your Gmail username.
+        password: ******                 #Replace this field with your Gmail password.
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp.gmail.com
+
+#    OUTLOOK
+#     mail:
+#             host: smtp-mail.outlook.com
+#             port: 587
+#             username: outlookuserid@outlook.com  #Replace this field with your Outlook username.
+#             password: ************               #Replace this field with your Outlook password.
+#             protocol: smtp
+#             tls: true
+#             properties.mail.smtp:
+#                 auth: true
+#                 starttls.enable: true
+#                 ssl.trust: smtp-mail.outlook.com
+#        [...] __Note__ : If you want to send Email from a Corporate Outlook account then set `host` as the Microsoft Exchange Server
+#                 of your company, for e.g. `emea.mycompany.com`. Also set `username` as Standard Id of the system provided by the company
+#                (Domain/Username) and `password` as your system password.
     messages:
         cache-seconds: 1
     thymeleaf:
