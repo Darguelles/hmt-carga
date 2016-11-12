@@ -12,9 +12,9 @@
 
 
 spring:
-    profiles:
-        active: dev
-        include: swagger
+#    profiles:
+#        active: dev
+#        include: swagger
     devtools:
         restart:
             enabled: true
@@ -47,8 +47,8 @@ spring:
     mail:
         host: smtp.gmail.com
         port: 587
-        username: someaccount@gmail.com  #Replace this field with your Gmail username.
-        password: ******                 #Replace this field with your Gmail password.
+        username: darguelles.rojas91@gmail.com  #Replace this field with your Gmail username.
+        password: 123456                 #Replace this field with your Gmail password.
         protocol: smtp
         tls: true
         properties.mail.smtp:
