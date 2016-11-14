@@ -1,6 +1,6 @@
 
 <div>
-    <h2><span>Tipo Unidad</span> {{vm.tipoUnidad.id}}</h2>
+    <h2><span>Tipo de unidad: </span> {{vm.tipoUnidad.nombre}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
@@ -17,11 +17,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Regresar</span>
     </button>
 
     <button type="button" ui-sref="tipo-unidad-detail.edit({id:vm.tipoUnidad.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-xs hidden-sm"> Edit</span>
+        <span class="hidden-xs hidden-sm"> Editar</span>
     </button>
 </div>

@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="transporte.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new Transporte
+                        Crear nueva unidad de transporte
                     </span>
                 </button>
             </div>
@@ -20,19 +20,19 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="marca"><span>Marca</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="tracto"><span>Tracto</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="carreta"><span>Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="placaTracto"><span>Placa Tracto</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="placaCarreta"><span>Placa Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="largoCarreta"><span>Largo Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="anchoCarreta"><span>Ancho Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="altoCarreta"><span>Alto Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="cargaUtil"><span>Carga Util</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="registroMatpel"><span>Registro Matpel</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tracto"><span>MTC Tracto</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="carreta"><span>MTC Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="placaTracto"><span>N° placa tracto</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="placaCarreta"><span>N° placa carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="largoCarreta"><span>Largo carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="anchoCarreta"><span>Ancho carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="altoCarreta"><span>Alto carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cargaUtil"><span>Carga util</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="registroMatpel"><span>Registro MATPEL</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="gps"><span>Gps</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="anoFabricacion"><span>Ano Fabricacion</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="unidadPropia"><span>Unidad Propia</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="tipoUnidad.nombre"><span>Tipo Unidad</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="anoFabricacion"><span>Año de fabricación</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="unidadPropia"><span>Unidad propia</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tipoUnidad.nombre"><span>Tipo de unidad</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -48,10 +48,10 @@
                     <td>{{transporte.anchoCarreta}}</td>
                     <td>{{transporte.altoCarreta}}</td>
                     <td>{{transporte.cargaUtil}}</td>
-                    <td>{{transporte.registroMatpel}}</td>
-                    <td>{{transporte.gps}}</td>
+                    <td>{{transporte.registroMatpel?'Si':'No'}}</td>
+                    <td>{{transporte.gps?'Si':'No'}}</td>
                     <td>{{transporte.anoFabricacion}}</td>
-                    <td>{{transporte.unidadPropia}}</td>
+                    <td>{{transporte.unidadPropia?'Si':'No'}}</td>
                     <td>
                         <a ui-sref="tipo-unidad-detail({id:transporte.tipoUnidad.id})">{{transporte.tipoUnidad.nombre}}</a>
                     </td>
