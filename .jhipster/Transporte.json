@@ -1,0 +1,76 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "tipoUnidad",
+            "otherEntityName": "tipoUnidad",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "marca",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tracto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "carreta",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "placaTracto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "placaCarreta",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "largoCarreta",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "anchoCarreta",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "altoCarreta",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cargaUtil",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "registroMatpel",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "gps",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "anoFabricacion",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "unidadPropia",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20161114053755",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "transporte",
+    "pagination": "pager"
+}

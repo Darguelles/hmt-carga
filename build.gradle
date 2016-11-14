@@ -19,6 +19,7 @@ buildscript {
     }
 }
 
+apply plugin: 'idea'
 apply plugin: 'java'
 sourceCompatibility=1.8
 targetCompatibility=1.8
@@ -76,11 +77,13 @@ apply from: 'gradle/mapstruct.gradle'
 apply from: 'gradle/docker.gradle'
 //jhipster-needle-gradle-apply-from - JHipster will add additional gradle scripts to be applied here
 
-if (project.hasProperty('prod')) {
-    apply from: 'gradle/profile_prod.gradle'
-} else {
-    apply from: 'gradle/profile_dev.gradle'
-}
+//if (project.hasProperty('prod')) {
+//    apply from: 'gradle/profile_prod.gradle'
+//} else {
+//    apply from: 'gradle/profile_dev.gradle'
+//}
+
+apply from: 'gradle/profile_prod.gradle'
 
 if (project.hasProperty('shell')) {
     dependencies {
@@ -134,7 +137,7 @@ dependencies {
     compile ("com.ryantenney.metrics:metrics-spring:${metrics_spring_version}") {
         exclude(module: 'metrics-core')
         exclude(module: 'metrics-healthchecks')
-    } 
+    }
     compile "org.hibernate:hibernate-core:${hibernate_entitymanager_version}"
     compile("com.zaxxer:HikariCP") {
         exclude(module: 'tools')
@@ -144,7 +147,7 @@ dependencies {
     compile "javax.inject:javax.inject:${javax_inject_version}"
     compile "javax.transaction:javax.transaction-api"
     compile "org.apache.geronimo.javamail:geronimo-javamail_1.4_mail:${geronimo_javamail_1_4_mail_version}"
-    
+
     compile ("org.hibernate:hibernate-ehcache") {
         exclude(module: 'ehcache-core')
     }
@@ -191,7 +194,7 @@ dependencies {
     testCompile "com.mattbertolini:liquibase-slf4j:${liquibase_slf4j_version}"
     testCompile "org.hamcrest:hamcrest-library"
     testCompile "io.gatling.highcharts:gatling-charts-highcharts:${gatling_version}"
-    
+
     testCompile "com.h2database:h2"
     optional "org.springframework.boot:spring-boot-configuration-processor:${spring_boot_version}"
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here

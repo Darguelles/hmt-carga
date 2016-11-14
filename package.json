@@ -64,5 +64,9 @@
   },
   "scripts": {
     "test": "gulp test"
+  },
+  "dependencies": {
+    "bower": "^1.7.9"
   }
+
 }

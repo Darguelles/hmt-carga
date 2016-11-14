@@ -1,0 +1,122 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTransporteLabel">Crear o editar unidad de transporte</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.transporte.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.transporte.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_marca">Marca</label>
+            <input type="text" class="form-control" name="marca" id="field_marca"
+                    ng-model="vm.transporte.marca"
+                    required />
+            <div ng-show="editForm.marca.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.marca.$error.required">
+                    Este campo es obligatorio.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tracto">MTC Tracto</label>
+            <input type="text" class="form-control" name="tracto" id="field_tracto"
+                    ng-model="vm.transporte.tracto"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_carreta">MTC Carreta</label>
+            <input type="text" class="form-control" name="carreta" id="field_carreta"
+                    ng-model="vm.transporte.carreta"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_placaTracto">Numero de placa tracto</label>
+            <input type="text" class="form-control" name="placaTracto" id="field_placaTracto"
+                    ng-model="vm.transporte.placaTracto"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_placaCarreta">Numero de placa Carreta</label>
+            <input type="text" class="form-control" name="placaCarreta" id="field_placaCarreta"
+                    ng-model="vm.transporte.placaCarreta"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_largoCarreta">Largo de carreta</label>
+            <input type="number" class="form-control" name="largoCarreta" id="field_largoCarreta"
+                    ng-model="vm.transporte.largoCarreta"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_anchoCarreta">Ancho d carreta</label>
+            <input type="number" class="form-control" name="anchoCarreta" id="field_anchoCarreta"
+                    ng-model="vm.transporte.anchoCarreta"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_altoCarreta">Alto de carreta</label>
+            <input type="number" class="form-control" name="altoCarreta" id="field_altoCarreta"
+                    ng-model="vm.transporte.altoCarreta"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_cargaUtil">Carga Util</label>
+            <input type="number" class="form-control" name="cargaUtil" id="field_cargaUtil"
+                    ng-model="vm.transporte.cargaUtil"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_registroMatpel">Registro MATPEL</label>
+            <input type="checkbox" class="form-control" name="registroMatpel" id="field_registroMatpel"
+                    ng-model="vm.transporte.registroMatpel"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_gps">GPS</label>
+            <input type="checkbox" class="form-control" name="gps" id="field_gps"
+                    ng-model="vm.transporte.gps"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_anoFabricacion">Ano de Fabricación</label>
+            <input type="number" class="form-control" name="anoFabricacion" id="field_anoFabricacion"
+                    ng-model="vm.transporte.anoFabricacion"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_unidadPropia">Unidad Propia</label>
+            <input type="checkbox" class="form-control" name="unidadPropia" id="field_unidadPropia"
+                    ng-model="vm.transporte.unidadPropia"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_tipoUnidad">Tipo de unidad</label>
+            <select class="form-control" id="field_tipoUnidad" name="tipoUnidad" ng-model="vm.transporte.tipoUnidad" ng-options="tipoUnidad as tipoUnidad.nombre for tipoUnidad in vm.tipounidads track by tipoUnidad.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.tipoUnidad.$invalid">
+            <p class="help-block"
+                ng-show="editForm.tipoUnidad.$error.required">
+                Este campo es obligatorio.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
+        </button>
+    </div>
+</form>
