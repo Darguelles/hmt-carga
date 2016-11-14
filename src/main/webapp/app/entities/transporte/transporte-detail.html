@@ -1,0 +1,75 @@
+
+<div>
+    <h2><span>Transporte</span> {{vm.transporte.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Marca</span></dt>
+        <dd>
+            <span>{{vm.transporte.marca}}</span>
+        </dd>
+        <dt><span>Tracto</span></dt>
+        <dd>
+            <span>{{vm.transporte.tracto}}</span>
+        </dd>
+        <dt><span>Carreta</span></dt>
+        <dd>
+            <span>{{vm.transporte.carreta}}</span>
+        </dd>
+        <dt><span>Placa Tracto</span></dt>
+        <dd>
+            <span>{{vm.transporte.placaTracto}}</span>
+        </dd>
+        <dt><span>Placa Carreta</span></dt>
+        <dd>
+            <span>{{vm.transporte.placaCarreta}}</span>
+        </dd>
+        <dt><span>Largo Carreta</span></dt>
+        <dd>
+            <span>{{vm.transporte.largoCarreta}}</span>
+        </dd>
+        <dt><span>Ancho Carreta</span></dt>
+        <dd>
+            <span>{{vm.transporte.anchoCarreta}}</span>
+        </dd>
+        <dt><span>Alto Carreta</span></dt>
+        <dd>
+            <span>{{vm.transporte.altoCarreta}}</span>
+        </dd>
+        <dt><span>Carga Util</span></dt>
+        <dd>
+            <span>{{vm.transporte.cargaUtil}}</span>
+        </dd>
+        <dt><span>Registro Matpel</span></dt>
+        <dd>
+            <span>{{vm.transporte.registroMatpel}}</span>
+        </dd>
+        <dt><span>Gps</span></dt>
+        <dd>
+            <span>{{vm.transporte.gps}}</span>
+        </dd>
+        <dt><span>Ano Fabricacion</span></dt>
+        <dd>
+            <span>{{vm.transporte.anoFabricacion}}</span>
+        </dd>
+        <dt><span>Unidad Propia</span></dt>
+        <dd>
+            <span>{{vm.transporte.unidadPropia}}</span>
+        </dd>
+        <dt><span>Tipo Unidad</span></dt>
+        <dd>
+            <a ui-sref="tipo-unidad-detail({id:vm.transporte.tipoUnidad.id})">{{vm.transporte.tipoUnidad.nombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="transporte-detail.edit({id:vm.transporte.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>
