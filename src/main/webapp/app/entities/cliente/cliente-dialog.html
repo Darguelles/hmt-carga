@@ -1,0 +1,148 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myClienteLabel">Crear o editar cliente</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.cliente.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.cliente.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_ruc">RUC/DNI</label>
+            <input type="number" class="form-control" name="ruc" id="field_ruc"
+                    ng-model="vm.cliente.ruc"
+                    required />
+            <div ng-show="editForm.ruc.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ruc.$error.required">
+                    Este campo es obligatorio.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.ruc.$error.number">
+                    Este campo acepta solo números.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                    ng-model="vm.cliente.nombre"
+                    required />
+            <div ng-show="editForm.nombre.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nombre.$error.required">
+                    Este campo es obligatorio.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_direccion">Dirección</label>
+            <input type="text" class="form-control" name="direccion" id="field_direccion"
+                    ng-model="vm.cliente.direccion"
+                    required />
+            <div ng-show="editForm.direccion.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.direccion.$error.required">
+                    Este campo es obligatorio.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_telefono">Teléfono</label>
+            <input type="number" class="form-control" name="telefono" id="field_telefono"
+                    ng-model="vm.cliente.telefono"
+                    required />
+            <div ng-show="editForm.telefono.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.telefono.$error.required">
+                    Este campo es obligatorio.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.telefono.$error.number">
+                    Este campo acepta solo números.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                    ng-model="vm.cliente.email"
+                    required ng-minlength="5" ng-maxlength="50" ng-pattern="/^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/" />
+            <div ng-show="editForm.email.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.email.$error.required">
+                    Este campo es obligatorio.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.email.$error.minlength" translate-value-min="5">
+                    Introduzca al menos 5 caracteres.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.email.$error.maxlength">
+                    Este campo acepta máximo 50 caracteres.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.email.$error.pattern" translate-value-pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$">
+                    ingrese un email válido.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_contacto">Contacto</label>
+            <input type="text" class="form-control" name="contacto" id="field_contacto"
+                    ng-model="vm.cliente.contacto"
+                    required />
+            <div ng-show="editForm.contacto.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.contacto.$error.required">
+                    Este campo es obligatorio.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_descuento">Descuento</label>
+            <input type="number" class="form-control" name="descuento" id="field_descuento"
+                    ng-model="vm.cliente.descuento"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_formaPago">Forma de pago</label>
+            <select class="form-control" id="field_formaPago" name="formaPago" ng-model="vm.cliente.formaPago" ng-options="formaPago as formaPago.nombre for formaPago in vm.formapagos track by formaPago.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.formaPago.$invalid">
+            <p class="help-block"
+                ng-show="editForm.formaPago.$error.required">
+                Este campo es obligatorio.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="field_condicionPago">Condicion de pago</label>
+            <select class="form-control" id="field_condicionPago" name="condicionPago" ng-model="vm.cliente.condicionPago" ng-options="condicionPago as condicionPago.nombre for condicionPago in vm.condicionpagos track by condicionPago.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.condicionPago.$invalid">
+            <p class="help-block"
+                ng-show="editForm.condicionPago.$error.required">
+                Este campo es obligatorio.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
+        </button>
+    </div>
+</form>

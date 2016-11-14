@@ -1,0 +1,18 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20161114200422",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "forma_pago",
+    "pagination": "pager"
+}

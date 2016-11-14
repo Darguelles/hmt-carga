@@ -1,0 +1,130 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myProveedorLabel">Crear o editar proveedor</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.proveedor.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.proveedor.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_ruc">RUC</label>
+            <input type="number" class="form-control" name="ruc" id="field_ruc"
+                    ng-model="vm.proveedor.ruc"
+                    required />
+            <div ng-show="editForm.ruc.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ruc.$error.required">
+                    Este campo es obligatorio.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.ruc.$error.number">
+                    Este campo acepta solo números.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                    ng-model="vm.proveedor.nombre"
+                    required />
+            <div ng-show="editForm.nombre.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nombre.$error.required">
+                    Este campo es obligatorio.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_telefono">Teléfono</label>
+            <input type="number" class="form-control" name="telefono" id="field_telefono"
+                    ng-model="vm.proveedor.telefono"
+                    required />
+            <div ng-show="editForm.telefono.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.telefono.$error.required">
+                    Este campo es obligatorio.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.telefono.$error.number">
+                    Este campo acepta solo números.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_direccion">Dirección</label>
+            <input type="text" class="form-control" name="direccion" id="field_direccion"
+                    ng-model="vm.proveedor.direccion"
+                    required />
+            <div ng-show="editForm.direccion.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.direccion.$error.required">
+                    Este campo es obligatorio.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_contacto">Contacto</label>
+            <input type="text" class="form-control" name="contacto" id="field_contacto"
+                    ng-model="vm.proveedor.contacto"
+                    required />
+            <div ng-show="editForm.contacto.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.contacto.$error.required">
+                    Este campo es obligatorio.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                    ng-model="vm.proveedor.email"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_banco">Banco</label>
+            <input type="text" class="form-control" name="banco" id="field_banco"
+                    ng-model="vm.proveedor.banco"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_numeroCuenta">Número de cuenta</label>
+            <input type="text" class="form-control" name="numeroCuenta" id="field_numeroCuenta"
+                    ng-model="vm.proveedor.numeroCuenta"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_numeroCuentaInterbancario">Número de cuenta interbancario</label>
+            <input type="text" class="form-control" name="numeroCuentaInterbancario" id="field_numeroCuentaInterbancario"
+                    ng-model="vm.proveedor.numeroCuentaInterbancario"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_numeroCuentaDetraccion">Número de cuenta detraccion</label>
+            <input type="text" class="form-control" name="numeroCuentaDetraccion" id="field_numeroCuentaDetraccion"
+                    ng-model="vm.proveedor.numeroCuentaDetraccion"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_matpel">MATPEL</label>
+            <input type="text" class="form-control" name="matpel" id="field_matpel"
+                    ng-model="vm.proveedor.matpel"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
+        </button>
+    </div>
+</form>

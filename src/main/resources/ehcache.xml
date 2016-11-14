@@ -45,5 +45,25 @@
         timeToLiveSeconds="3600">
     </cache>
 
+    <cache name="com.hmt.carga.domain.Servicio"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="com.hmt.carga.domain.FormaPago"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="com.hmt.carga.domain.CondicionPago"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="com.hmt.carga.domain.Cliente"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="com.hmt.carga.domain.Proveedor"
+        timeToLiveSeconds="3600">
+    </cache>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </ehcache>

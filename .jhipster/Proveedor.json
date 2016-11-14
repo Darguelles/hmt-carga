@@ -1,0 +1,70 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "ruc",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "telefono",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "direccion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "contacto",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "banco",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numeroCuenta",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numeroCuentaInterbancario",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numeroCuentaDetraccion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "matpel",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161114210925",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "proveedor",
+    "pagination": "pager"
+}

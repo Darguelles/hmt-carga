@@ -57,7 +57,7 @@
                         // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
                         var convertedField = fieldError.field.replace(/\[\d*\]/g, '[]');
                         var fieldName = convertedField.charAt(0).toUpperCase() + convertedField.slice(1);
-                        addErrorAlert('Field ' + fieldName + ' cannot be empty', 'error.' + fieldError.message, {fieldName: fieldName});
+                        addErrorAlert('Campo ' + fieldName + ' no puede estar vacío', 'error.' + fieldError.message, {fieldName: fieldName});
                     }
                 } else if (httpResponse.data && httpResponse.data.message) {
                     addErrorAlert(httpResponse.data.message, httpResponse.data.message, httpResponse.data);

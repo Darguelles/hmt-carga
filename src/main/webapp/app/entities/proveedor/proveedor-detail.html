@@ -1,0 +1,63 @@
+
+<div>
+    <h2><span>Proveedor: </span> {{vm.proveedor.ruc}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Ruc</span></dt>
+        <dd>
+            <span>{{vm.proveedor.ruc}}</span>
+        </dd>
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{vm.proveedor.nombre}}</span>
+        </dd>
+        <dt><span>Teléfono</span></dt>
+        <dd>
+            <span>{{vm.proveedor.telefono}}</span>
+        </dd>
+        <dt><span>Dirección</span></dt>
+        <dd>
+            <span>{{vm.proveedor.direccion}}</span>
+        </dd>
+        <dt><span>Contacto</span></dt>
+        <dd>
+            <span>{{vm.proveedor.contacto}}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+            <span>{{vm.proveedor.email}}</span>
+        </dd>
+        <dt><span>Banco</span></dt>
+        <dd>
+            <span>{{vm.proveedor.banco}}</span>
+        </dd>
+        <dt><span>Número de cuenta</span></dt>
+        <dd>
+            <span>{{vm.proveedor.numeroCuenta}}</span>
+        </dd>
+        <dt><span>Número de cuenta interbancario</span></dt>
+        <dd>
+            <span>{{vm.proveedor.numeroCuentaInterbancario}}</span>
+        </dd>
+        <dt><span>Número de cuenta detracción</span></dt>
+        <dd>
+            <span>{{vm.proveedor.numeroCuentaDetraccion}}</span>
+        </dd>
+        <dt><span>MATPEL</span></dt>
+        <dd>
+            <span>{{vm.proveedor.matpel}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Volver</span>
+    </button>
+
+    <button type="button" ui-sref="proveedor-detail.edit({id:vm.proveedor.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Editar</span>
+    </button>
+</div>
