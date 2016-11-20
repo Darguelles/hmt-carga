@@ -65,5 +65,9 @@
         timeToLiveSeconds="3600">
     </cache>
 
+    <cache name="com.hmt.carga.domain.Cotizacion"
+        timeToLiveSeconds="3600">
+    </cache>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </ehcache>

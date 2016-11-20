@@ -30,7 +30,7 @@ task gulpBuildWithOpts(type: GulpTask) {
 }
 
 war {
-    webAppDirName = 'build/www/'
+    webAppDirName = 'src/main/webapp/'
 }
 
 processResources {

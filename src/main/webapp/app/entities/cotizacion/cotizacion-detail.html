@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span>Cotizacion</span> {{vm.cotizacion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Fecha</span></dt>
+        <dd>
+            <span>{{vm.cotizacion.fecha | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Origen</span></dt>
+        <dd>
+            <span>{{vm.cotizacion.origen}}</span>
+        </dd>
+        <dt><span>Destino</span></dt>
+        <dd>
+            <span>{{vm.cotizacion.destino}}</span>
+        </dd>
+        <dt><span>Mercaderia</span></dt>
+        <dd>
+            <span>{{vm.cotizacion.mercaderia}}</span>
+        </dd>
+        <dt><span>Precio</span></dt>
+        <dd>
+            <span>{{vm.cotizacion.precio}}</span>
+        </dd>
+        <dt><span>Moneda</span></dt>
+        <dd>
+            <span>{{vm.cotizacion.moneda}}</span>
+        </dd>
+        <dt><span>Porcentaje Pago</span></dt>
+        <dd>
+            <span>{{vm.cotizacion.porcentajePago}}</span>
+        </dd>
+        <dt><span>Cliente</span></dt>
+        <dd>
+            <a ui-sref="cliente-detail({id:vm.cotizacion.cliente.id})">{{vm.cotizacion.cliente.nombre ruc direccion}}</a>
+        </dd>
+        <dt><span>Tipo Servicio</span></dt>
+        <dd>
+            <a ui-sref="tipo-servicio-detail({id:vm.cotizacion.tipoServicio.id})">{{vm.cotizacion.tipoServicio.nombre}}</a>
+        </dd>
+        <dt><span>Tipo Unidad</span></dt>
+        <dd>
+            <a ui-sref="tipo-unidad-detail({id:vm.cotizacion.tipoUnidad.id})">{{vm.cotizacion.tipoUnidad.nombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="cotizacion-detail.edit({id:vm.cotizacion.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

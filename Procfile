@@ -1,2 +1,1 @@
-worker: docker-compose -f src/main/docker/mysql.yml up -d
-web: ./gradlew -Pprod clean bootRepackage
+web: java  -jar build/libs/*.war --spring.profiles.active=prod,heroku --server.port=$PORT 

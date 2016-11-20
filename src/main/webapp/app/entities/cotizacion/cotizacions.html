@@ -1,0 +1,84 @@
+<div>
+    <h2>Cotizacions</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="cotizacion.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Cotizacion
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fecha"><span>Fecha</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="origen"><span>Origen</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="destino"><span>Destino</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mercaderia"><span>Mercaderia</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="precio"><span>Precio</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="moneda"><span>Moneda</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="porcentajePago"><span>Porcentaje Pago</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cliente.nombre ruc direccion"><span>Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tipoServicio.nombre"><span>Tipo Servicio</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tipoUnidad.nombre"><span>Tipo Unidad</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cotizacion in vm.cotizacions track by cotizacion.id">
+                    <td><a ui-sref="cotizacion-detail({id:cotizacion.id})">{{cotizacion.id}}</a></td>
+                        <td>{{cotizacion.fecha | date:'mediumDate'}}</td>
+                    <td>{{cotizacion.origen}}</td>
+                    <td>{{cotizacion.destino}}</td>
+                    <td>{{cotizacion.mercaderia}}</td>
+                    <td>{{cotizacion.precio}}</td>
+                    <td>{{cotizacion.moneda}}</td>
+                    <td>{{cotizacion.porcentajePago}}</td>
+                    <td>
+                        <a ui-sref="cliente-detail({id:cotizacion.cliente.id})">{{cotizacion.cliente.nombre ruc direccion}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="tipo-servicio-detail({id:cotizacion.tipoServicio.id})">{{cotizacion.tipoServicio.nombre}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="tipo-unidad-detail({id:cotizacion.tipoUnidad.id})">{{cotizacion.tipoUnidad.nombre}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="cotizacion-detail({id:cotizacion.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="cotizacion.edit({id:cotizacion.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="cotizacion.delete({id:cotizacion.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>

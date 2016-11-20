@@ -1,0 +1,162 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myCotizacionLabel">Create or edit a Cotizacion</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.cotizacion.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.cotizacion.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fecha">Fecha</label>
+                <div class="input-group">
+                    <input id="field_fecha" type="text" class="form-control" name="fecha" uib-datepicker-popup="{{dateformat}}" ng-model="vm.cotizacion.fecha" is-open="vm.datePickerOpenStatus.fecha"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fecha')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.fecha.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fecha.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_origen">Origen</label>
+            <input type="text" class="form-control" name="origen" id="field_origen"
+                    ng-model="vm.cotizacion.origen"
+                    required />
+            <div ng-show="editForm.origen.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.origen.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_destino">Destino</label>
+            <input type="text" class="form-control" name="destino" id="field_destino"
+                    ng-model="vm.cotizacion.destino"
+                    required />
+            <div ng-show="editForm.destino.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.destino.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_mercaderia">Mercaderia</label>
+            <input type="text" class="form-control" name="mercaderia" id="field_mercaderia"
+                    ng-model="vm.cotizacion.mercaderia"
+                    required />
+            <div ng-show="editForm.mercaderia.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.mercaderia.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_precio">Precio</label>
+            <input type="number" class="form-control" name="precio" id="field_precio"
+                    ng-model="vm.cotizacion.precio"
+                    required />
+            <div ng-show="editForm.precio.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.precio.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.precio.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_moneda">Moneda</label>
+            <input type="number" class="form-control" name="moneda" id="field_moneda"
+                    ng-model="vm.cotizacion.moneda"
+                    required />
+            <div ng-show="editForm.moneda.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.moneda.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.moneda.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_porcentajePago">Porcentaje Pago</label>
+            <input type="number" class="form-control" name="porcentajePago" id="field_porcentajePago"
+                    ng-model="vm.cotizacion.porcentajePago"
+                    required />
+            <div ng-show="editForm.porcentajePago.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.porcentajePago.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.porcentajePago.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_cliente">Cliente</label>
+            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.cotizacion.cliente" ng-options="cliente as cliente.nombre ruc direccion for cliente in vm.clientes track by cliente.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.cliente.$invalid">
+            <p class="help-block"
+                ng-show="editForm.cliente.$error.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="field_tipoServicio">Tipo Servicio</label>
+            <select class="form-control" id="field_tipoServicio" name="tipoServicio" ng-model="vm.cotizacion.tipoServicio" ng-options="tipoServicio as tipoServicio.nombre for tipoServicio in vm.tiposervicios track by tipoServicio.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.tipoServicio.$invalid">
+            <p class="help-block"
+                ng-show="editForm.tipoServicio.$error.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="field_tipoUnidad">Tipo Unidad</label>
+            <select class="form-control" id="field_tipoUnidad" name="tipoUnidad" ng-model="vm.cotizacion.tipoUnidad" ng-options="tipoUnidad as tipoUnidad.nombre for tipoUnidad in vm.tipounidads track by tipoUnidad.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.tipoUnidad.$invalid">
+            <p class="help-block"
+                ng-show="editForm.tipoUnidad.$error.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
