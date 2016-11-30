@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -61,6 +62,18 @@ public class Transporte implements Serializable {
 
     @Column(name = "unidad_propia")
     private Boolean unidadPropia;
+
+    @Column(name = "kilometraje")
+    private Double kilometraje;
+
+    @Column(name = "fecha_revision_tecnica")
+    private LocalDate fechaRevisionTecnica;
+
+    @Column(name = "soat")
+    private String soat;
+
+    @Column(name = "fecha_vencimiento_soat")
+    private LocalDate fechaVencimientoSoat;
 
     @ManyToOne
     @NotNull
@@ -243,6 +256,58 @@ public class Transporte implements Serializable {
         this.unidadPropia = unidadPropia;
     }
 
+    public Double getKilometraje() {
+        return kilometraje;
+    }
+
+    public Transporte kilometraje(Double kilometraje) {
+        this.kilometraje = kilometraje;
+        return this;
+    }
+
+    public void setKilometraje(Double kilometraje) {
+        this.kilometraje = kilometraje;
+    }
+
+    public LocalDate getFechaRevisionTecnica() {
+        return fechaRevisionTecnica;
+    }
+
+    public Transporte fechaRevisionTecnica(LocalDate fechaRevisionTecnica) {
+        this.fechaRevisionTecnica = fechaRevisionTecnica;
+        return this;
+    }
+
+    public void setFechaRevisionTecnica(LocalDate fechaRevisionTecnica) {
+        this.fechaRevisionTecnica = fechaRevisionTecnica;
+    }
+
+    public String getSoat() {
+        return soat;
+    }
+
+    public Transporte soat(String soat) {
+        this.soat = soat;
+        return this;
+    }
+
+    public void setSoat(String soat) {
+        this.soat = soat;
+    }
+
+    public LocalDate getFechaVencimientoSoat() {
+        return fechaVencimientoSoat;
+    }
+
+    public Transporte fechaVencimientoSoat(LocalDate fechaVencimientoSoat) {
+        this.fechaVencimientoSoat = fechaVencimientoSoat;
+        return this;
+    }
+
+    public void setFechaVencimientoSoat(LocalDate fechaVencimientoSoat) {
+        this.fechaVencimientoSoat = fechaVencimientoSoat;
+    }
+
     public TipoUnidad getTipoUnidad() {
         return tipoUnidad;
     }
@@ -293,6 +358,10 @@ public class Transporte implements Serializable {
             ", gps='" + gps + "'" +
             ", anoFabricacion='" + anoFabricacion + "'" +
             ", unidadPropia='" + unidadPropia + "'" +
+            ", kilometraje='" + kilometraje + "'" +
+            ", fechaRevisionTecnica='" + fechaRevisionTecnica + "'" +
+            ", soat='" + soat + "'" +
+            ", fechaVencimientoSoat='" + fechaVencimientoSoat + "'" +
             '}';
     }
 }

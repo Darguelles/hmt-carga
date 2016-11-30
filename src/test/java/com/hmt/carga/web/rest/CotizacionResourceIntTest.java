@@ -4,7 +4,7 @@ import com.hmt.carga.HmtcargaApp;
 
 import com.hmt.carga.domain.Cotizacion;
 import com.hmt.carga.domain.Cliente;
-import com.hmt.carga.domain.TipoServicio;
+import com.hmt.carga.domain.Servicio;
 import com.hmt.carga.domain.TipoUnidad;
 import com.hmt.carga.repository.CotizacionRepository;
 import com.hmt.carga.service.CotizacionService;
@@ -115,10 +115,10 @@ public class CotizacionResourceIntTest {
         em.flush();
         cotizacion.setCliente(cliente);
         // Add required entity
-        TipoServicio tipoServicio = TipoServicioResourceIntTest.createEntity(em);
-        em.persist(tipoServicio);
+        Servicio servicio = ServicioResourceIntTest.createEntity(em);
+        em.persist(servicio);
         em.flush();
-        cotizacion.setTipoServicio(tipoServicio);
+        cotizacion.setServicio(servicio);
         // Add required entity
         TipoUnidad tipoUnidad = TipoUnidadResourceIntTest.createEntity(em);
         em.persist(tipoUnidad);

@@ -73,6 +73,22 @@
                 <constraints nullable="true" />
             </column>
             
+            <column name="kilometraje" type="double">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="fecha_revision_tecnica" type="date">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="soat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="fecha_vencimiento_soat" type="date">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="tipo_unidad_id" type="bigint">
                 <constraints nullable="false" />
             </column>

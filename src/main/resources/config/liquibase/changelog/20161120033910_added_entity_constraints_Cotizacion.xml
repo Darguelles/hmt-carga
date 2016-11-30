@@ -14,11 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="cliente"/>
 
-        <addForeignKeyConstraint baseColumnNames="tipo_servicio_id"
+        <addForeignKeyConstraint baseColumnNames="servicio_id"
                                  baseTableName="cotizacion"
-                                 constraintName="fk_cotizacion_tipo_servicio_id"
+                                 constraintName="fk_cotizacion_servicio_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="tipo_servicio"/>
+                                 referencedTableName="servicio"/>
 
         <addForeignKeyConstraint baseColumnNames="tipo_unidad_id"
                                  baseTableName="cotizacion"

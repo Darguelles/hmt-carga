@@ -179,7 +179,7 @@ public class Cotizacion implements Serializable {
         return servicio;
     }
 
-    public Cotizacion Servicio(Servicio Servicio) {
+    public Cotizacion servicio(Servicio servicio) {
         this.servicio = servicio;
         return this;
     }

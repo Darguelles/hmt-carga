@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myTransporteLabel">Crear o editar unidad de transporte</h4>
+        <h4 class="modal-title" id="myTransporteLabel">Crear o editar transporte</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
@@ -26,49 +26,49 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_tracto">MTC Tracto</label>
+            <label class="control-label" for="field_tracto">Tracto</label>
             <input type="text" class="form-control" name="tracto" id="field_tracto"
                     ng-model="vm.transporte.tracto"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_carreta">MTC Carreta</label>
+            <label class="control-label" for="field_carreta">Carreta</label>
             <input type="text" class="form-control" name="carreta" id="field_carreta"
                     ng-model="vm.transporte.carreta"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_placaTracto">Numero de placa tracto</label>
+            <label class="control-label" for="field_placaTracto">Placa tracto</label>
             <input type="text" class="form-control" name="placaTracto" id="field_placaTracto"
                     ng-model="vm.transporte.placaTracto"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_placaCarreta">Numero de placa Carreta</label>
+            <label class="control-label" for="field_placaCarreta">Placa carreta</label>
             <input type="text" class="form-control" name="placaCarreta" id="field_placaCarreta"
                     ng-model="vm.transporte.placaCarreta"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_largoCarreta">Largo de carreta</label>
+            <label class="control-label" for="field_largoCarreta">Largo carreta</label>
             <input type="number" class="form-control" name="largoCarreta" id="field_largoCarreta"
                     ng-model="vm.transporte.largoCarreta"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_anchoCarreta">Ancho d carreta</label>
+            <label class="control-label" for="field_anchoCarreta">Ancho carreta</label>
             <input type="number" class="form-control" name="anchoCarreta" id="field_anchoCarreta"
                     ng-model="vm.transporte.anchoCarreta"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_altoCarreta">Alto de carreta</label>
+            <label class="control-label" for="field_altoCarreta">Alto carreta</label>
             <input type="number" class="form-control" name="altoCarreta" id="field_altoCarreta"
                     ng-model="vm.transporte.altoCarreta"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_cargaUtil">Carga Util</label>
+            <label class="control-label" for="field_cargaUtil">Carga útil</label>
             <input type="number" class="form-control" name="cargaUtil" id="field_cargaUtil"
                     ng-model="vm.transporte.cargaUtil"
                      />
@@ -86,18 +86,53 @@
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_anoFabricacion">Ano de Fabricación</label>
+            <label class="control-label" for="field_anoFabricacion">Año de fabricacion</label>
             <input type="number" class="form-control" name="anoFabricacion" id="field_anoFabricacion"
                     ng-model="vm.transporte.anoFabricacion"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_unidadPropia">Unidad Propia</label>
+            <label class="control-label" for="field_unidadPropia">Unidad propia</label>
             <input type="checkbox" class="form-control" name="unidadPropia" id="field_unidadPropia"
                     ng-model="vm.transporte.unidadPropia"
                      />
         </div>
-
+        <!--Mostrar solo si es unidad propia-->
+        <div ng-show="vm.transporte.unidadPropia" >
+        <div class="form-group">
+            <label class="control-label" for="field_kilometraje">Kilometraje</label>
+            <input type="number" class="form-control" name="kilometraje" id="field_kilometraje"
+                    ng-model="vm.transporte.kilometraje"
+                    ng-required="vm.transporte.unidadPropia"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaRevisionTecnica">Fecha de revisión técnica</label>
+                <div class="input-group">
+                    <input id="field_fechaRevisionTecnica" type="text" class="form-control" name="fechaRevisionTecnica" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transporte.fechaRevisionTecnica" is-open="vm.datePickerOpenStatus.fechaRevisionTecnica"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaRevisionTecnica')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_soat">SOAT</label>
+            <input type="text" class="form-control" name="soat" id="field_soat"
+                    ng-model="vm.transporte.soat"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaVencimientoSoat">Fecha vencimiento SOAT</label>
+                <div class="input-group">
+                    <input id="field_fechaVencimientoSoat" type="text" class="form-control" name="fechaVencimientoSoat" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transporte.fechaVencimientoSoat" is-open="vm.datePickerOpenStatus.fechaVencimientoSoat"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaVencimientoSoat')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        </div>
         <div class="form-group">
             <label for="field_tipoUnidad">Tipo de unidad</label>
             <select class="form-control" id="field_tipoUnidad" name="tipoUnidad" ng-model="vm.transporte.tipoUnidad" ng-options="tipoUnidad as tipoUnidad.nombre for tipoUnidad in vm.tipounidads track by tipoUnidad.id" required>

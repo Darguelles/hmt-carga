@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('CotizacionDialogController', CotizacionDialogController);
 
-    CotizacionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Cotizacion', 'Cliente', 'TipoServicio', 'TipoUnidad'];
+    CotizacionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Cotizacion', 'Cliente', 'Servicio', 'TipoUnidad'];
 
-    function CotizacionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Cotizacion, Cliente, TipoServicio, TipoUnidad) {
+    function CotizacionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Cotizacion, Cliente, Servicio, TipoUnidad) {
         var vm = this;
 
         vm.cotizacion = entity;
@@ -16,7 +16,7 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.clientes = Cliente.query();
-        vm.tiposervicios = TipoServicio.query();
+        vm.servicios = Servicio.query();
         vm.tipounidads = TipoUnidad.query();
 
         $timeout(function (){

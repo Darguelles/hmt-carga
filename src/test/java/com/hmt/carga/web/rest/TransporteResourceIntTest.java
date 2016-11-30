@@ -25,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -79,6 +81,18 @@ public class TransporteResourceIntTest {
     private static final Boolean DEFAULT_UNIDAD_PROPIA = false;
     private static final Boolean UPDATED_UNIDAD_PROPIA = true;
 
+    private static final Double DEFAULT_KILOMETRAJE = 1D;
+    private static final Double UPDATED_KILOMETRAJE = 2D;
+
+    private static final LocalDate DEFAULT_FECHA_REVISION_TECNICA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FECHA_REVISION_TECNICA = LocalDate.now(ZoneId.systemDefault());
+
+    private static final String DEFAULT_SOAT = "AAAAA";
+    private static final String UPDATED_SOAT = "BBBBB";
+
+    private static final LocalDate DEFAULT_FECHA_VENCIMIENTO_SOAT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FECHA_VENCIMIENTO_SOAT = LocalDate.now(ZoneId.systemDefault());
+
     @Inject
     private TransporteRepository transporteRepository;
 
@@ -128,7 +142,11 @@ public class TransporteResourceIntTest {
                 .registroMatpel(DEFAULT_REGISTRO_MATPEL)
                 .gps(DEFAULT_GPS)
                 .anoFabricacion(DEFAULT_ANO_FABRICACION)
-                .unidadPropia(DEFAULT_UNIDAD_PROPIA);
+                .unidadPropia(DEFAULT_UNIDAD_PROPIA)
+                .kilometraje(DEFAULT_KILOMETRAJE)
+                .fechaRevisionTecnica(DEFAULT_FECHA_REVISION_TECNICA)
+                .soat(DEFAULT_SOAT)
+                .fechaVencimientoSoat(DEFAULT_FECHA_VENCIMIENTO_SOAT);
         // Add required entity
         TipoUnidad tipoUnidad = TipoUnidadResourceIntTest.createEntity(em);
         em.persist(tipoUnidad);
@@ -171,6 +189,10 @@ public class TransporteResourceIntTest {
         assertThat(testTransporte.isGps()).isEqualTo(DEFAULT_GPS);
         assertThat(testTransporte.getAnoFabricacion()).isEqualTo(DEFAULT_ANO_FABRICACION);
         assertThat(testTransporte.isUnidadPropia()).isEqualTo(DEFAULT_UNIDAD_PROPIA);
+        assertThat(testTransporte.getKilometraje()).isEqualTo(DEFAULT_KILOMETRAJE);
+        assertThat(testTransporte.getFechaRevisionTecnica()).isEqualTo(DEFAULT_FECHA_REVISION_TECNICA);
+        assertThat(testTransporte.getSoat()).isEqualTo(DEFAULT_SOAT);
+        assertThat(testTransporte.getFechaVencimientoSoat()).isEqualTo(DEFAULT_FECHA_VENCIMIENTO_SOAT);
     }
 
     @Test
@@ -214,7 +236,11 @@ public class TransporteResourceIntTest {
                 .andExpect(jsonPath("$.[*].registroMatpel").value(hasItem(DEFAULT_REGISTRO_MATPEL.booleanValue())))
                 .andExpect(jsonPath("$.[*].gps").value(hasItem(DEFAULT_GPS.booleanValue())))
                 .andExpect(jsonPath("$.[*].anoFabricacion").value(hasItem(DEFAULT_ANO_FABRICACION)))
-                .andExpect(jsonPath("$.[*].unidadPropia").value(hasItem(DEFAULT_UNIDAD_PROPIA.booleanValue())));
+                .andExpect(jsonPath("$.[*].unidadPropia").value(hasItem(DEFAULT_UNIDAD_PROPIA.booleanValue())))
+                .andExpect(jsonPath("$.[*].kilometraje").value(hasItem(DEFAULT_KILOMETRAJE.doubleValue())))
+                .andExpect(jsonPath("$.[*].fechaRevisionTecnica").value(hasItem(DEFAULT_FECHA_REVISION_TECNICA.toString())))
+                .andExpect(jsonPath("$.[*].soat").value(hasItem(DEFAULT_SOAT.toString())))
+                .andExpect(jsonPath("$.[*].fechaVencimientoSoat").value(hasItem(DEFAULT_FECHA_VENCIMIENTO_SOAT.toString())));
     }
 
     @Test
@@ -240,7 +266,11 @@ public class TransporteResourceIntTest {
             .andExpect(jsonPath("$.registroMatpel").value(DEFAULT_REGISTRO_MATPEL.booleanValue()))
             .andExpect(jsonPath("$.gps").value(DEFAULT_GPS.booleanValue()))
             .andExpect(jsonPath("$.anoFabricacion").value(DEFAULT_ANO_FABRICACION))
-            .andExpect(jsonPath("$.unidadPropia").value(DEFAULT_UNIDAD_PROPIA.booleanValue()));
+            .andExpect(jsonPath("$.unidadPropia").value(DEFAULT_UNIDAD_PROPIA.booleanValue()))
+            .andExpect(jsonPath("$.kilometraje").value(DEFAULT_KILOMETRAJE.doubleValue()))
+            .andExpect(jsonPath("$.fechaRevisionTecnica").value(DEFAULT_FECHA_REVISION_TECNICA.toString()))
+            .andExpect(jsonPath("$.soat").value(DEFAULT_SOAT.toString()))
+            .andExpect(jsonPath("$.fechaVencimientoSoat").value(DEFAULT_FECHA_VENCIMIENTO_SOAT.toString()));
     }
 
     @Test
@@ -274,7 +304,11 @@ public class TransporteResourceIntTest {
                 .registroMatpel(UPDATED_REGISTRO_MATPEL)
                 .gps(UPDATED_GPS)
                 .anoFabricacion(UPDATED_ANO_FABRICACION)
-                .unidadPropia(UPDATED_UNIDAD_PROPIA);
+                .unidadPropia(UPDATED_UNIDAD_PROPIA)
+                .kilometraje(UPDATED_KILOMETRAJE)
+                .fechaRevisionTecnica(UPDATED_FECHA_REVISION_TECNICA)
+                .soat(UPDATED_SOAT)
+                .fechaVencimientoSoat(UPDATED_FECHA_VENCIMIENTO_SOAT);
 
         restTransporteMockMvc.perform(put("/api/transportes")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -298,6 +332,10 @@ public class TransporteResourceIntTest {
         assertThat(testTransporte.isGps()).isEqualTo(UPDATED_GPS);
         assertThat(testTransporte.getAnoFabricacion()).isEqualTo(UPDATED_ANO_FABRICACION);
         assertThat(testTransporte.isUnidadPropia()).isEqualTo(UPDATED_UNIDAD_PROPIA);
+        assertThat(testTransporte.getKilometraje()).isEqualTo(UPDATED_KILOMETRAJE);
+        assertThat(testTransporte.getFechaRevisionTecnica()).isEqualTo(UPDATED_FECHA_REVISION_TECNICA);
+        assertThat(testTransporte.getSoat()).isEqualTo(UPDATED_SOAT);
+        assertThat(testTransporte.getFechaVencimientoSoat()).isEqualTo(UPDATED_FECHA_VENCIMIENTO_SOAT);
     }
 
     @Test

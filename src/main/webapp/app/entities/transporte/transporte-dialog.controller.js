@@ -12,6 +12,8 @@
 
         vm.transporte = entity;
         vm.clear = clear;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
         vm.save = save;
         vm.tipounidads = TipoUnidad.query();
 
@@ -42,6 +44,11 @@
             vm.isSaving = false;
         }
 
+        vm.datePickerOpenStatus.fechaRevisionTecnica = false;
+        vm.datePickerOpenStatus.fechaVencimientoSoat = false;
 
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
     }
 })();

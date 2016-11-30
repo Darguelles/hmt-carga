@@ -18,13 +18,15 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nombre"><span>Nombre</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="descripcion"><span>Descripcion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="descripcion"><span>Descripción</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="servicio in vm.servicios track by servicio.id">
+                    <td><a ui-sref="servicio-detail({id:servicio.id})">{{servicio.id}}</a></td>
                     <td>{{servicio.nombre}}</td>
                     <td>{{servicio.descripcion}}</td>
                     <td class="text-right">

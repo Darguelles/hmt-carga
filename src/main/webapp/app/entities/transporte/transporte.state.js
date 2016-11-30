@@ -128,6 +128,10 @@
                                 gps: null,
                                 anoFabricacion: null,
                                 unidadPropia: null,
+                                kilometraje: null,
+                                fechaRevisionTecnica: null,
+                                soat: null,
+                                fechaVencimientoSoat: null,
                                 id: null
                             };
                         }
