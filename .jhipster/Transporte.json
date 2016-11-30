@@ -66,6 +66,22 @@
         {
             "fieldName": "unidadPropia",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "kilometraje",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fechaRevisionTecnica",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "soat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaVencimientoSoat",
+            "fieldType": "LocalDate"
         }
     ],
     "changelogDate": "20161114053755",

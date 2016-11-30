@@ -11,8 +11,8 @@
             "otherEntityField": "nombre ruc direccion"
         },
         {
-            "relationshipName": "tipoServicio",
-            "otherEntityName": "tipoServicio",
+            "relationshipName": "servicio",
+            "otherEntityName": "servicio",
             "relationshipType": "many-to-one",
             "relationshipValidateRules": [
                 "required"
