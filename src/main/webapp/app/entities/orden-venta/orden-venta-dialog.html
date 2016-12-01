@@ -1,0 +1,58 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myOrdenVentaLabel">Crear o editar una orden de venta</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.ordenVenta.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.ordenVenta.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fecha">Fecha</label>
+                <div class="input-group">
+                    <input id="field_fecha" type="text" class="form-control" name="fecha" datetime-picker="{{dateformat}}" ng-model="vm.ordenVenta.fecha" ng-init="vm.ordenVenta.fecha = vm.ordenVenta.fecha || date_code" is-open="vm.datePickerOpenStatus.fecha"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fecha')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.fecha.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fecha.$error.required">
+                    Este campo es obligatorio.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.fecha.$error.ZonedDateTimelocal">
+                    Ingresar una fecha y una hora.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_cotizacion">Cotización</label>
+            <select class="form-control" id="field_cotizacion" name="cotizacion" ng-model="vm.ordenVenta.cotizacion" ng-init="vm.ordenVenta.cotizacion = vm.ordenVenta.cotizacion || cot_selected" ng-options="cotizacion as cotizacion.id for cotizacion in vm.cotizacions track by cotizacion.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.cotizacion.$invalid">
+            <p class="help-block"
+                ng-show="editForm.cotizacion.$error.required">
+                Este campo es obligatorio.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
+        </button>
+    </div>
+</form>

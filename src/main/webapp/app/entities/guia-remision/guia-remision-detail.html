@@ -1,0 +1,67 @@
+
+<div>
+    <h2><span>Guia Remision</span> {{vm.guiaRemision.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Codigo</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.codigo}}</span>
+        </dd>
+        <dt><span>Fecha Emision</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.fechaEmision | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Fecha Traslado</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.fechaTraslado | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Cantidad</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.cantidad}}</span>
+        </dd>
+        <dt><span>Peso</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.peso}}</span>
+        </dd>
+        <dt><span>Unidad Medida</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.unidadMedida}}</span>
+        </dd>
+        <dt><span>Costo Minimo</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.costoMinimo}}</span>
+        </dd>
+        <dt><span>Fecha Ingreso</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.fechaIngreso | date:'medium'}}</span>
+        </dd>
+        <dt><span>Fecha Salida</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.fechaSalida | date:'medium'}}</span>
+        </dd>
+        <dt><span>Cotizacion</span></dt>
+        <dd>
+            <a ui-sref="cotizacion-detail({id:vm.guiaRemision.cotizacion.id})">{{vm.guiaRemision.cotizacion.cliente}}</a>
+        </dd>
+        <dt><span>Proveedor</span></dt>
+        <dd>
+            <a ui-sref="proveedor-detail({id:vm.guiaRemision.proveedor.id})">{{vm.guiaRemision.proveedor.nombre}}</a>
+        </dd>
+        <dt><span>Transporte</span></dt>
+        <dd>
+            <a ui-sref="transporte-detail({id:vm.guiaRemision.transporte.id})">{{vm.guiaRemision.transporte.marca}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="guia-remision-detail.edit({id:vm.guiaRemision.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

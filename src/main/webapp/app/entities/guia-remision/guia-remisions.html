@@ -1,0 +1,88 @@
+<div>
+    <h2>Guia Remisions</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="guia-remision.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Guia Remision
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="codigo"><span>Codigo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaEmision"><span>Fecha Emision</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaTraslado"><span>Fecha Traslado</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cantidad"><span>Cantidad</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="peso"><span>Peso</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="unidadMedida"><span>Unidad Medida</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="costoMinimo"><span>Costo Minimo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaIngreso"><span>Fecha Ingreso</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaSalida"><span>Fecha Salida</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cotizacion.cliente"><span>Cotizacion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="proveedor.nombre"><span>Proveedor</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="transporte.marca"><span>Transporte</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="guiaRemision in vm.guiaRemisions track by guiaRemision.id">
+                    <td><a ui-sref="guia-remision-detail({id:guiaRemision.id})">{{guiaRemision.id}}</a></td>
+                    <td>{{guiaRemision.codigo}}</td>
+                        <td>{{guiaRemision.fechaEmision | date:'mediumDate'}}</td>
+                        <td>{{guiaRemision.fechaTraslado | date:'mediumDate'}}</td>
+                    <td>{{guiaRemision.cantidad}}</td>
+                    <td>{{guiaRemision.peso}}</td>
+                    <td>{{guiaRemision.unidadMedida}}</td>
+                    <td>{{guiaRemision.costoMinimo}}</td>
+                    <td>{{guiaRemision.fechaIngreso | date:'medium'}}</td>
+                    <td>{{guiaRemision.fechaSalida | date:'medium'}}</td>
+                    <td>
+                        <a ui-sref="cotizacion-detail({id:guiaRemision.cotizacion.id})">{{guiaRemision.cotizacion.cliente}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="proveedor-detail({id:guiaRemision.proveedor.id})">{{guiaRemision.proveedor.nombre}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="transporte-detail({id:guiaRemision.transporte.id})">{{guiaRemision.transporte.marca}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="guia-remision-detail({id:guiaRemision.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="guia-remision.edit({id:guiaRemision.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="guia-remision.delete({id:guiaRemision.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>

@@ -1,0 +1,164 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myGuiaRemisionLabel">Create or edit a Guia Remision</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.guiaRemision.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.guiaRemision.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_codigo">Codigo</label>
+            <input type="text" class="form-control" name="codigo" id="field_codigo"
+                    ng-model="vm.guiaRemision.codigo"
+                    required />
+            <div ng-show="editForm.codigo.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.codigo.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaEmision">Fecha Emision</label>
+                <div class="input-group">
+                    <input id="field_fechaEmision" type="text" class="form-control" name="fechaEmision" uib-datepicker-popup="{{dateformat}}" ng-model="vm.guiaRemision.fechaEmision" is-open="vm.datePickerOpenStatus.fechaEmision"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaEmision')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.fechaEmision.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fechaEmision.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaTraslado">Fecha Traslado</label>
+                <div class="input-group">
+                    <input id="field_fechaTraslado" type="text" class="form-control" name="fechaTraslado" uib-datepicker-popup="{{dateformat}}" ng-model="vm.guiaRemision.fechaTraslado" is-open="vm.datePickerOpenStatus.fechaTraslado"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaTraslado')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_cantidad">Cantidad</label>
+            <input type="number" class="form-control" name="cantidad" id="field_cantidad"
+                    ng-model="vm.guiaRemision.cantidad"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_peso">Peso</label>
+            <input type="number" class="form-control" name="peso" id="field_peso"
+                    ng-model="vm.guiaRemision.peso"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_unidadMedida">Unidad Medida</label>
+            <input type="text" class="form-control" name="unidadMedida" id="field_unidadMedida"
+                    ng-model="vm.guiaRemision.unidadMedida"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_costoMinimo">Costo Minimo</label>
+            <input type="number" class="form-control" name="costoMinimo" id="field_costoMinimo"
+                    ng-model="vm.guiaRemision.costoMinimo"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaIngreso">Fecha Ingreso</label>
+                <div class="input-group">
+                    <input id="field_fechaIngreso" type="text" class="form-control" name="fechaIngreso" datetime-picker="{{dateformat}}" ng-model="vm.guiaRemision.fechaIngreso" is-open="vm.datePickerOpenStatus.fechaIngreso"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaIngreso')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.fechaIngreso.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fechaIngreso.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.fechaIngreso.$error.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaSalida">Fecha Salida</label>
+                <div class="input-group">
+                    <input id="field_fechaSalida" type="text" class="form-control" name="fechaSalida" datetime-picker="{{dateformat}}" ng-model="vm.guiaRemision.fechaSalida" is-open="vm.datePickerOpenStatus.fechaSalida"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaSalida')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.fechaSalida.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fechaSalida.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.fechaSalida.$error.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_cotizacion">Cotizacion</label>
+            <select class="form-control" id="field_cotizacion" name="cotizacion" ng-model="vm.guiaRemision.cotizacion" ng-options="cotizacion as cotizacion.cliente.nombre for cotizacion in vm.cotizacions track by cotizacion.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.cotizacion.$invalid">
+            <p class="help-block"
+                ng-show="editForm.cotizacion.$error.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="field_proveedor">Proveedor</label>
+            <select class="form-control" id="field_proveedor" name="proveedor" ng-model="vm.guiaRemision.proveedor" ng-options="proveedor as proveedor.nombre for proveedor in vm.proveedors track by proveedor.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.proveedor.$invalid">
+            <p class="help-block"
+                ng-show="editForm.proveedor.$error.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="field_transporte">Transporte</label>
+            <select class="form-control" id="field_transporte" name="transporte" ng-model="vm.guiaRemision.transporte" ng-options="transporte as transporte.id for transporte in vm.transportes track by transporte.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.transporte.$invalid">
+            <p class="help-block"
+                ng-show="editForm.transporte.$error.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

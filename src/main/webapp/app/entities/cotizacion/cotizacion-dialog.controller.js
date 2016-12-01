@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('CotizacionDialogController', CotizacionDialogController);
 
-    CotizacionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Cotizacion', 'Cliente', 'Servicio', 'TipoUnidad'];
+    CotizacionDialogController.$inject = ['$location', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Cotizacion', 'Cliente', 'Servicio', 'TipoUnidad'];
 
-    function CotizacionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Cotizacion, Cliente, Servicio, TipoUnidad) {
+    function CotizacionDialogController ($location, $timeout, $scope, $stateParams, $uibModalInstance, entity, Cotizacion, Cliente, Servicio, TipoUnidad) {
         var vm = this;
 
         vm.cotizacion = entity;
@@ -34,6 +34,12 @@
             } else {
                 Cotizacion.save(vm.cotizacion, onSaveSuccess, onSaveError);
             }
+        }
+
+        //Abrir modal nueva orden de venta
+        $scope.goToOrdenVentaDialog = function () {
+            $location.path('/orden-venta/new');
+            window.localStorage.setItem("current_cotizacion", JSON.stringify(vm.cotizacion));
         }
 
         function onSaveSuccess (result) {

@@ -69,5 +69,13 @@
         timeToLiveSeconds="3600">
     </cache>
 
+    <cache name="com.hmt.carga.domain.GuiaRemision"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="com.hmt.carga.domain.OrdenVenta"
+        timeToLiveSeconds="3600">
+    </cache>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </ehcache>

@@ -1,6 +1,6 @@
 
 <div>
-    <h2><span>Cotización</span> {{vm.cotizacion.id}}</h2>
+    <h2><span>Cotización N° </span> {{vm.cotizacion.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
@@ -34,7 +34,7 @@
         </dd>
         <dt><span>Cliente</span></dt>
         <dd>
-            <a ui-sref="cliente-detail({id:vm.cotizacion.cliente.id})">{{vm.cotizacion.cliente.nombre ruc direccion}}</a>
+            <a ui-sref="cliente-detail({id:vm.cotizacion.cliente.id})">{{vm.cotizacion.cliente.nombre}}</a>
         </dd>
         <dt><span>Servicio</span></dt>
         <dd>

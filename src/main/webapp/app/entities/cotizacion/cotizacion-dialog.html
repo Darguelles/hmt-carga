@@ -116,7 +116,7 @@
 
         <div class="form-group">
             <label for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.cotizacion.cliente" ng-options="cliente as cliente.nombre ruc direccion for cliente in vm.clientes track by cliente.id" required>
+            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.cotizacion.cliente" ng-options="cliente as cliente.nombre for cliente in vm.clientes track by cliente.id" required>
                 <option value=""></option>
             </select>
         </div>
@@ -150,6 +150,9 @@
                 Este campo es obligatorio.
             </p>
         </div>
+        <button type="button" class="btn btn-primary" ng-click="goToOrdenVentaDialog()" ng-show="vm.cotizacion.id">
+            <span class="glyphicon glyphicon-share"></span>&nbsp;<span>Generar orden de venta</span>
+        </button>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

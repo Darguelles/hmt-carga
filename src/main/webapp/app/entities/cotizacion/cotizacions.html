@@ -26,7 +26,7 @@
                     <th jh-sort-by="precio"><span>Precio</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="moneda"><span>Moneda</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="porcentajePago"><span>Porcentaje de pago</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="cliente.nombre ruc direccion"><span>Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cliente.nombre"><span>Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="servicio.nombre"><span>Servicio</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="tipoUnidad.nombre"><span>Tipo de unidad</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
@@ -43,7 +43,7 @@
                     <td>{{cotizacion.moneda}}</td>
                     <td>{{cotizacion.porcentajePago}}</td>
                     <td>
-                        <a ui-sref="cliente-detail({id:cotizacion.cliente.id})">{{cotizacion.cliente.nombre ruc direccion}}</a>
+                        <a ui-sref="cliente-detail({id:cotizacion.cliente.id})">{{cotizacion.cliente.nombre}}</a>
                     </td>
                     <td>
                         <a ui-sref="servicio-detail({id:cotizacion.servicio.id})">{{cotizacion.servicio.nombre}}</a>

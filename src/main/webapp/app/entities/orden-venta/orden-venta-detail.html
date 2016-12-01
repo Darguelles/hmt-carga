@@ -1,16 +1,16 @@
 
 <div>
-    <h2><span>Servicio</span> {{vm.servicio.nombre}}</h2>
+    <h2><span>Orden de venta N° </span> {{vm.ordenVenta.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Nombre</span></dt>
+        <dt><span>Fecha</span></dt>
         <dd>
-            <span>{{vm.servicio.nombre}}</span>
+            <span>{{vm.ordenVenta.fecha | date:'medium'}}</span>
         </dd>
-        <dt><span>Descripción</span></dt>
+        <dt><span>Cotización</span></dt>
         <dd>
-            <span>{{vm.servicio.descripcion}}</span>
+            <a ui-sref="cotizacion-detail({id:vm.ordenVenta.cotizacion.id})">{{vm.ordenVenta.cotizacion.id}}</a>
         </dd>
     </dl>
 
@@ -20,7 +20,7 @@
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Volver</span>
     </button>
 
-    <button type="button" ui-sref="servicio-detail.edit({id:vm.servicio.id})" class="btn btn-primary">
+    <button type="button" ui-sref="orden-venta-detail.edit({id:vm.ordenVenta.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-xs hidden-sm"> Editar</span>
     </button>
