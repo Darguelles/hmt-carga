@@ -40,7 +40,7 @@
                     <td>{{cotizacion.destino}}</td>
                     <td>{{cotizacion.mercaderia}}</td>
                     <td>{{cotizacion.precio}}</td>
-                    <td>{{cotizacion.moneda}}</td>
+                    <td>{{cotizacion.moneda == 1?'Soles':'Dolares'}}</td>
                     <td>{{cotizacion.porcentajePago}}</td>
                     <td>
                         <a ui-sref="cliente-detail({id:cotizacion.cliente.id})">{{cotizacion.cliente.nombre}}</a>

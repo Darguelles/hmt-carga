@@ -81,22 +81,32 @@
                 </p>
             </div>
         </div>
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" for="field_moneda">Moneda</label>-->
+            <!--<input type="number" class="form-control" name="moneda" id="field_moneda"-->
+                    <!--ng-model="vm.cotizacion.moneda"-->
+                    <!--required />-->
+            <!--<div ng-show="editForm.moneda.$invalid">-->
+                <!--<p class="help-block"-->
+                    <!--ng-show="editForm.moneda.$error.required">-->
+                    <!--Este campo es obligatorio.-->
+                <!--</p>-->
+                <!--<p class="help-block"-->
+                    <!--ng-show="editForm.moneda.$error.number">-->
+                    <!--Solo se permiten números.-->
+                <!--</p>-->
+            <!--</div>-->
+        <!--</div>-->
+
         <div class="form-group">
-            <label class="control-label" for="field_moneda">Moneda</label>
-            <input type="number" class="form-control" name="moneda" id="field_moneda"
-                    ng-model="vm.cotizacion.moneda"
-                    required />
-            <div ng-show="editForm.moneda.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.moneda.$error.required">
-                    Este campo es obligatorio.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.moneda.$error.number">
-                    Solo se permiten números.
-                </p>
-            </div>
+            <label for="field_moneda">Moneda</label>
+            <select class="form-control" id="field_moneda" name="moneda" ng-model="vm.cotizacion.moneda" required>
+                <option value="1" ng-selected="vm.cotizacion.moneda==1" >Soles - S/.</option>
+                <option value="2" ng-selected="vm.cotizacion.moneda==2" >Dolares - $</option>
+            </select>
         </div>
+
+
         <div class="form-group">
             <label class="control-label" for="field_porcentajePago">Porcentaje Pago</label>
             <input type="number" class="form-control" name="porcentajePago" id="field_porcentajePago"

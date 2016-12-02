@@ -36,6 +36,9 @@
             }
         }
 
+        $scope.currency = [{ name: "Soles", id: 1 }, { name: "Dolares", id: 2 }];
+        $scope.selectedCurrency = vm.cotizacion.moneda;
+
         //Abrir modal nueva orden de venta
         $scope.goToOrdenVentaDialog = function () {
             $location.path('/orden-venta/new');
