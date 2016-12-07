@@ -132,6 +132,7 @@
                                 fechaRevisionTecnica: null,
                                 soat: null,
                                 fechaVencimientoSoat: null,
+                                modelo: null,
                                 id: null
                             };
                         }

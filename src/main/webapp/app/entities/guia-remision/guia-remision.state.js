@@ -124,6 +124,7 @@
                                 costoMinimo: null,
                                 fechaIngreso: null,
                                 fechaSalida: null,
+                                observaciones: null,
                                 id: null
                             };
                         }

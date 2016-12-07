@@ -20,23 +20,24 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="marca"><span>Marca</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="modelo"><span>Modelo</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="tracto"><span>Tracto</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="carreta"><span>Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="placaTracto"><span>Placa tracto</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="placaCarreta"><span>Placa carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="largoCarreta"><span>Largo carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="anchoCarreta"><span>Ancho carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="altoCarreta"><span>Alto carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="cargaUtil"><span>Carga útil</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="registroMatpel"><span>Registro MATPEL</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="gps"><span>GPS</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="anoFabricacion"><span>Año de fabricación</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="unidadPropia"><span>Unidad propia</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="placaTracto"><span>Placa Tracto</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="placaCarreta"><span>Placa Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="largoCarreta"><span>Largo Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="anchoCarreta"><span>Ancho Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="altoCarreta"><span>Alto Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cargaUtil"><span>Carga Util</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="registroMatpel"><span>Registro Matpel</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="gps"><span>Gps</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="anoFabricacion"><span>Ano Fabricacion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="unidadPropia"><span>Unidad Propia</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="kilometraje"><span>Kilometraje</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="fechaRevisionTecnica"><span>Fecha de revisión Técnica</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="soat"><span>SOAT</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="fechaVencimientoSoat"><span>Fecha vencimiento SOAT</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="tipoUnidad.nombre"><span>Tipo de unidad</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaRevisionTecnica"><span>Fecha Revision Tecnica</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="soat"><span>Soat</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaVencimientoSoat"><span>Fecha Vencimiento Soat</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tipoUnidad.nombre"><span>Tipo Unidad</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -44,6 +45,7 @@
                 <tr ng-repeat="transporte in vm.transportes track by transporte.id">
                     <td><a ui-sref="transporte-detail({id:transporte.id})">{{transporte.id}}</a></td>
                     <td>{{transporte.marca}}</td>
+                    <td>{{transporte.modelo}}</td>
                     <td>{{transporte.tracto}}</td>
                     <td>{{transporte.carreta}}</td>
                     <td>{{transporte.placaTracto}}</td>
@@ -57,9 +59,9 @@
                     <td>{{transporte.anoFabricacion}}</td>
                     <td>{{transporte.unidadPropia}}</td>
                     <td>{{transporte.kilometraje}}</td>
-                        <td>{{transporte.fechaRevisionTecnica | date:'mediumDate'}}</td>
+                    <td>{{transporte.fechaRevisionTecnica | date:'mediumDate'}}</td>
                     <td>{{transporte.soat}}</td>
-                        <td>{{transporte.fechaVencimientoSoat | date:'mediumDate'}}</td>
+                    <td>{{transporte.fechaVencimientoSoat | date:'mediumDate'}}</td>
                     <td>
                         <a ui-sref="tipo-unidad-detail({id:transporte.tipoUnidad.id})">{{transporte.tipoUnidad.nombre}}</a>
                     </td>

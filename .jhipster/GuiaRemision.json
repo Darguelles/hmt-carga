@@ -78,6 +78,10 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "observaciones",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20161201164500",

@@ -75,6 +75,10 @@ public class Transporte implements Serializable {
     @Column(name = "fecha_vencimiento_soat")
     private LocalDate fechaVencimientoSoat;
 
+    @NotNull
+    @Column(name = "modelo", nullable = false)
+    private String modelo;
+
     @ManyToOne
     @NotNull
     private TipoUnidad tipoUnidad;
@@ -308,6 +312,19 @@ public class Transporte implements Serializable {
         this.fechaVencimientoSoat = fechaVencimientoSoat;
     }
 
+    public String getModelo() {
+        return modelo;
+    }
+
+    public Transporte modelo(String modelo) {
+        this.modelo = modelo;
+        return this;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
     public TipoUnidad getTipoUnidad() {
         return tipoUnidad;
     }
@@ -362,6 +379,7 @@ public class Transporte implements Serializable {
             ", fechaRevisionTecnica='" + fechaRevisionTecnica + "'" +
             ", soat='" + soat + "'" +
             ", fechaVencimientoSoat='" + fechaVencimientoSoat + "'" +
+            ", modelo='" + modelo + "'" +
             '}';
     }
 }

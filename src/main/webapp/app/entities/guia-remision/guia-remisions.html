@@ -1,5 +1,5 @@
 <div>
-    <h2>Guia Remisions</h2>
+    <h2>Guia de Remision</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="guia-remision.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new Guia Remision
+                        Crear nueva Guia de Remision
                     </span>
                 </button>
             </div>
@@ -28,6 +28,7 @@
                     <th jh-sort-by="costoMinimo"><span>Costo Minimo</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fechaIngreso"><span>Fecha Ingreso</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fechaSalida"><span>Fecha Salida</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="observaciones"><span>Observaciones</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="cotizacion.cliente"><span>Cotizacion</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="proveedor.nombre"><span>Proveedor</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="transporte.marca"><span>Transporte</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -46,6 +47,7 @@
                     <td>{{guiaRemision.costoMinimo}}</td>
                     <td>{{guiaRemision.fechaIngreso | date:'medium'}}</td>
                     <td>{{guiaRemision.fechaSalida | date:'medium'}}</td>
+                    <td>{{guiaRemision.observaciones}}</td>
                     <td>
                         <a ui-sref="cotizacion-detail({id:guiaRemision.cotizacion.id})">{{guiaRemision.cotizacion.cliente}}</a>
                     </td>

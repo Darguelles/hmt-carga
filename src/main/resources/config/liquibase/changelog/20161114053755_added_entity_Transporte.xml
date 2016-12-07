@@ -89,6 +89,10 @@
                 <constraints nullable="true" />
             </column>
             
+            <column name="modelo" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
             <column name="tipo_unidad_id" type="bigint">
                 <constraints nullable="false" />
             </column>

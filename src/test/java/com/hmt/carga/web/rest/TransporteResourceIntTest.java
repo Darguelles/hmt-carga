@@ -93,6 +93,9 @@ public class TransporteResourceIntTest {
     private static final LocalDate DEFAULT_FECHA_VENCIMIENTO_SOAT = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_FECHA_VENCIMIENTO_SOAT = LocalDate.now(ZoneId.systemDefault());
 
+    private static final String DEFAULT_MODELO = "AAAAA";
+    private static final String UPDATED_MODELO = "BBBBB";
+
     @Inject
     private TransporteRepository transporteRepository;
 
@@ -146,7 +149,8 @@ public class TransporteResourceIntTest {
                 .kilometraje(DEFAULT_KILOMETRAJE)
                 .fechaRevisionTecnica(DEFAULT_FECHA_REVISION_TECNICA)
                 .soat(DEFAULT_SOAT)
-                .fechaVencimientoSoat(DEFAULT_FECHA_VENCIMIENTO_SOAT);
+                .fechaVencimientoSoat(DEFAULT_FECHA_VENCIMIENTO_SOAT)
+                .modelo(DEFAULT_MODELO);
         // Add required entity
         TipoUnidad tipoUnidad = TipoUnidadResourceIntTest.createEntity(em);
         em.persist(tipoUnidad);
@@ -193,6 +197,7 @@ public class TransporteResourceIntTest {
         assertThat(testTransporte.getFechaRevisionTecnica()).isEqualTo(DEFAULT_FECHA_REVISION_TECNICA);
         assertThat(testTransporte.getSoat()).isEqualTo(DEFAULT_SOAT);
         assertThat(testTransporte.getFechaVencimientoSoat()).isEqualTo(DEFAULT_FECHA_VENCIMIENTO_SOAT);
+        assertThat(testTransporte.getModelo()).isEqualTo(DEFAULT_MODELO);
     }
 
     @Test
@@ -201,6 +206,24 @@ public class TransporteResourceIntTest {
         int databaseSizeBeforeTest = transporteRepository.findAll().size();
         // set the field null
         transporte.setMarca(null);
+
+        // Create the Transporte, which fails.
+
+        restTransporteMockMvc.perform(post("/api/transportes")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(transporte)))
+                .andExpect(status().isBadRequest());
+
+        List<Transporte> transportes = transporteRepository.findAll();
+        assertThat(transportes).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkModeloIsRequired() throws Exception {
+        int databaseSizeBeforeTest = transporteRepository.findAll().size();
+        // set the field null
+        transporte.setModelo(null);
 
         // Create the Transporte, which fails.
 
@@ -240,7 +263,8 @@ public class TransporteResourceIntTest {
                 .andExpect(jsonPath("$.[*].kilometraje").value(hasItem(DEFAULT_KILOMETRAJE.doubleValue())))
                 .andExpect(jsonPath("$.[*].fechaRevisionTecnica").value(hasItem(DEFAULT_FECHA_REVISION_TECNICA.toString())))
                 .andExpect(jsonPath("$.[*].soat").value(hasItem(DEFAULT_SOAT.toString())))
-                .andExpect(jsonPath("$.[*].fechaVencimientoSoat").value(hasItem(DEFAULT_FECHA_VENCIMIENTO_SOAT.toString())));
+                .andExpect(jsonPath("$.[*].fechaVencimientoSoat").value(hasItem(DEFAULT_FECHA_VENCIMIENTO_SOAT.toString())))
+                .andExpect(jsonPath("$.[*].modelo").value(hasItem(DEFAULT_MODELO.toString())));
     }
 
     @Test
@@ -270,7 +294,8 @@ public class TransporteResourceIntTest {
             .andExpect(jsonPath("$.kilometraje").value(DEFAULT_KILOMETRAJE.doubleValue()))
             .andExpect(jsonPath("$.fechaRevisionTecnica").value(DEFAULT_FECHA_REVISION_TECNICA.toString()))
             .andExpect(jsonPath("$.soat").value(DEFAULT_SOAT.toString()))
-            .andExpect(jsonPath("$.fechaVencimientoSoat").value(DEFAULT_FECHA_VENCIMIENTO_SOAT.toString()));
+            .andExpect(jsonPath("$.fechaVencimientoSoat").value(DEFAULT_FECHA_VENCIMIENTO_SOAT.toString()))
+            .andExpect(jsonPath("$.modelo").value(DEFAULT_MODELO.toString()));
     }
 
     @Test
@@ -308,7 +333,8 @@ public class TransporteResourceIntTest {
                 .kilometraje(UPDATED_KILOMETRAJE)
                 .fechaRevisionTecnica(UPDATED_FECHA_REVISION_TECNICA)
                 .soat(UPDATED_SOAT)
-                .fechaVencimientoSoat(UPDATED_FECHA_VENCIMIENTO_SOAT);
+                .fechaVencimientoSoat(UPDATED_FECHA_VENCIMIENTO_SOAT)
+                .modelo(UPDATED_MODELO);
 
         restTransporteMockMvc.perform(put("/api/transportes")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -336,6 +362,7 @@ public class TransporteResourceIntTest {
         assertThat(testTransporte.getFechaRevisionTecnica()).isEqualTo(UPDATED_FECHA_REVISION_TECNICA);
         assertThat(testTransporte.getSoat()).isEqualTo(UPDATED_SOAT);
         assertThat(testTransporte.getFechaVencimientoSoat()).isEqualTo(UPDATED_FECHA_VENCIMIENTO_SOAT);
+        assertThat(testTransporte.getModelo()).isEqualTo(UPDATED_MODELO);
     }
 
     @Test

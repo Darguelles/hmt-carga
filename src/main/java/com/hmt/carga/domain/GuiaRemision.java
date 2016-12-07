@@ -55,6 +55,9 @@ public class GuiaRemision implements Serializable {
     @Column(name = "fecha_salida", nullable = false)
     private ZonedDateTime fechaSalida;
 
+    @Column(name = "observaciones")
+    private String observaciones;
+
     @ManyToOne
     @NotNull
     private Cotizacion cotizacion;
@@ -192,6 +195,19 @@ public class GuiaRemision implements Serializable {
         this.fechaSalida = fechaSalida;
     }
 
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public GuiaRemision observaciones(String observaciones) {
+        this.observaciones = observaciones;
+        return this;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
     public Cotizacion getCotizacion() {
         return cotizacion;
     }
@@ -264,6 +280,7 @@ public class GuiaRemision implements Serializable {
             ", costoMinimo='" + costoMinimo + "'" +
             ", fechaIngreso='" + fechaIngreso + "'" +
             ", fechaSalida='" + fechaSalida + "'" +
+            ", observaciones='" + observaciones + "'" +
             '}';
     }
 }

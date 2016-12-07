@@ -23,6 +23,16 @@
             angular.element('.form-group:eq(1)>input').focus();
         });
 
+        $scope.filterByTipoUnidad = function (cotActual) {
+            return function (item) {
+                if (item.tipoUnidad.id == cotActual)
+                {
+                    return true;
+                }
+                return false;
+            };
+        };
+
         function clear () {
             $uibModalInstance.dismiss('cancel');
         }

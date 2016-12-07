@@ -57,6 +57,10 @@
                 <constraints nullable="false" />
             </column>
             
+            <column name="observaciones" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="cotizacion_id" type="bigint">
                 <constraints nullable="false" />
             </column>

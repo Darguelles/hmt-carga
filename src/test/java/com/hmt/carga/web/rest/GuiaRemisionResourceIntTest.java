@@ -76,6 +76,9 @@ public class GuiaRemisionResourceIntTest {
     private static final ZonedDateTime UPDATED_FECHA_SALIDA = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
     private static final String DEFAULT_FECHA_SALIDA_STR = DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(DEFAULT_FECHA_SALIDA);
 
+    private static final String DEFAULT_OBSERVACIONES = "AAAAA";
+    private static final String UPDATED_OBSERVACIONES = "BBBBB";
+
     @Inject
     private GuiaRemisionRepository guiaRemisionRepository;
 
@@ -121,7 +124,8 @@ public class GuiaRemisionResourceIntTest {
                 .unidadMedida(DEFAULT_UNIDAD_MEDIDA)
                 .costoMinimo(DEFAULT_COSTO_MINIMO)
                 .fechaIngreso(DEFAULT_FECHA_INGRESO)
-                .fechaSalida(DEFAULT_FECHA_SALIDA);
+                .fechaSalida(DEFAULT_FECHA_SALIDA)
+                .observaciones(DEFAULT_OBSERVACIONES);
         // Add required entity
         Cotizacion cotizacion = CotizacionResourceIntTest.createEntity(em);
         em.persist(cotizacion);
@@ -170,6 +174,7 @@ public class GuiaRemisionResourceIntTest {
         assertThat(testGuiaRemision.getCostoMinimo()).isEqualTo(DEFAULT_COSTO_MINIMO);
         assertThat(testGuiaRemision.getFechaIngreso()).isEqualTo(DEFAULT_FECHA_INGRESO);
         assertThat(testGuiaRemision.getFechaSalida()).isEqualTo(DEFAULT_FECHA_SALIDA);
+        assertThat(testGuiaRemision.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
     }
 
     @Test
@@ -263,7 +268,8 @@ public class GuiaRemisionResourceIntTest {
                 .andExpect(jsonPath("$.[*].unidadMedida").value(hasItem(DEFAULT_UNIDAD_MEDIDA.toString())))
                 .andExpect(jsonPath("$.[*].costoMinimo").value(hasItem(DEFAULT_COSTO_MINIMO.doubleValue())))
                 .andExpect(jsonPath("$.[*].fechaIngreso").value(hasItem(DEFAULT_FECHA_INGRESO_STR)))
-                .andExpect(jsonPath("$.[*].fechaSalida").value(hasItem(DEFAULT_FECHA_SALIDA_STR)));
+                .andExpect(jsonPath("$.[*].fechaSalida").value(hasItem(DEFAULT_FECHA_SALIDA_STR)))
+                .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
     }
 
     @Test
@@ -285,7 +291,8 @@ public class GuiaRemisionResourceIntTest {
             .andExpect(jsonPath("$.unidadMedida").value(DEFAULT_UNIDAD_MEDIDA.toString()))
             .andExpect(jsonPath("$.costoMinimo").value(DEFAULT_COSTO_MINIMO.doubleValue()))
             .andExpect(jsonPath("$.fechaIngreso").value(DEFAULT_FECHA_INGRESO_STR))
-            .andExpect(jsonPath("$.fechaSalida").value(DEFAULT_FECHA_SALIDA_STR));
+            .andExpect(jsonPath("$.fechaSalida").value(DEFAULT_FECHA_SALIDA_STR))
+            .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()));
     }
 
     @Test
@@ -315,7 +322,8 @@ public class GuiaRemisionResourceIntTest {
                 .unidadMedida(UPDATED_UNIDAD_MEDIDA)
                 .costoMinimo(UPDATED_COSTO_MINIMO)
                 .fechaIngreso(UPDATED_FECHA_INGRESO)
-                .fechaSalida(UPDATED_FECHA_SALIDA);
+                .fechaSalida(UPDATED_FECHA_SALIDA)
+                .observaciones(UPDATED_OBSERVACIONES);
 
         restGuiaRemisionMockMvc.perform(put("/api/guia-remisions")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -335,6 +343,7 @@ public class GuiaRemisionResourceIntTest {
         assertThat(testGuiaRemision.getCostoMinimo()).isEqualTo(UPDATED_COSTO_MINIMO);
         assertThat(testGuiaRemision.getFechaIngreso()).isEqualTo(UPDATED_FECHA_INGRESO);
         assertThat(testGuiaRemision.getFechaSalida()).isEqualTo(UPDATED_FECHA_SALIDA);
+        assertThat(testGuiaRemision.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
     }
 
     @Test

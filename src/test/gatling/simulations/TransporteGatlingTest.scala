@@ -67,7 +67,7 @@ class TransporteGatlingTest extends Simulation {
             .exec(http("Create new transporte")
             .post("/api/transportes")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "marca":"SAMPLE_TEXT", "tracto":"SAMPLE_TEXT", "carreta":"SAMPLE_TEXT", "placaTracto":"SAMPLE_TEXT", "placaCarreta":"SAMPLE_TEXT", "largoCarreta":null, "anchoCarreta":null, "altoCarreta":null, "cargaUtil":null, "registroMatpel":null, "gps":null, "anoFabricacion":"0", "unidadPropia":null, "kilometraje":null, "fechaRevisionTecnica":"2020-01-01T00:00:00.000Z", "soat":"SAMPLE_TEXT", "fechaVencimientoSoat":"2020-01-01T00:00:00.000Z"}""")).asJSON
+            .body(StringBody("""{"id":null, "marca":"SAMPLE_TEXT", "tracto":"SAMPLE_TEXT", "carreta":"SAMPLE_TEXT", "placaTracto":"SAMPLE_TEXT", "placaCarreta":"SAMPLE_TEXT", "largoCarreta":null, "anchoCarreta":null, "altoCarreta":null, "cargaUtil":null, "registroMatpel":null, "gps":null, "anoFabricacion":"0", "unidadPropia":null, "kilometraje":null, "fechaRevisionTecnica":"2020-01-01T00:00:00.000Z", "soat":"SAMPLE_TEXT", "fechaVencimientoSoat":"2020-01-01T00:00:00.000Z", "modelo":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_transporte_url"))).exitHereIfFailed
             .pause(10)
