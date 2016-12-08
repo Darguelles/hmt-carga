@@ -20,5 +20,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="servicio"/>
 
+        <addForeignKeyConstraint baseColumnNames="guia_remision_id"
+                                 baseTableName="factura"
+                                 constraintName="fk_factura_guia_remision_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="guia_remision"/>
+
     </changeSet>
 </databaseChangeLog>

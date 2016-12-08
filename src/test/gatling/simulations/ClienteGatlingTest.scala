@@ -67,7 +67,7 @@ class ClienteGatlingTest extends Simulation {
             .exec(http("Create new cliente")
             .post("/api/clientes")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "ruc":null, "nombre":"SAMPLE_TEXT", "direccion":"SAMPLE_TEXT", "telefono":"0", "email":"SAMPLE_TEXT", "contacto":"SAMPLE_TEXT", "descuento":null}""")).asJSON
+            .body(StringBody("""{"id":null, "ruc":null, "nombre":"SAMPLE_TEXT", "direccion":"SAMPLE_TEXT", "telefono":"0", "email":"SAMPLE_TEXT", "contacto":"SAMPLE_TEXT", "descuento":null, "tipoDescuento":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_cliente_url"))).exitHereIfFailed
             .pause(10)

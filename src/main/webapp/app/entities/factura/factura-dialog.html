@@ -4,14 +4,14 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myFacturaLabel">Crear o editar Factura</h4>
+        <h4 class="modal-title" id="myFacturaLabel">Create or edit a Factura</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" ng-show="vm.factura.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.factura.id" readonly />
+                   ng-model="vm.factura.id" readonly />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_codigo">Codigo</label>
@@ -21,118 +21,159 @@
             <div ng-show="editForm.codigo.$invalid">
                 <p class="help-block"
                    ng-show="editForm.codigo.$error.required">
-                    Este campo es obligatorio.
+                    This field is required.
                 </p>
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_fecha">Fecha</label>
+            <div class="input-group">
+                <input id="field_fecha" type="text" class="form-control" name="fecha" datetime-picker="{{dateformat}}" ng-model="vm.factura.fecha" is-open="vm.datePickerOpenStatus.fecha"
+                       required  />
+                <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fecha')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+            </div>
+            <div ng-show="editForm.fecha.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.fecha.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.fecha.$error.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_guiaRemision">Guia Remision</label>
+            <select class="form-control" id="field_guiaRemision" name="guiaRemision" ng-model="vm.factura.guiaRemision" ng-options="guiaRemision as guiaRemision.codigo for guiaRemision in vm.guiaremisions track by guiaRemision.id"
+                    ng-init="vm.factura.guiaRemision = vm.factura.guiaRemision || guia_selected">
+                <option value=""></option>
+            </select>
+        </div>
         <div class="form-group">
             <label for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.factura.cliente" ng-options="cliente as cliente.nombre for cliente in vm.clientes track by cliente.id" required>
+            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.factura.cliente" ng-options="cliente as cliente.nombre for cliente in vm.clientes track by cliente.id" required
+                    ng-init="vm.factura.cliente = vm.factura.cliente || vm.factura.guiaRemision.cotizacion.cliente || vm.factura.cliente">
                 <option value=""></option>
             </select>
         </div>
         <div ng-show="editForm.cliente.$invalid">
             <p class="help-block"
                ng-show="editForm.cliente.$error.required">
-                Este campo es obligatorio.
+                This field is required.
             </p>
         </div>
         <div class="form-group">
             <label for="field_servicio">Servicio</label>
-            <select class="form-control" id="field_servicio" name="servicio" ng-model="vm.factura.servicio" ng-options="servicio as servicio.nombre for servicio in vm.servicios track by servicio.id" required>
+            <select class="form-control" id="field_servicio" name="servicio" ng-model="vm.factura.servicio" ng-options="servicio as servicio.nombre for servicio in vm.servicios track by servicio.id" required
+                    ng-init="vm.factura.servicio = vm.factura.servicio || vm.factura.guiaRemision.cotizacion.servicio"
+            >
                 <option value=""></option>
             </select>
         </div>
         <div ng-show="editForm.servicio.$invalid">
             <p class="help-block"
                ng-show="editForm.servicio.$error.required">
-                Este campo es obligatorio.
+                This field is required.
             </p>
         </div>
-
         <div class="form-group">
             <label class="control-label" for="field_precioUnitario">Precio Unitario</label>
             <input type="number" class="form-control" name="precioUnitario" id="field_precioUnitario"
-                    ng-model="vm.factura.precioUnitario"
-                    required />
+                   ng-model="vm.factura.precioUnitario"
+                   ng-init="vm.factura.precioUnitario = vm.factura.precioUnitario || vm.factura.guiaRemision.cotizacion.precio"
+                   required />
             <div ng-show="editForm.precioUnitario.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.precioUnitario.$error.required">
-                    Este campo es obligatorio.
+                   ng-show="editForm.precioUnitario.$error.required">
+                    This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.precioUnitario.$error.number">
-                    Este campo solo acepta números.
+                   ng-show="editForm.precioUnitario.$error.number">
+                    This field should be a number.
                 </p>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label" for="field_cantidad">Cantidad</label>
             <input type="number" class="form-control" name="cantidad" id="field_cantidad"
-                    ng-model="vm.factura.cantidad" ng-keyup="igv()"
-                    required />
+                   ng-model="vm.factura.cantidad"
+                   ng-init="vm.factura.cantidad = vm.factura.cantidad || vm.factura.guiaRemision.cantidad"
+                   required />
             <div ng-show="editForm.cantidad.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.cantidad.$error.required">
-                    Este campo es obligatorio.
+                   ng-show="editForm.cantidad.$error.required">
+                    This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.cantidad.$error.number">
-                    Este campo solo acepta números.
+                   ng-show="editForm.cantidad.$error.number">
+                    This field should be a number.
                 </p>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label" for="field_precioBase">Precio Base</label>
             <input type="number" class="form-control" name="precioBase" id="field_precioBase"
-                    ng-model="vm.factura.precioBase" ng-readonly="true"
-                    required  value="{{precioBase()}}"/>
+                   ng-model="vm.factura.precioBase"
+                   required  value="{{precioBase()}}"  ng-readonly="true"/>
             <div ng-show="editForm.precioBase.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.precioBase.$error.required">
-                    Este campo es obligatorio.
+                   ng-show="editForm.precioBase.$error.required">
+                    This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.precioBase.$error.number">
-                    Este campo solo acepta números.
+                   ng-show="editForm.precioBase.$error.number">
+                    This field should be a number.
                 </p>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label" for="field_igv">Igv</label>
             <input type="number" class="form-control" name="igv" id="field_igv"
-                    ng-model="vm.factura.igv" ng-readonly="true"
-                    required  value="{{igv()}}"/>
+                   ng-model="vm.factura.igv"
+                   required ng-readonly="true"/>
             <div ng-show="editForm.igv.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.igv.$error.required">
-                    Este campo es obligatorio.
+                   ng-show="editForm.igv.$error.required">
+                    This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.igv.$error.number">
-                    Este campo solo acepta números.
+                   ng-show="editForm.igv.$error.number">
+                    This field should be a number.
                 </p>
             </div>
         </div>
-        <div class="form-group" ng-show="vm.factura.cliente.descuento>=0">
-            <label class="control-label" for="field_desc">Descuento</label>
-            <input type="number" class="form-control" name="desc" id="field_desc"
+        <div class="form-group">
+            <label class="control-label" for="field_descuento">Descuento</label>
+            <input type="number" class="form-control" name="descuento" id="field_descuento"
+                   ng-model="vm.factura.descuento"
                    ng-readonly="true"
-                   required  value="{{vm.factura.cliente.descuento}}"/>
+            />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tipoDescuento">Tipo Descuento</label>
+            <input type="text" class="form-control" name="tipoDescuento" id="field_tipoDescuento"
+                   ng-model="vm.factura.tipoDescuento"
+                   ng-readonly="true"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_precioTotal">Precio Total</label>
             <input type="number" class="form-control" name="precioTotal" id="field_precioTotal"
-                    ng-model="vm.factura.precioTotal" ng-readonly="true"
-                    required />
+                   ng-model="vm.factura.precioTotal"
+                   required ng-readonly="true"/>
             <div ng-show="editForm.precioTotal.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.precioTotal.$error.required">
-                    Este campo es obligatorio.
+                   ng-show="editForm.precioTotal.$error.required">
+                    This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.precioTotal.$error.number">
-                    Este campo solo acepta números.
+                   ng-show="editForm.precioTotal.$error.number">
+                    This field should be a number.
                 </p>
             </div>
         </div>

@@ -8,6 +8,8 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.hmt.carga.domain.enumeration.TIPO_DESCUENTO;
+
 /**
  * A Cliente.
  */
@@ -50,6 +52,10 @@ public class Cliente implements Serializable {
 
     @Column(name = "descuento")
     private Double descuento;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_descuento")
+    private TIPO_DESCUENTO tipoDescuento;
 
     @ManyToOne
     @NotNull
@@ -158,6 +164,19 @@ public class Cliente implements Serializable {
         this.descuento = descuento;
     }
 
+    public TIPO_DESCUENTO getTipoDescuento() {
+        return tipoDescuento;
+    }
+
+    public Cliente tipoDescuento(TIPO_DESCUENTO tipoDescuento) {
+        this.tipoDescuento = tipoDescuento;
+        return this;
+    }
+
+    public void setTipoDescuento(TIPO_DESCUENTO tipoDescuento) {
+        this.tipoDescuento = tipoDescuento;
+    }
+
     public FormaPago getFormaPago() {
         return formaPago;
     }
@@ -215,6 +234,7 @@ public class Cliente implements Serializable {
             ", email='" + email + "'" +
             ", contacto='" + contacto + "'" +
             ", descuento='" + descuento + "'" +
+            ", tipoDescuento='" + tipoDescuento + "'" +
             '}';
     }
 }

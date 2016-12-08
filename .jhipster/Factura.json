@@ -18,6 +18,12 @@
                 "required"
             ],
             "otherEntityField": "nombre"
+        },
+        {
+            "relationshipName": "guiaRemision",
+            "otherEntityName": "guiaRemision",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "codigo"
         }
     ],
     "fields": [
@@ -59,6 +65,21 @@
         {
             "fieldName": "codigo",
             "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descuento",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "tipoDescuento",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "ZonedDateTime",
             "fieldValidateRules": [
                 "required"
             ]

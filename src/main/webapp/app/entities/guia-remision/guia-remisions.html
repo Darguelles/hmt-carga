@@ -49,7 +49,7 @@
                     <td>{{guiaRemision.fechaSalida | date:'medium'}}</td>
                     <td>{{guiaRemision.observaciones}}</td>
                     <td>
-                        <a ui-sref="cotizacion-detail({id:guiaRemision.cotizacion.id})">{{guiaRemision.cotizacion.cliente}}</a>
+                        <a ui-sref="cotizacion-detail({id:guiaRemision.cotizacion.id})">{{guiaRemision.cotizacion.id}}</a>
                     </td>
                     <td>
                         <a ui-sref="proveedor-detail({id:guiaRemision.proveedor.id})">{{guiaRemision.proveedor.nombre}}</a>

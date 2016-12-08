@@ -121,6 +121,9 @@
                                 igv: null,
                                 precioTotal: null,
                                 codigo: null,
+                                descuento: null,
+                                tipoDescuento: null,
+                                fecha: null,
                                 id: null
                             };
                         }

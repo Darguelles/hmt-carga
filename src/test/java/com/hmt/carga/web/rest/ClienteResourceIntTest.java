@@ -32,6 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.hmt.carga.domain.enumeration.TIPO_DESCUENTO;
 /**
  * Test class for the ClienteResource REST controller.
  *
@@ -61,6 +62,9 @@ public class ClienteResourceIntTest {
 
     private static final Double DEFAULT_DESCUENTO = 1D;
     private static final Double UPDATED_DESCUENTO = 2D;
+
+    private static final TIPO_DESCUENTO DEFAULT_TIPO_DESCUENTO = TIPO_DESCUENTO.porcentaje;
+    private static final TIPO_DESCUENTO UPDATED_TIPO_DESCUENTO = TIPO_DESCUENTO.monto;
 
     @Inject
     private ClienteRepository clienteRepository;
@@ -105,7 +109,8 @@ public class ClienteResourceIntTest {
                 .telefono(DEFAULT_TELEFONO)
                 .email(DEFAULT_EMAIL)
                 .contacto(DEFAULT_CONTACTO)
-                .descuento(DEFAULT_DESCUENTO);
+                .descuento(DEFAULT_DESCUENTO)
+                .tipoDescuento(DEFAULT_TIPO_DESCUENTO);
         // Add required entity
         FormaPago formaPago = FormaPagoResourceIntTest.createEntity(em);
         em.persist(formaPago);
@@ -147,6 +152,7 @@ public class ClienteResourceIntTest {
         assertThat(testCliente.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testCliente.getContacto()).isEqualTo(DEFAULT_CONTACTO);
         assertThat(testCliente.getDescuento()).isEqualTo(DEFAULT_DESCUENTO);
+        assertThat(testCliente.getTipoDescuento()).isEqualTo(DEFAULT_TIPO_DESCUENTO);
     }
 
     @Test
@@ -274,7 +280,8 @@ public class ClienteResourceIntTest {
                 .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO)))
                 .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
                 .andExpect(jsonPath("$.[*].contacto").value(hasItem(DEFAULT_CONTACTO.toString())))
-                .andExpect(jsonPath("$.[*].descuento").value(hasItem(DEFAULT_DESCUENTO.doubleValue())));
+                .andExpect(jsonPath("$.[*].descuento").value(hasItem(DEFAULT_DESCUENTO.doubleValue())))
+                .andExpect(jsonPath("$.[*].tipoDescuento").value(hasItem(DEFAULT_TIPO_DESCUENTO.toString())));
     }
 
     @Test
@@ -294,7 +301,8 @@ public class ClienteResourceIntTest {
             .andExpect(jsonPath("$.telefono").value(DEFAULT_TELEFONO))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.contacto").value(DEFAULT_CONTACTO.toString()))
-            .andExpect(jsonPath("$.descuento").value(DEFAULT_DESCUENTO.doubleValue()));
+            .andExpect(jsonPath("$.descuento").value(DEFAULT_DESCUENTO.doubleValue()))
+            .andExpect(jsonPath("$.tipoDescuento").value(DEFAULT_TIPO_DESCUENTO.toString()));
     }
 
     @Test
@@ -322,7 +330,8 @@ public class ClienteResourceIntTest {
                 .telefono(UPDATED_TELEFONO)
                 .email(UPDATED_EMAIL)
                 .contacto(UPDATED_CONTACTO)
-                .descuento(UPDATED_DESCUENTO);
+                .descuento(UPDATED_DESCUENTO)
+                .tipoDescuento(UPDATED_TIPO_DESCUENTO);
 
         restClienteMockMvc.perform(put("/api/clientes")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -340,6 +349,7 @@ public class ClienteResourceIntTest {
         assertThat(testCliente.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testCliente.getContacto()).isEqualTo(UPDATED_CONTACTO);
         assertThat(testCliente.getDescuento()).isEqualTo(UPDATED_DESCUENTO);
+        assertThat(testCliente.getTipoDescuento()).isEqualTo(UPDATED_TIPO_DESCUENTO);
     }
 
     @Test

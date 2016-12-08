@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('GuiaRemisionDialogController', GuiaRemisionDialogController);
 
-    GuiaRemisionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte'];
+    GuiaRemisionDialogController.$inject = ['$location', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte'];
 
-    function GuiaRemisionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, GuiaRemision, Cotizacion, Proveedor, Transporte) {
+    function GuiaRemisionDialogController ($location, $timeout, $scope, $stateParams, $uibModalInstance, entity, GuiaRemision, Cotizacion, Proveedor, Transporte) {
         var vm = this;
 
         vm.guiaRemision = entity;
@@ -32,6 +32,12 @@
                 return false;
             };
         };
+
+        //Abrir modal nueva factura
+        $scope.goToFacturaDialog = function () {
+            $location.path('/factura/new');
+            window.localStorage.setItem("current_guia_remision", JSON.stringify(vm.guiaRemision));
+        }
 
         function clear () {
             $uibModalInstance.dismiss('cancel');

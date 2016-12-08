@@ -158,6 +158,9 @@
                       ng-model="vm.guiaRemision.observaciones"
             />
         </div>
+        <button type="button" class="btn btn-primary" ng-click="goToFacturaDialog()" ng-show="vm.guiaRemision.id">
+            <span class="glyphicon glyphicon-share"></span>&nbsp;<span>Generar factura</span>
+        </button>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

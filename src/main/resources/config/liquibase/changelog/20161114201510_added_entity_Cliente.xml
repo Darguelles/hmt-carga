@@ -49,6 +49,10 @@
                 <constraints nullable="true" />
             </column>
             
+            <column name="tipo_descuento" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="forma_pago_id" type="bigint">
                 <constraints nullable="false" />
             </column>

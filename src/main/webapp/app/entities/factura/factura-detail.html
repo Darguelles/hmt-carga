@@ -28,6 +28,18 @@
         <dd>
             <span>{{vm.factura.codigo}}</span>
         </dd>
+        <dt><span>Descuento</span></dt>
+        <dd>
+            <span>{{vm.factura.descuento}}</span>
+        </dd>
+        <dt><span>Tipo Descuento</span></dt>
+        <dd>
+            <span>{{vm.factura.tipoDescuento}}</span>
+        </dd>
+        <dt><span>Fecha</span></dt>
+        <dd>
+            <span>{{vm.factura.fecha | date:'medium'}}</span>
+        </dd>
         <dt><span>Cliente</span></dt>
         <dd>
             <a ui-sref="cliente-detail({id:vm.factura.cliente.id})">{{vm.factura.cliente.nombre}}</a>
@@ -35,6 +47,10 @@
         <dt><span>Servicio</span></dt>
         <dd>
             <a ui-sref="servicio-detail({id:vm.factura.servicio.id})">{{vm.factura.servicio.nombre}}</a>
+        </dd>
+        <dt><span>Guia Remision</span></dt>
+        <dd>
+            <a ui-sref="guia-remision-detail({id:vm.factura.guiaRemision.id})">{{vm.factura.guiaRemision.codigo}}</a>
         </dd>
     </dl>
 

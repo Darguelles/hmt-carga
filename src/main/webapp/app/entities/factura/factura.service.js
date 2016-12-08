@@ -4,9 +4,9 @@
         .module('hmtcargaApp')
         .factory('Factura', Factura);
 
-    Factura.$inject = ['$resource'];
+    Factura.$inject = ['$resource', 'DateUtils'];
 
-    function Factura ($resource) {
+    function Factura ($resource, DateUtils) {
         var resourceUrl =  'api/facturas/:id';
 
         return $resource(resourceUrl, {}, {
@@ -16,6 +16,7 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
+                        data.fecha = DateUtils.convertDateTimeFromServer(data.fecha);
                     }
                     return data;
                 }

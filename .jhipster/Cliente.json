@@ -72,6 +72,11 @@
         {
             "fieldName": "descuento",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "tipoDescuento",
+            "fieldType": "TIPO_DESCUENTO",
+            "fieldValues": "porcentaje, monto"
         }
     ],
     "changelogDate": "20161114201510",

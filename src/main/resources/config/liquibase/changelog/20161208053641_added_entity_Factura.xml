@@ -45,6 +45,18 @@
                 <constraints nullable="false" />
             </column>
             
+            <column name="descuento" type="double">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="tipo_descuento" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="fecha" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            
             <column name="cliente_id" type="bigint">
                 <constraints nullable="false" />
             </column>
@@ -53,8 +65,13 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="guia_remision_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
+        <dropDefaultValue tableName="factura" columnName="fecha" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

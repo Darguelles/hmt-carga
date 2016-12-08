@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="cliente.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Crear nuevo cliente
+                        Create new Cliente
                     </span>
                 </button>
             </div>
@@ -18,22 +18,23 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <!--<th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="ruc"><span>Ruc</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nombre"><span>Nombre</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="direccion"><span>Dirección</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="telefono"><span>Teléfono</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="direccion"><span>Direccion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="telefono"><span>Telefono</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="email"><span>Email</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="contacto"><span>Contacto</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="descuento"><span>Descuento</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="formaPago.nombre"><span>Forma de pago</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="condicionPago.nombre"><span>Condicion de pago</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tipoDescuento"><span>Tipo Descuento</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="formaPago.nombre"><span>Forma Pago</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="condicionPago.nombre"><span>Condicion Pago</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="cliente in vm.clientes track by cliente.id">
-                    <!--<td><a ui-sref="cliente-detail({id:cliente.id})">{{cliente.id}}</a></td>-->
+                    <td><a ui-sref="cliente-detail({id:cliente.id})">{{cliente.id}}</a></td>
                     <td>{{cliente.ruc}}</td>
                     <td>{{cliente.nombre}}</td>
                     <td>{{cliente.direccion}}</td>
@@ -41,6 +42,7 @@
                     <td>{{cliente.email}}</td>
                     <td>{{cliente.contacto}}</td>
                     <td>{{cliente.descuento}}</td>
+                    <td data-translate="{{'hmtcargaApp.TIPO_DESCUENTO.' + cliente.tipoDescuento}}">{{cliente.tipoDescuento}}</td>
                     <td>
                         <a ui-sref="forma-pago-detail({id:cliente.formaPago.id})">{{cliente.formaPago.nombre}}</a>
                     </td>

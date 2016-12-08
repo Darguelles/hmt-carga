@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -46,6 +47,16 @@ public class Factura implements Serializable {
     @Column(name = "codigo", nullable = false)
     private String codigo;
 
+    @Column(name = "descuento")
+    private Double descuento;
+
+    @Column(name = "tipo_descuento")
+    private String tipoDescuento;
+
+    @NotNull
+    @Column(name = "fecha", nullable = false)
+    private ZonedDateTime fecha;
+
     @ManyToOne
     @NotNull
     private Cliente cliente;
@@ -53,6 +64,9 @@ public class Factura implements Serializable {
     @ManyToOne
     @NotNull
     private Servicio servicio;
+
+    @ManyToOne
+    private GuiaRemision guiaRemision;
 
     public Long getId() {
         return id;
@@ -140,6 +154,45 @@ public class Factura implements Serializable {
         this.codigo = codigo;
     }
 
+    public Double getDescuento() {
+        return descuento;
+    }
+
+    public Factura descuento(Double descuento) {
+        this.descuento = descuento;
+        return this;
+    }
+
+    public void setDescuento(Double descuento) {
+        this.descuento = descuento;
+    }
+
+    public String getTipoDescuento() {
+        return tipoDescuento;
+    }
+
+    public Factura tipoDescuento(String tipoDescuento) {
+        this.tipoDescuento = tipoDescuento;
+        return this;
+    }
+
+    public void setTipoDescuento(String tipoDescuento) {
+        this.tipoDescuento = tipoDescuento;
+    }
+
+    public ZonedDateTime getFecha() {
+        return fecha;
+    }
+
+    public Factura fecha(ZonedDateTime fecha) {
+        this.fecha = fecha;
+        return this;
+    }
+
+    public void setFecha(ZonedDateTime fecha) {
+        this.fecha = fecha;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -164,6 +217,19 @@ public class Factura implements Serializable {
 
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
+    }
+
+    public GuiaRemision getGuiaRemision() {
+        return guiaRemision;
+    }
+
+    public Factura guiaRemision(GuiaRemision guiaRemision) {
+        this.guiaRemision = guiaRemision;
+        return this;
+    }
+
+    public void setGuiaRemision(GuiaRemision guiaRemision) {
+        this.guiaRemision = guiaRemision;
     }
 
     @Override
@@ -196,6 +262,9 @@ public class Factura implements Serializable {
             ", igv='" + igv + "'" +
             ", precioTotal='" + precioTotal + "'" +
             ", codigo='" + codigo + "'" +
+            ", descuento='" + descuento + "'" +
+            ", tipoDescuento='" + tipoDescuento + "'" +
+            ", fecha='" + fecha + "'" +
             '}';
     }
 }

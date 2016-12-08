@@ -25,6 +25,8 @@
         }
 
         function save () {
+            console.log('---------------------DESCUENTO---------');
+            console.log(vm.cliente.tipoDescuento);
             vm.isSaving = true;
             if (vm.cliente.id !== null) {
                 Cliente.update(vm.cliente, onSaveSuccess, onSaveError);

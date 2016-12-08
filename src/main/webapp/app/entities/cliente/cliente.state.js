@@ -122,6 +122,7 @@
                                 email: null,
                                 contacto: null,
                                 descuento: null,
+                                tipoDescuento: null,
                                 id: null
                             };
                         }
