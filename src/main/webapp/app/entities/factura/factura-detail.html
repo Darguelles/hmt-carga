@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span>Factura</span> {{vm.factura.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Precio Unitario</span></dt>
+        <dd>
+            <span>{{vm.factura.precioUnitario}}</span>
+        </dd>
+        <dt><span>Cantidad</span></dt>
+        <dd>
+            <span>{{vm.factura.cantidad}}</span>
+        </dd>
+        <dt><span>Precio Base</span></dt>
+        <dd>
+            <span>{{vm.factura.precioBase}}</span>
+        </dd>
+        <dt><span>Igv</span></dt>
+        <dd>
+            <span>{{vm.factura.igv}}</span>
+        </dd>
+        <dt><span>Precio Total</span></dt>
+        <dd>
+            <span>{{vm.factura.precioTotal}}</span>
+        </dd>
+        <dt><span>Codigo</span></dt>
+        <dd>
+            <span>{{vm.factura.codigo}}</span>
+        </dd>
+        <dt><span>Cliente</span></dt>
+        <dd>
+            <a ui-sref="cliente-detail({id:vm.factura.cliente.id})">{{vm.factura.cliente.nombre}}</a>
+        </dd>
+        <dt><span>Servicio</span></dt>
+        <dd>
+            <a ui-sref="servicio-detail({id:vm.factura.servicio.id})">{{vm.factura.servicio.nombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="factura-detail.edit({id:vm.factura.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>
