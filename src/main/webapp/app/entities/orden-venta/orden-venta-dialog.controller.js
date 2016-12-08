@@ -35,6 +35,7 @@
             } else {
                 OrdenVenta.save(vm.ordenVenta, onSaveSuccess, onSaveError);
             }
+            window.localStorage.removeItem('current_cotizacion');
         }
 
         function onSaveSuccess (result) {

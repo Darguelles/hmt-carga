@@ -26,6 +26,18 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="field_cotizacion">Cotizacion</label>
+            <select class="form-control" id="field_cotizacion" name="cotizacion" ng-model="vm.guiaRemision.cotizacion" ng-options="cotizacion as cotizacion.id +' - '+ cotizacion.cliente.nombre for cotizacion in vm.cotizacions track by cotizacion.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.cotizacion.$invalid">
+            <p class="help-block"
+               ng-show="editForm.cotizacion.$error.required">
+                Este campo es obligatorio.
+            </p>
+        </div>
+        <div class="form-group">
             <label class="control-label" for="field_fechaEmision">Fecha Emision</label>
                 <div class="input-group">
                     <input id="field_fechaEmision" type="text" class="form-control" name="fechaEmision" uib-datepicker-popup="{{dateformat}}" ng-model="vm.guiaRemision.fechaEmision" is-open="vm.datePickerOpenStatus.fechaEmision"
@@ -69,12 +81,12 @@
                     ng-model="vm.guiaRemision.unidadMedida"
                      />
         </div>
-        <div class="form-group">
-            <label class="control-label" for="field_costoMinimo">Costo Minimo</label>
-            <input type="number" class="form-control" name="costoMinimo" id="field_costoMinimo"
-                    ng-model="vm.guiaRemision.costoMinimo"
-                     />
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" for="field_costoMinimo">Costo Minimo</label>-->
+            <!--<input type="number" class="form-control" name="costoMinimo" id="field_costoMinimo"-->
+                    <!--ng-model="vm.guiaRemision.costoMinimo"-->
+                     <!--/>-->
+        <!--</div>-->
         <div class="form-group">
             <label class="control-label" for="field_fechaIngreso">Fecha Ingreso</label>
                 <div class="input-group">
@@ -114,19 +126,6 @@
                     Ingrese una fecha válida.
                 </p>
             </div>
-        </div>
-
-        <div class="form-group">
-            <label for="field_cotizacion">Cotizacion</label>
-            <select class="form-control" id="field_cotizacion" name="cotizacion" ng-model="vm.guiaRemision.cotizacion" ng-options="cotizacion as cotizacion.id +' - '+ cotizacion.cliente.nombre for cotizacion in vm.cotizacions track by cotizacion.id" required>
-                <option value=""></option>
-            </select>
-        </div>
-        <div ng-show="editForm.cotizacion.$invalid">
-            <p class="help-block"
-                ng-show="editForm.cotizacion.$error.required">
-                Este campo es obligatorio.
-            </p>
         </div>
         <div class="form-group">
             <label for="field_proveedor">Proveedor</label>
