@@ -18,18 +18,18 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="codigo"><span>Codigo</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="fechaEmision"><span>Fecha Emision</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="fechaTraslado"><span>Fecha Traslado</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th jh-sort-by="codigo"><span>Código</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaEmision"><span>Fecha de emisión</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaTraslado"><span>Fecha de traslado</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="cantidad"><span>Cantidad</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="peso"><span>Peso</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="unidadMedida"><span>Unidad Medida</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="unidadMedida"><span>Unidad de medida</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <!--<th jh-sort-by="costoMinimo"><span>Costo Minimo</span> <span class="glyphicon glyphicon-sort"></span></th>-->
-                    <th jh-sort-by="fechaIngreso"><span>Fecha Ingreso</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="fechaSalida"><span>Fecha Salida</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaIngreso"><span>Fecha de ingreso</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaSalida"><span>Fecha de salida</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="observaciones"><span>Observaciones</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="cotizacion.cliente"><span>Cotizacion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cotizacion.cliente"><span>Cotización</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="proveedor.nombre"><span>Proveedor</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="transporte.marca"><span>Transporte</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
@@ -37,7 +37,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="guiaRemision in vm.guiaRemisions track by guiaRemision.id">
-                    <td><a ui-sref="guia-remision-detail({id:guiaRemision.id})">{{guiaRemision.id}}</a></td>
+                    <!--<td><a ui-sref="guia-remision-detail({id:guiaRemision.id})">{{guiaRemision.id}}</a></td>-->
                     <td>{{guiaRemision.codigo}}</td>
                         <td>{{guiaRemision.fechaEmision | date:'mediumDate'}}</td>
                         <td>{{guiaRemision.fechaTraslado | date:'mediumDate'}}</td>

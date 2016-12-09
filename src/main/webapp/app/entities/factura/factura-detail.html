@@ -1,9 +1,29 @@
 
 <div>
-    <h2><span>Factura</span> {{vm.factura.id}}</h2>
+    <h2><span>Factura N°</span> {{vm.factura.codigo}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Codigo</span></dt>
+        <dd>
+            <span>{{vm.factura.codigo}}</span>
+        </dd>
+        <dt><span>Fecha</span></dt>
+        <dd>
+            <span>{{vm.factura.fecha | date:'medium'}}</span>
+        </dd>
+        <dt><span>Guia de remisión</span></dt>
+        <dd>
+            <a ui-sref="guia-remision-detail({id:vm.factura.guiaRemision.id})">{{vm.factura.guiaRemision.codigo}}</a>
+        </dd>
+        <dt><span>Cliente</span></dt>
+        <dd>
+            <a ui-sref="cliente-detail({id:vm.factura.cliente.id})">{{vm.factura.cliente.nombre}}</a>
+        </dd>
+        <dt><span>Servicio</span></dt>
+        <dd>
+            <a ui-sref="servicio-detail({id:vm.factura.servicio.id})">{{vm.factura.servicio.nombre}}</a>
+        </dd>
         <dt><span>Precio Unitario</span></dt>
         <dd>
             <span>{{vm.factura.precioUnitario}}</span>
@@ -16,41 +36,21 @@
         <dd>
             <span>{{vm.factura.precioBase}}</span>
         </dd>
-        <dt><span>Igv</span></dt>
+        <dt><span>IGV</span></dt>
         <dd>
             <span>{{vm.factura.igv}}</span>
-        </dd>
-        <dt><span>Precio Total</span></dt>
-        <dd>
-            <span>{{vm.factura.precioTotal}}</span>
-        </dd>
-        <dt><span>Codigo</span></dt>
-        <dd>
-            <span>{{vm.factura.codigo}}</span>
         </dd>
         <dt><span>Descuento</span></dt>
         <dd>
             <span>{{vm.factura.descuento}}</span>
         </dd>
-        <dt><span>Tipo Descuento</span></dt>
+        <dt><span>Tipo de descuento</span></dt>
         <dd>
             <span>{{vm.factura.tipoDescuento}}</span>
         </dd>
-        <dt><span>Fecha</span></dt>
+        <dt><span>Precio total</span></dt>
         <dd>
-            <span>{{vm.factura.fecha | date:'medium'}}</span>
-        </dd>
-        <dt><span>Cliente</span></dt>
-        <dd>
-            <a ui-sref="cliente-detail({id:vm.factura.cliente.id})">{{vm.factura.cliente.nombre}}</a>
-        </dd>
-        <dt><span>Servicio</span></dt>
-        <dd>
-            <a ui-sref="servicio-detail({id:vm.factura.servicio.id})">{{vm.factura.servicio.nombre}}</a>
-        </dd>
-        <dt><span>Guia Remision</span></dt>
-        <dd>
-            <a ui-sref="guia-remision-detail({id:vm.factura.guiaRemision.id})">{{vm.factura.guiaRemision.codigo}}</a>
+            <span>{{vm.factura.precioTotal}}</span>
         </dd>
     </dl>
 

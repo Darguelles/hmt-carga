@@ -1,10 +1,10 @@
 
 <div>
-    <h2><span>Cliente</span> {{vm.cliente.id}}</h2>
+    <h2><span>Cliente </span> {{vm.cliente.ruc}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Ruc</span></dt>
+        <dt><span>RUC/DNI</span></dt>
         <dd>
             <span>{{vm.cliente.ruc}}</span>
         </dd>
@@ -12,11 +12,11 @@
         <dd>
             <span>{{vm.cliente.nombre}}</span>
         </dd>
-        <dt><span>Direccion</span></dt>
+        <dt><span>Dirección</span></dt>
         <dd>
             <span>{{vm.cliente.direccion}}</span>
         </dd>
-        <dt><span>Telefono</span></dt>
+        <dt><span>Teléfono</span></dt>
         <dd>
             <span>{{vm.cliente.telefono}}</span>
         </dd>
@@ -36,11 +36,11 @@
         <dd>
             <span data-translate="{{'hmtcargaApp.TIPO_DESCUENTO.' + vm.cliente.tipoDescuento}}">{{vm.cliente.tipoDescuento}}</span>
         </dd>
-        <dt><span>Forma Pago</span></dt>
+        <dt><span>Forma de pago</span></dt>
         <dd>
             <a ui-sref="forma-pago-detail({id:vm.cliente.formaPago.id})">{{vm.cliente.formaPago.nombre}}</a>
         </dd>
-        <dt><span>Condicion Pago</span></dt>
+        <dt><span>Condicion de pago</span></dt>
         <dd>
             <a ui-sref="condicion-pago-detail({id:vm.cliente.condicionPago.id})">{{vm.cliente.condicionPago.nombre}}</a>
         </dd>
@@ -49,11 +49,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Volver</span>
     </button>
 
     <button type="button" ui-sref="cliente-detail.edit({id:vm.cliente.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-xs hidden-sm"> Edit</span>
+        <span class="hidden-xs hidden-sm"> Editar</span>
     </button>
 </div>
