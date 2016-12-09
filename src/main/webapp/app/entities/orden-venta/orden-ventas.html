@@ -1,5 +1,5 @@
 <div>
-    <h2>Ordenes de Venta</h2>
+    <h2>Orden de venta</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="orden-venta.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Crear nueva orden de venta
+                        Crear nueva Orden de Venta
                     </span>
                 </button>
             </div>
@@ -20,6 +20,7 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fecha"><span>Fecha</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="emailDestino"><span>Email destino</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="cotizacion.id"><span>Cotización</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -28,6 +29,7 @@
                 <tr ng-repeat="ordenVenta in vm.ordenVentas track by ordenVenta.id">
                     <td><a ui-sref="orden-venta-detail({id:ordenVenta.id})">{{ordenVenta.id}}</a></td>
                     <td>{{ordenVenta.fecha | date:'medium'}}</td>
+                    <td>{{ordenVenta.emailDestino}}</td>
                     <td>
                         <a ui-sref="cotizacion-detail({id:ordenVenta.cotizacion.id})">{{ordenVenta.cotizacion.id}}</a>
                     </td>

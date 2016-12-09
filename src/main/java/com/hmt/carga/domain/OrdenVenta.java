@@ -27,6 +27,9 @@ public class OrdenVenta implements Serializable {
     @Column(name = "fecha", nullable = false)
     private ZonedDateTime fecha;
 
+    @Column(name = "email_destino")
+    private String emailDestino;
+
     @ManyToOne
     @NotNull
     private Cotizacion cotizacion;
@@ -50,6 +53,19 @@ public class OrdenVenta implements Serializable {
 
     public void setFecha(ZonedDateTime fecha) {
         this.fecha = fecha;
+    }
+
+    public String getEmailDestino() {
+        return emailDestino;
+    }
+
+    public OrdenVenta emailDestino(String emailDestino) {
+        this.emailDestino = emailDestino;
+        return this;
+    }
+
+    public void setEmailDestino(String emailDestino) {
+        this.emailDestino = emailDestino;
     }
 
     public Cotizacion getCotizacion() {
@@ -90,6 +106,8 @@ public class OrdenVenta implements Serializable {
         return "OrdenVenta{" +
             "id=" + id +
             ", fecha='" + fecha + "'" +
+            ", emailDestino='" + emailDestino + "'" +
             '}';
     }
+
 }

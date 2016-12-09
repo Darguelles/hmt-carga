@@ -25,6 +25,10 @@
                 <constraints nullable="false" />
             </column>
             
+            <column name="email_destino" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="cotizacion_id" type="bigint">
                 <constraints nullable="false" />
             </column>

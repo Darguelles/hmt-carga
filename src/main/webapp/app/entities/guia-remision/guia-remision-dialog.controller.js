@@ -19,6 +19,8 @@
         vm.proveedors = Proveedor.query();
         vm.transportes = Transporte.query();
 
+        $scope.date_code = new Date();
+
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });

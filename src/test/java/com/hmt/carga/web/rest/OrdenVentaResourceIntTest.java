@@ -48,6 +48,9 @@ public class OrdenVentaResourceIntTest {
     private static final ZonedDateTime UPDATED_FECHA = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
     private static final String DEFAULT_FECHA_STR = DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(DEFAULT_FECHA);
 
+    private static final String DEFAULT_EMAIL_DESTINO = "AAAAA";
+    private static final String UPDATED_EMAIL_DESTINO = "BBBBB";
+
     @Inject
     private OrdenVentaRepository ordenVentaRepository;
 
@@ -85,7 +88,8 @@ public class OrdenVentaResourceIntTest {
      */
     public static OrdenVenta createEntity(EntityManager em) {
         OrdenVenta ordenVenta = new OrdenVenta()
-                .fecha(DEFAULT_FECHA);
+                .fecha(DEFAULT_FECHA)
+                .emailDestino(DEFAULT_EMAIL_DESTINO);
         // Add required entity
         Cotizacion cotizacion = CotizacionResourceIntTest.createEntity(em);
         em.persist(cotizacion);
@@ -116,6 +120,7 @@ public class OrdenVentaResourceIntTest {
         assertThat(ordenVentas).hasSize(databaseSizeBeforeCreate + 1);
         OrdenVenta testOrdenVenta = ordenVentas.get(ordenVentas.size() - 1);
         assertThat(testOrdenVenta.getFecha()).isEqualTo(DEFAULT_FECHA);
+        assertThat(testOrdenVenta.getEmailDestino()).isEqualTo(DEFAULT_EMAIL_DESTINO);
     }
 
     @Test
@@ -147,7 +152,8 @@ public class OrdenVentaResourceIntTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(ordenVenta.getId().intValue())))
-                .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA_STR)));
+                .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA_STR)))
+                .andExpect(jsonPath("$.[*].emailDestino").value(hasItem(DEFAULT_EMAIL_DESTINO.toString())));
     }
 
     @Test
@@ -161,7 +167,8 @@ public class OrdenVentaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(ordenVenta.getId().intValue()))
-            .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA_STR));
+            .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA_STR))
+            .andExpect(jsonPath("$.emailDestino").value(DEFAULT_EMAIL_DESTINO.toString()));
     }
 
     @Test
@@ -183,7 +190,8 @@ public class OrdenVentaResourceIntTest {
         // Update the ordenVenta
         OrdenVenta updatedOrdenVenta = ordenVentaRepository.findOne(ordenVenta.getId());
         updatedOrdenVenta
-                .fecha(UPDATED_FECHA);
+                .fecha(UPDATED_FECHA)
+                .emailDestino(UPDATED_EMAIL_DESTINO);
 
         restOrdenVentaMockMvc.perform(put("/api/orden-ventas")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -195,6 +203,7 @@ public class OrdenVentaResourceIntTest {
         assertThat(ordenVentas).hasSize(databaseSizeBeforeUpdate);
         OrdenVenta testOrdenVenta = ordenVentas.get(ordenVentas.size() - 1);
         assertThat(testOrdenVenta.getFecha()).isEqualTo(UPDATED_FECHA);
+        assertThat(testOrdenVenta.getEmailDestino()).isEqualTo(UPDATED_EMAIL_DESTINO);
     }
 
     @Test

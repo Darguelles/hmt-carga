@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="control-label" for="field_fecha">Fecha</label>
                 <div class="input-group">
-                    <input id="field_fecha" type="text" class="form-control" name="fecha" uib-datepicker-popup="{{dateformat}}" ng-model="vm.cotizacion.fecha" is-open="vm.datePickerOpenStatus.fecha"
+                    <input id="field_fecha" type="text" class="form-control" name="fecha" uib-datepicker-popup="{{dateformat}}" ng-model="vm.cotizacion.fecha" ng-init="vm.cotizacion.fecha = vm.cotizacion.fecha || date_code" is-open="vm.datePickerOpenStatus.fecha"
                     required/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fecha')"><i class="glyphicon glyphicon-calendar"></i></button>

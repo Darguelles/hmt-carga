@@ -116,6 +116,7 @@
                         entity: function () {
                             return {
                                 fecha: null,
+                                emailDestino: null,
                                 id: null
                             };
                         }

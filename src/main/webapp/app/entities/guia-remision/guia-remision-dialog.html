@@ -40,7 +40,9 @@
         <div class="form-group">
             <label class="control-label" for="field_fechaEmision">Fecha Emision</label>
                 <div class="input-group">
-                    <input id="field_fechaEmision" type="text" class="form-control" name="fechaEmision" uib-datepicker-popup="{{dateformat}}" ng-model="vm.guiaRemision.fechaEmision" is-open="vm.datePickerOpenStatus.fechaEmision"
+                    <input id="field_fechaEmision" type="text" class="form-control" name="fechaEmision" uib-datepicker-popup="{{dateformat}}" ng-model="vm.guiaRemision.fechaEmision"
+                           ng-init="vm.guiaRemision.fechaEmision = vm.guiaRemision.fechaEmision || date_code"
+                           is-open="vm.datePickerOpenStatus.fechaEmision"
                     required/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaEmision')"><i class="glyphicon glyphicon-calendar"></i></button>

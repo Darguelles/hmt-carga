@@ -1,12 +1,16 @@
 
 <div>
-    <h2><span>Orden de venta N° </span> {{vm.ordenVenta.id}}</h2>
+    <h2><span>Orden de venta</span> {{vm.ordenVenta.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span>Fecha</span></dt>
         <dd>
             <span>{{vm.ordenVenta.fecha | date:'medium'}}</span>
+        </dd>
+        <dt><span>Email destino</span></dt>
+        <dd>
+            <span>{{vm.ordenVenta.emailDestino}}</span>
         </dd>
         <dt><span>Cotización</span></dt>
         <dd>

@@ -19,6 +19,8 @@
         vm.servicios = Servicio.query();
         vm.guiaremisions = GuiaRemision.query();
 
+        $scope.date_code = new Date();
+
         $scope.guia_selected = JSON.parse(window.localStorage.getItem("current_guia_remision"));
 
         $scope.precioBase = function () {

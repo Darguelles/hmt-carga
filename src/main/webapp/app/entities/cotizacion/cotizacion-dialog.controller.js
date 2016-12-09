@@ -19,6 +19,8 @@
         vm.servicios = Servicio.query();
         vm.tipounidads = TipoUnidad.query();
 
+        $scope.date_code = new Date();
+
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });

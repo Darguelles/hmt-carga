@@ -11,24 +11,24 @@
         <div class="form-group" ng-show="vm.ordenVenta.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.ordenVenta.id" readonly />
+                   ng-model="vm.ordenVenta.id" readonly />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_fecha">Fecha</label>
-                <div class="input-group">
-                    <input id="field_fecha" type="text" class="form-control" name="fecha" datetime-picker="{{dateformat}}" ng-model="vm.ordenVenta.fecha" ng-init="vm.ordenVenta.fecha = vm.ordenVenta.fecha || date_code" is-open="vm.datePickerOpenStatus.fecha"
-                    required  />
-                    <span class="input-group-btn">
+            <div class="input-group">
+                <input id="field_fecha" type="text" class="form-control" name="fecha" datetime-picker="{{dateformat}}" ng-model="vm.ordenVenta.fecha" ng-init="vm.ordenVenta.fecha = vm.ordenVenta.fecha || date_code" is-open="vm.datePickerOpenStatus.fecha"
+                       required  />
+                <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fecha')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
-                </div>
+            </div>
             <div ng-show="editForm.fecha.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.fecha.$error.required">
+                   ng-show="editForm.fecha.$error.required">
                     Este campo es obligatorio.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.fecha.$error.ZonedDateTimelocal">
+                   ng-show="editForm.fecha.$error.ZonedDateTimelocal">
                     Ingresar una fecha y una hora.
                 </p>
             </div>
@@ -42,10 +42,18 @@
         </div>
         <div ng-show="editForm.cotizacion.$invalid">
             <p class="help-block"
-                ng-show="editForm.cotizacion.$error.required">
+               ng-show="editForm.cotizacion.$error.required">
                 Este campo es obligatorio.
             </p>
         </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_emailDestino">Email destino</label>
+            <input type="email" class="form-control" name="emailDestino" id="field_emailDestino"
+                   ng-model="vm.ordenVenta.emailDestino"
+            />
+        </div>
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
