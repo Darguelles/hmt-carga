@@ -125,6 +125,8 @@
                                 fechaIngreso: null,
                                 fechaSalida: null,
                                 observaciones: null,
+                                descripcion: null,
+                                origenDatos: null,
                                 id: null
                             };
                         }

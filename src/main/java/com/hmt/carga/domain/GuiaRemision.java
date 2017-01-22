@@ -61,8 +61,10 @@ public class GuiaRemision implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Column(name = "origen_datos")
+    private Boolean origenDatos;
+
     @ManyToOne
-//    @NotNull
     private Cotizacion cotizacion;
 
     @ManyToOne
@@ -211,6 +213,32 @@ public class GuiaRemision implements Serializable {
         this.observaciones = observaciones;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public GuiaRemision descripcion(String descripcion) {
+        this.descripcion = descripcion;
+        return this;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Boolean isOrigenDatos() {
+        return origenDatos;
+    }
+
+    public GuiaRemision origenDatos(Boolean origenDatos) {
+        this.origenDatos = origenDatos;
+        return this;
+    }
+
+    public void setOrigenDatos(Boolean origenDatos) {
+        this.origenDatos = origenDatos;
+    }
+
     public Cotizacion getCotizacion() {
         return cotizacion;
     }
@@ -246,14 +274,6 @@ public class GuiaRemision implements Serializable {
         return this;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public void setTransporte(Transporte transporte) {
         this.transporte = transporte;
     }
@@ -267,7 +287,7 @@ public class GuiaRemision implements Serializable {
             return false;
         }
         GuiaRemision guiaRemision = (GuiaRemision) o;
-        if (guiaRemision.id == null || id == null) {
+        if(guiaRemision.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, guiaRemision.id);
@@ -292,6 +312,8 @@ public class GuiaRemision implements Serializable {
             ", fechaIngreso='" + fechaIngreso + "'" +
             ", fechaSalida='" + fechaSalida + "'" +
             ", observaciones='" + observaciones + "'" +
+            ", descripcion='" + descripcion + "'" +
+            ", origenDatos='" + origenDatos + "'" +
             '}';
     }
 }

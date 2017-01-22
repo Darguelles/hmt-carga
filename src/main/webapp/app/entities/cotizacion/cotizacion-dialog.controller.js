@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('CotizacionDialogController', CotizacionDialogController);
 
-    CotizacionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Cotizacion', 'Cliente', 'Servicio', 'TipoUnidad'];
+    CotizacionDialogController.$inject = ['$location', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Cotizacion', 'Cliente', 'Servicio', 'TipoUnidad'];
 
-    function CotizacionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Cotizacion, Cliente, Servicio, TipoUnidad) {
+    function CotizacionDialogController ($location, $timeout, $scope, $stateParams, $uibModalInstance, entity, Cotizacion, Cliente, Servicio, TipoUnidad) {
         var vm = this;
 
         vm.cotizacion = entity;
@@ -18,6 +18,8 @@
         vm.clientes = Cliente.query();
         vm.servicios = Servicio.query();
         vm.tipounidads = TipoUnidad.query();
+
+        $scope.date_code = new Date();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -34,6 +36,15 @@
             } else {
                 Cotizacion.save(vm.cotizacion, onSaveSuccess, onSaveError);
             }
+        }
+
+        $scope.currency = [{ name: "Soles", id: 1 }, { name: "Dolares", id: 2 }];
+        $scope.selectedCurrency = vm.cotizacion.moneda;
+
+        //Abrir modal nueva orden de venta
+        $scope.goToOrdenVentaDialog = function () {
+            $location.path('/orden-venta/new');
+            window.localStorage.setItem("current_cotizacion", JSON.stringify(vm.cotizacion));
         }
 
         function onSaveSuccess (result) {

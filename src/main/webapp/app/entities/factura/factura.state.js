@@ -124,6 +124,9 @@
                                 descuento: null,
                                 tipoDescuento: null,
                                 fecha: null,
+                                contingencia: null,
+                                motivo: null,
+                                precio: null,
                                 id: null
                             };
                         }

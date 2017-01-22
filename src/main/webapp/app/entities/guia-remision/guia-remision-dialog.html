@@ -193,6 +193,13 @@
             />
         </div>
 
+        <div class="form-group">
+            <label class="control-label" for="field_origenDatos">Origen Datos</label>
+            <input type="checkbox" class="form-control" name="origenDatos" id="field_origenDatos"
+                   ng-model="vm.guiaRemision.origenDatos"
+            />
+        </div>
+
         <button type="button" class="btn btn-primary" ng-click="goToFacturaDialog()" ng-show="vm.guiaRemision.id">
             <span class="glyphicon glyphicon-share"></span>&nbsp;<span>Generar factura</span>
         </button>

@@ -73,6 +73,15 @@ public class FacturaResourceIntTest {
     private static final ZonedDateTime UPDATED_FECHA = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
     private static final String DEFAULT_FECHA_STR = DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(DEFAULT_FECHA);
 
+    private static final String DEFAULT_CONTINGENCIA = "AAAAA";
+    private static final String UPDATED_CONTINGENCIA = "BBBBB";
+
+    private static final String DEFAULT_MOTIVO = "AAAAA";
+    private static final String UPDATED_MOTIVO = "BBBBB";
+
+    private static final Double DEFAULT_PRECIO = 1D;
+    private static final Double UPDATED_PRECIO = 2D;
+
     @Inject
     private FacturaRepository facturaRepository;
 
@@ -118,7 +127,10 @@ public class FacturaResourceIntTest {
                 .codigo(DEFAULT_CODIGO)
                 .descuento(DEFAULT_DESCUENTO)
                 .tipoDescuento(DEFAULT_TIPO_DESCUENTO)
-                .fecha(DEFAULT_FECHA);
+                .fecha(DEFAULT_FECHA)
+                .contingencia(DEFAULT_CONTINGENCIA)
+                .motivo(DEFAULT_MOTIVO)
+                .precio(DEFAULT_PRECIO);
         // Add required entity
         Cliente cliente = ClienteResourceIntTest.createEntity(em);
         em.persist(cliente);
@@ -162,6 +174,9 @@ public class FacturaResourceIntTest {
         assertThat(testFactura.getDescuento()).isEqualTo(DEFAULT_DESCUENTO);
         assertThat(testFactura.getTipoDescuento()).isEqualTo(DEFAULT_TIPO_DESCUENTO);
         assertThat(testFactura.getFecha()).isEqualTo(DEFAULT_FECHA);
+        assertThat(testFactura.getContingencia()).isEqualTo(DEFAULT_CONTINGENCIA);
+        assertThat(testFactura.getMotivo()).isEqualTo(DEFAULT_MOTIVO);
+        assertThat(testFactura.getPrecio()).isEqualTo(DEFAULT_PRECIO);
     }
 
     @Test
@@ -309,7 +324,10 @@ public class FacturaResourceIntTest {
                 .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO.toString())))
                 .andExpect(jsonPath("$.[*].descuento").value(hasItem(DEFAULT_DESCUENTO.doubleValue())))
                 .andExpect(jsonPath("$.[*].tipoDescuento").value(hasItem(DEFAULT_TIPO_DESCUENTO.toString())))
-                .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA_STR)));
+                .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA_STR)))
+                .andExpect(jsonPath("$.[*].contingencia").value(hasItem(DEFAULT_CONTINGENCIA.toString())))
+                .andExpect(jsonPath("$.[*].motivo").value(hasItem(DEFAULT_MOTIVO.toString())))
+                .andExpect(jsonPath("$.[*].precio").value(hasItem(DEFAULT_PRECIO.doubleValue())));
     }
 
     @Test
@@ -331,7 +349,10 @@ public class FacturaResourceIntTest {
             .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO.toString()))
             .andExpect(jsonPath("$.descuento").value(DEFAULT_DESCUENTO.doubleValue()))
             .andExpect(jsonPath("$.tipoDescuento").value(DEFAULT_TIPO_DESCUENTO.toString()))
-            .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA_STR));
+            .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA_STR))
+            .andExpect(jsonPath("$.contingencia").value(DEFAULT_CONTINGENCIA.toString()))
+            .andExpect(jsonPath("$.motivo").value(DEFAULT_MOTIVO.toString()))
+            .andExpect(jsonPath("$.precio").value(DEFAULT_PRECIO.doubleValue()));
     }
 
     @Test
@@ -361,7 +382,10 @@ public class FacturaResourceIntTest {
                 .codigo(UPDATED_CODIGO)
                 .descuento(UPDATED_DESCUENTO)
                 .tipoDescuento(UPDATED_TIPO_DESCUENTO)
-                .fecha(UPDATED_FECHA);
+                .fecha(UPDATED_FECHA)
+                .contingencia(UPDATED_CONTINGENCIA)
+                .motivo(UPDATED_MOTIVO)
+                .precio(UPDATED_PRECIO);
 
         restFacturaMockMvc.perform(put("/api/facturas")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -381,6 +405,9 @@ public class FacturaResourceIntTest {
         assertThat(testFactura.getDescuento()).isEqualTo(UPDATED_DESCUENTO);
         assertThat(testFactura.getTipoDescuento()).isEqualTo(UPDATED_TIPO_DESCUENTO);
         assertThat(testFactura.getFecha()).isEqualTo(UPDATED_FECHA);
+        assertThat(testFactura.getContingencia()).isEqualTo(UPDATED_CONTINGENCIA);
+        assertThat(testFactura.getMotivo()).isEqualTo(UPDATED_MOTIVO);
+        assertThat(testFactura.getPrecio()).isEqualTo(UPDATED_PRECIO);
     }
 
     @Test

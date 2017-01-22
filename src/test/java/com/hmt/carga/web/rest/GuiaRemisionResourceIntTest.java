@@ -3,7 +3,6 @@ package com.hmt.carga.web.rest;
 import com.hmt.carga.HmtcargaApp;
 
 import com.hmt.carga.domain.GuiaRemision;
-import com.hmt.carga.domain.Cotizacion;
 import com.hmt.carga.domain.Proveedor;
 import com.hmt.carga.domain.Transporte;
 import com.hmt.carga.repository.GuiaRemisionRepository;
@@ -79,6 +78,12 @@ public class GuiaRemisionResourceIntTest {
     private static final String DEFAULT_OBSERVACIONES = "AAAAA";
     private static final String UPDATED_OBSERVACIONES = "BBBBB";
 
+    private static final String DEFAULT_DESCRIPCION = "AAAAA";
+    private static final String UPDATED_DESCRIPCION = "BBBBB";
+
+    private static final Boolean DEFAULT_ORIGEN_DATOS = false;
+    private static final Boolean UPDATED_ORIGEN_DATOS = true;
+
     @Inject
     private GuiaRemisionRepository guiaRemisionRepository;
 
@@ -125,12 +130,9 @@ public class GuiaRemisionResourceIntTest {
                 .costoMinimo(DEFAULT_COSTO_MINIMO)
                 .fechaIngreso(DEFAULT_FECHA_INGRESO)
                 .fechaSalida(DEFAULT_FECHA_SALIDA)
-                .observaciones(DEFAULT_OBSERVACIONES);
-        // Add required entity
-        Cotizacion cotizacion = CotizacionResourceIntTest.createEntity(em);
-        em.persist(cotizacion);
-        em.flush();
-        guiaRemision.setCotizacion(cotizacion);
+                .observaciones(DEFAULT_OBSERVACIONES)
+                .descripcion(DEFAULT_DESCRIPCION)
+                .origenDatos(DEFAULT_ORIGEN_DATOS);
         // Add required entity
         Proveedor proveedor = ProveedorResourceIntTest.createEntity(em);
         em.persist(proveedor);
@@ -175,6 +177,8 @@ public class GuiaRemisionResourceIntTest {
         assertThat(testGuiaRemision.getFechaIngreso()).isEqualTo(DEFAULT_FECHA_INGRESO);
         assertThat(testGuiaRemision.getFechaSalida()).isEqualTo(DEFAULT_FECHA_SALIDA);
         assertThat(testGuiaRemision.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
+        assertThat(testGuiaRemision.getDescripcion()).isEqualTo(DEFAULT_DESCRIPCION);
+        assertThat(testGuiaRemision.isOrigenDatos()).isEqualTo(DEFAULT_ORIGEN_DATOS);
     }
 
     @Test
@@ -269,7 +273,9 @@ public class GuiaRemisionResourceIntTest {
                 .andExpect(jsonPath("$.[*].costoMinimo").value(hasItem(DEFAULT_COSTO_MINIMO.doubleValue())))
                 .andExpect(jsonPath("$.[*].fechaIngreso").value(hasItem(DEFAULT_FECHA_INGRESO_STR)))
                 .andExpect(jsonPath("$.[*].fechaSalida").value(hasItem(DEFAULT_FECHA_SALIDA_STR)))
-                .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())));
+                .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
+                .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
+                .andExpect(jsonPath("$.[*].origenDatos").value(hasItem(DEFAULT_ORIGEN_DATOS.booleanValue())));
     }
 
     @Test
@@ -292,7 +298,9 @@ public class GuiaRemisionResourceIntTest {
             .andExpect(jsonPath("$.costoMinimo").value(DEFAULT_COSTO_MINIMO.doubleValue()))
             .andExpect(jsonPath("$.fechaIngreso").value(DEFAULT_FECHA_INGRESO_STR))
             .andExpect(jsonPath("$.fechaSalida").value(DEFAULT_FECHA_SALIDA_STR))
-            .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()));
+            .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()))
+            .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION.toString()))
+            .andExpect(jsonPath("$.origenDatos").value(DEFAULT_ORIGEN_DATOS.booleanValue()));
     }
 
     @Test
@@ -323,7 +331,9 @@ public class GuiaRemisionResourceIntTest {
                 .costoMinimo(UPDATED_COSTO_MINIMO)
                 .fechaIngreso(UPDATED_FECHA_INGRESO)
                 .fechaSalida(UPDATED_FECHA_SALIDA)
-                .observaciones(UPDATED_OBSERVACIONES);
+                .observaciones(UPDATED_OBSERVACIONES)
+                .descripcion(UPDATED_DESCRIPCION)
+                .origenDatos(UPDATED_ORIGEN_DATOS);
 
         restGuiaRemisionMockMvc.perform(put("/api/guia-remisions")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -344,6 +354,8 @@ public class GuiaRemisionResourceIntTest {
         assertThat(testGuiaRemision.getFechaIngreso()).isEqualTo(UPDATED_FECHA_INGRESO);
         assertThat(testGuiaRemision.getFechaSalida()).isEqualTo(UPDATED_FECHA_SALIDA);
         assertThat(testGuiaRemision.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
+        assertThat(testGuiaRemision.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
+        assertThat(testGuiaRemision.isOrigenDatos()).isEqualTo(UPDATED_ORIGEN_DATOS);
     }
 
     @Test

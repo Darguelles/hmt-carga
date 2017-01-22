@@ -57,6 +57,15 @@ public class Factura implements Serializable {
     @Column(name = "fecha", nullable = false)
     private ZonedDateTime fecha;
 
+    @Column(name = "contingencia")
+    private String contingencia;
+
+    @Column(name = "motivo")
+    private String motivo;
+
+    @Column(name = "precio")
+    private Double precio;
+
     @ManyToOne
     @NotNull
     private Cliente cliente;
@@ -193,6 +202,45 @@ public class Factura implements Serializable {
         this.fecha = fecha;
     }
 
+    public String getContingencia() {
+        return contingencia;
+    }
+
+    public Factura contingencia(String contingencia) {
+        this.contingencia = contingencia;
+        return this;
+    }
+
+    public void setContingencia(String contingencia) {
+        this.contingencia = contingencia;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public Factura motivo(String motivo) {
+        this.motivo = motivo;
+        return this;
+    }
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public Factura precio(Double precio) {
+        this.precio = precio;
+        return this;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -265,6 +313,9 @@ public class Factura implements Serializable {
             ", descuento='" + descuento + "'" +
             ", tipoDescuento='" + tipoDescuento + "'" +
             ", fecha='" + fecha + "'" +
+            ", contingencia='" + contingencia + "'" +
+            ", motivo='" + motivo + "'" +
+            ", precio='" + precio + "'" +
             '}';
     }
 }

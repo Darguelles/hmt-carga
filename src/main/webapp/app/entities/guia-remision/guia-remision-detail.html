@@ -1,6 +1,6 @@
 
 <div>
-    <h2><span>Guia de Remision N° </span> {{vm.guiaRemision.id}}</h2>
+    <h2><span>Guia Remision</span> {{vm.guiaRemision.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
@@ -8,11 +8,11 @@
         <dd>
             <span>{{vm.guiaRemision.codigo}}</span>
         </dd>
-        <dt><span>Fecha de emisión</span></dt>
+        <dt><span>Fecha Emision</span></dt>
         <dd>
             <span>{{vm.guiaRemision.fechaEmision | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>Fecha de traslado</span></dt>
+        <dt><span>Fecha Traslado</span></dt>
         <dd>
             <span>{{vm.guiaRemision.fechaTraslado | date:'mediumDate'}}</span>
         </dd>
@@ -24,19 +24,19 @@
         <dd>
             <span>{{vm.guiaRemision.peso}}</span>
         </dd>
-        <dt><span>Unidad de medida</span></dt>
+        <dt><span>Unidad Medida</span></dt>
         <dd>
             <span>{{vm.guiaRemision.unidadMedida}}</span>
         </dd>
-        <dt><span>Costo mínimo</span></dt>
+        <dt><span>Costo Minimo</span></dt>
         <dd>
             <span>{{vm.guiaRemision.costoMinimo}}</span>
         </dd>
-        <dt><span>Fecha de ingreso</span></dt>
+        <dt><span>Fecha Ingreso</span></dt>
         <dd>
             <span>{{vm.guiaRemision.fechaIngreso | date:'medium'}}</span>
         </dd>
-        <dt><span>Fecha de salida</span></dt>
+        <dt><span>Fecha Salida</span></dt>
         <dd>
             <span>{{vm.guiaRemision.fechaSalida | date:'medium'}}</span>
         </dd>
@@ -44,7 +44,15 @@
         <dd>
             <span>{{vm.guiaRemision.observaciones}}</span>
         </dd>
-        <dt><span>Cotización</span></dt>
+        <dt><span>Descripcion</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.descripcion}}</span>
+        </dd>
+        <dt><span>Origen Datos</span></dt>
+        <dd>
+            <span>{{vm.guiaRemision.origenDatos}}</span>
+        </dd>
+        <dt><span>Cotizacion</span></dt>
         <dd>
             <a ui-sref="cotizacion-detail({id:vm.guiaRemision.cotizacion.id})">{{vm.guiaRemision.cotizacion.cliente}}</a>
         </dd>
@@ -61,11 +69,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Volver</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button" ui-sref="guia-remision-detail.edit({id:vm.guiaRemision.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-xs hidden-sm"> Editar</span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
     </button>
 </div>

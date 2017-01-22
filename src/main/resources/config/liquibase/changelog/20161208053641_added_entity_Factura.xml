@@ -57,6 +57,18 @@
                 <constraints nullable="false" />
             </column>
             
+            <column name="contingencia" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="motivo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="precio" type="double">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="cliente_id" type="bigint">
                 <constraints nullable="false" />
             </column>

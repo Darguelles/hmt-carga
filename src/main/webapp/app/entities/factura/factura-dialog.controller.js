@@ -24,17 +24,18 @@
         $scope.guia_selected = JSON.parse(window.localStorage.getItem("current_guia_remision"));
 
         $scope.precioBase = function () {
-            vm.factura.precioBase = vm.factura.cantidad * vm.factura.precioUnitario;
+            vm.factura.precioBase = (vm.factura.cantidad * vm.factura.precioUnitario) + (vm.factura.precio || 0.0);
             vm.factura.igv = vm.factura.precioBase * 0.18;
-            vm.factura.descuento = vm.factura.cliente.descuento;
-            vm.factura.tipoDescuento = vm.factura.cliente.tipoDescuento;
-            if(vm.factura.cliente.tipoDescuento == 'porcentaje'){
-                var precio = vm.factura.precioBase + vm.factura.igv;
-                var valorPorcentaje = (precio * vm.factura.cliente.descuento)/100;
+            if(vm.factura.tipoDescuento == 'porcentaje'){
+                var precio = vm.factura.precioBase + vm.factura.igv ;
+                var valorPorcentaje = (precio * vm.factura.descuento)/100;
                 vm.factura.precioTotal = precio - valorPorcentaje;
             } else {
-                vm.factura.precioTotal = (vm.factura.precioBase + vm.factura.igv) - vm.factura.cliente.descuento;
+                vm.factura.precioTotal = (vm.factura.precioBase + vm.factura.igv) - vm.factura.descuento;
             }
+            // if(vm.factura.precio){
+            //     vm.factura.precioTotal = vm.factura.precioTotal + vm.factura.precio
+            // }
             window.localStorage.removeItem('current_guia_remision');
         }
 

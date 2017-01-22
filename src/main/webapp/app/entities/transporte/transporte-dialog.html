@@ -21,7 +21,7 @@
             <div ng-show="editForm.marca.$invalid">
                 <p class="help-block"
                     ng-show="editForm.marca.$error.required">
-                    This field is required.
+                    Este campo es obligatorio.
                 </p>
             </div>
         </div>
@@ -80,13 +80,13 @@
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_gps">Gps</label>
+            <label class="control-label" for="field_gps">GPS</label>
             <input type="checkbox" class="form-control" name="gps" id="field_gps"
                     ng-model="vm.transporte.gps"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_anoFabricacion">Ano Fabricacion</label>
+            <label class="control-label" for="field_anoFabricacion">Año de fabricación</label>
             <input type="number" class="form-control" name="anoFabricacion" id="field_anoFabricacion"
                     ng-model="vm.transporte.anoFabricacion"
                      />
@@ -97,32 +97,37 @@
                     ng-model="vm.transporte.unidadPropia"
                      />
         </div>
-        <div class="form-group">
-            <label class="control-label" for="field_kilometraje">Kilometraje</label>
-            <input type="number" class="form-control" name="kilometraje" id="field_kilometraje"
-                    ng-model="vm.transporte.kilometraje"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_fechaRevisionTecnica">Fecha Revision Tecnica</label>
+        <div ng-show="vm.transporte.unidadPropia" >
+            <div class="form-group">
+                <label class="control-label" for="field_kilometraje">Kilometraje</label>
+                <input type="number" class="form-control" name="kilometraje" id="field_kilometraje"
+                       ng-model="vm.transporte.kilometraje"
+                       ng-required="vm.transporte.unidadPropia"
+                />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="field_fechaRevisionTecnica">Fecha de revisión tecnica</label>
                 <div class="input-group">
                     <input id="field_fechaRevisionTecnica" type="text" class="form-control" name="fechaRevisionTecnica" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transporte.fechaRevisionTecnica" is-open="vm.datePickerOpenStatus.fechaRevisionTecnica"
+                           ng-required="vm.transporte.unidadPropia"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaRevisionTecnica')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_soat">Soat</label>
-            <input type="text" class="form-control" name="soat" id="field_soat"
-                    ng-model="vm.transporte.soat"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_fechaVencimientoSoat">Fecha Vencimiento Soat</label>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="field_soat">SOAT</label>
+                <input type="text" class="form-control" name="soat" id="field_soat"
+                       ng-model="vm.transporte.soat"
+                       ng-required="vm.transporte.unidadPropia"
+                />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="field_fechaVencimientoSoat">Fecha de vencimiento SOAT</label>
                 <div class="input-group">
                     <input id="field_fechaVencimientoSoat" type="text" class="form-control" name="fechaVencimientoSoat" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transporte.fechaVencimientoSoat" is-open="vm.datePickerOpenStatus.fechaVencimientoSoat"
+                           ng-required="vm.transporte.unidadPropia"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaVencimientoSoat')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -141,6 +146,8 @@
                 </p>
             </div>
         </div>
+
+
         <div class="form-group">
             <label class="control-label" for="field_nombreConductor">Nombre Conductor</label>
             <input type="text" class="form-control" name="nombreConductor" id="field_nombreConductor"
@@ -175,16 +182,16 @@
         <div ng-show="editForm.tipoUnidad.$invalid">
             <p class="help-block"
                 ng-show="editForm.tipoUnidad.$error.required">
-                This field is required.
+                Este campo es obligatorio.
             </p>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
         </button>
     </div>
 </form>
