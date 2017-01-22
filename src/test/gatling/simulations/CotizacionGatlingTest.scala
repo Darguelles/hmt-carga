@@ -67,7 +67,7 @@ class CotizacionGatlingTest extends Simulation {
             .exec(http("Create new cotizacion")
             .post("/api/cotizacions")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "fecha":"2020-01-01T00:00:00.000Z", "origen":"SAMPLE_TEXT", "destino":"SAMPLE_TEXT", "mercaderia":"SAMPLE_TEXT", "precio":null, "moneda":"0", "porcentajePago":null}""")).asJSON
+            .body(StringBody("""{"id":null, "fecha":"2020-01-01T00:00:00.000Z", "origen":"SAMPLE_TEXT", "destino":"SAMPLE_TEXT", "mercaderia":"SAMPLE_TEXT", "precio":null, "moneda":"0", "estado":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_cotizacion_url"))).exitHereIfFailed
             .pause(10)

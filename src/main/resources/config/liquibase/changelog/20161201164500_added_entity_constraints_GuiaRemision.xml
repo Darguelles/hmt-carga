@@ -7,12 +7,12 @@
         Added the constraints for entity GuiaRemision.
     -->
     <changeSet id="20161201164500-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="cotizacion_id"
-                                 baseTableName="guia_remision"
-                                 constraintName="fk_guia_remision_cotizacion_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="cotizacion"/>
+
+        <!--<addForeignKeyConstraint baseColumnNames="cotizacion_id"-->
+                                 <!--baseTableName="guia_remision"-->
+                                 <!--constraintName="fk_guia_remision_cotizacion_id"-->
+                                 <!--referencedColumnNames="id"-->
+                                 <!--referencedTableName="cotizacion"/>-->
 
         <addForeignKeyConstraint baseColumnNames="proveedor_id"
                                  baseTableName="guia_remision"

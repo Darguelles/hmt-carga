@@ -96,6 +96,12 @@ public class TransporteResourceIntTest {
     private static final String DEFAULT_MODELO = "AAAAA";
     private static final String UPDATED_MODELO = "BBBBB";
 
+    private static final String DEFAULT_NOMBRE_CONDUCTOR = "AAAAA";
+    private static final String UPDATED_NOMBRE_CONDUCTOR = "BBBBB";
+
+    private static final String DEFAULT_LICENCIA_CONDUCTOR = "AAAAA";
+    private static final String UPDATED_LICENCIA_CONDUCTOR = "BBBBB";
+
     @Inject
     private TransporteRepository transporteRepository;
 
@@ -150,7 +156,9 @@ public class TransporteResourceIntTest {
                 .fechaRevisionTecnica(DEFAULT_FECHA_REVISION_TECNICA)
                 .soat(DEFAULT_SOAT)
                 .fechaVencimientoSoat(DEFAULT_FECHA_VENCIMIENTO_SOAT)
-                .modelo(DEFAULT_MODELO);
+                .modelo(DEFAULT_MODELO)
+                .nombreConductor(DEFAULT_NOMBRE_CONDUCTOR)
+                .licenciaConductor(DEFAULT_LICENCIA_CONDUCTOR);
         // Add required entity
         TipoUnidad tipoUnidad = TipoUnidadResourceIntTest.createEntity(em);
         em.persist(tipoUnidad);
@@ -198,6 +206,8 @@ public class TransporteResourceIntTest {
         assertThat(testTransporte.getSoat()).isEqualTo(DEFAULT_SOAT);
         assertThat(testTransporte.getFechaVencimientoSoat()).isEqualTo(DEFAULT_FECHA_VENCIMIENTO_SOAT);
         assertThat(testTransporte.getModelo()).isEqualTo(DEFAULT_MODELO);
+        assertThat(testTransporte.getNombreConductor()).isEqualTo(DEFAULT_NOMBRE_CONDUCTOR);
+        assertThat(testTransporte.getLicenciaConductor()).isEqualTo(DEFAULT_LICENCIA_CONDUCTOR);
     }
 
     @Test
@@ -238,6 +248,42 @@ public class TransporteResourceIntTest {
 
     @Test
     @Transactional
+    public void checkNombreConductorIsRequired() throws Exception {
+        int databaseSizeBeforeTest = transporteRepository.findAll().size();
+        // set the field null
+        transporte.setNombreConductor(null);
+
+        // Create the Transporte, which fails.
+
+        restTransporteMockMvc.perform(post("/api/transportes")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(transporte)))
+                .andExpect(status().isBadRequest());
+
+        List<Transporte> transportes = transporteRepository.findAll();
+        assertThat(transportes).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkLicenciaConductorIsRequired() throws Exception {
+        int databaseSizeBeforeTest = transporteRepository.findAll().size();
+        // set the field null
+        transporte.setLicenciaConductor(null);
+
+        // Create the Transporte, which fails.
+
+        restTransporteMockMvc.perform(post("/api/transportes")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(transporte)))
+                .andExpect(status().isBadRequest());
+
+        List<Transporte> transportes = transporteRepository.findAll();
+        assertThat(transportes).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTransportes() throws Exception {
         // Initialize the database
         transporteRepository.saveAndFlush(transporte);
@@ -264,7 +310,9 @@ public class TransporteResourceIntTest {
                 .andExpect(jsonPath("$.[*].fechaRevisionTecnica").value(hasItem(DEFAULT_FECHA_REVISION_TECNICA.toString())))
                 .andExpect(jsonPath("$.[*].soat").value(hasItem(DEFAULT_SOAT.toString())))
                 .andExpect(jsonPath("$.[*].fechaVencimientoSoat").value(hasItem(DEFAULT_FECHA_VENCIMIENTO_SOAT.toString())))
-                .andExpect(jsonPath("$.[*].modelo").value(hasItem(DEFAULT_MODELO.toString())));
+                .andExpect(jsonPath("$.[*].modelo").value(hasItem(DEFAULT_MODELO.toString())))
+                .andExpect(jsonPath("$.[*].nombreConductor").value(hasItem(DEFAULT_NOMBRE_CONDUCTOR.toString())))
+                .andExpect(jsonPath("$.[*].licenciaConductor").value(hasItem(DEFAULT_LICENCIA_CONDUCTOR.toString())));
     }
 
     @Test
@@ -295,7 +343,9 @@ public class TransporteResourceIntTest {
             .andExpect(jsonPath("$.fechaRevisionTecnica").value(DEFAULT_FECHA_REVISION_TECNICA.toString()))
             .andExpect(jsonPath("$.soat").value(DEFAULT_SOAT.toString()))
             .andExpect(jsonPath("$.fechaVencimientoSoat").value(DEFAULT_FECHA_VENCIMIENTO_SOAT.toString()))
-            .andExpect(jsonPath("$.modelo").value(DEFAULT_MODELO.toString()));
+            .andExpect(jsonPath("$.modelo").value(DEFAULT_MODELO.toString()))
+            .andExpect(jsonPath("$.nombreConductor").value(DEFAULT_NOMBRE_CONDUCTOR.toString()))
+            .andExpect(jsonPath("$.licenciaConductor").value(DEFAULT_LICENCIA_CONDUCTOR.toString()));
     }
 
     @Test
@@ -334,7 +384,9 @@ public class TransporteResourceIntTest {
                 .fechaRevisionTecnica(UPDATED_FECHA_REVISION_TECNICA)
                 .soat(UPDATED_SOAT)
                 .fechaVencimientoSoat(UPDATED_FECHA_VENCIMIENTO_SOAT)
-                .modelo(UPDATED_MODELO);
+                .modelo(UPDATED_MODELO)
+                .nombreConductor(UPDATED_NOMBRE_CONDUCTOR)
+                .licenciaConductor(UPDATED_LICENCIA_CONDUCTOR);
 
         restTransporteMockMvc.perform(put("/api/transportes")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -363,6 +415,8 @@ public class TransporteResourceIntTest {
         assertThat(testTransporte.getSoat()).isEqualTo(UPDATED_SOAT);
         assertThat(testTransporte.getFechaVencimientoSoat()).isEqualTo(UPDATED_FECHA_VENCIMIENTO_SOAT);
         assertThat(testTransporte.getModelo()).isEqualTo(UPDATED_MODELO);
+        assertThat(testTransporte.getNombreConductor()).isEqualTo(UPDATED_NOMBRE_CONDUCTOR);
+        assertThat(testTransporte.getLicenciaConductor()).isEqualTo(UPDATED_LICENCIA_CONDUCTOR);
     }
 
     @Test

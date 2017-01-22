@@ -4,9 +4,9 @@
         .module('hmtcargaApp')
         .factory('Cotizacion', Cotizacion);
 
-    Cotizacion.$inject = ['$resource', 'DateUtils'];
+    Cotizacion.$inject = ['$resource', 'DateUtils','$location'];
 
-    function Cotizacion ($resource, DateUtils) {
+    function Cotizacion ($resource, DateUtils, $location) {
         var resourceUrl =  'api/cotizacions/:id';
 
         return $resource(resourceUrl, {}, {

@@ -36,9 +36,19 @@
 
         <div class="form-group">
             <label for="field_cotizacion">Cotización</label>
-            <select class="form-control" id="field_cotizacion" name="cotizacion" ng-model="vm.ordenVenta.cotizacion" ng-init="vm.ordenVenta.cotizacion = vm.ordenVenta.cotizacion || cot_selected" ng-options="cotizacion as cotizacion.id for cotizacion in vm.cotizacions track by cotizacion.id" required>
-                <option value=""></option>
-            </select>
+            <!--<select class="form-control" id="field_cotizacion" name="cotizacion" ng-model="vm.ordenVenta.cotizacion" ng-init="vm.ordenVenta.cotizacion = vm.ordenVenta.cotizacion || cot_selected" ng-options="cotizacion as cotizacion.id for cotizacion in vm.cotizacions track by cotizacion.id" required>-->
+                <!--<option value=""></option>-->
+            <!--</select>-->
+            <angucomplete-alt id="ex1"
+                              placeholder="Search countries"
+                              pause="100"
+                              selected-object="addCotizacion"
+                              local-data="cotizaciones"
+                              search-fields="cliente.ruc"
+                              title-field="cliente.nombre"
+                              minlength="1"
+                              input-class="form-control form-control-small"
+                              override-suggestions="true"/>
         </div>
         <div ng-show="editForm.cotizacion.$invalid">
             <p class="help-block"

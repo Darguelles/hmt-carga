@@ -83,6 +83,18 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "contingencia",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "motivo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "precio",
+            "fieldType": "Double"
         }
     ],
     "changelogDate": "20161208053641",

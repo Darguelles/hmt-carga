@@ -1,7 +1,9 @@
 package com.hmt.carga.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.hmt.carga.domain.Cotizacion;
 import com.hmt.carga.domain.OrdenVenta;
+import com.hmt.carga.service.CotizacionService;
 import com.hmt.carga.service.MailService;
 import com.hmt.carga.service.OrdenVentaService;
 import com.hmt.carga.web.rest.util.HeaderUtil;
@@ -22,6 +24,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
+import static com.hmt.carga.util.Cotizacion.APROBADA;
+
 /**
  * REST controller for managing OrdenVenta.
  */
@@ -36,6 +40,9 @@ public class OrdenVentaResource {
 
     @Inject
     private MailService mailService;
+
+    @Inject
+    private CotizacionService cotizacionService;
 
     /**
      * POST  /orden-ventas : Create a new ordenVenta.
@@ -52,29 +59,36 @@ public class OrdenVentaResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("ordenVenta", "idexists", "A new ordenVenta cannot already have an ID")).body(null);
         }
         OrdenVenta result = ordenVentaService.save(ordenVenta);
+
+        if (result.getCotizacion() != null) {
+            Cotizacion current = result.getCotizacion();
+            current.setEstado(APROBADA.name());
+            cotizacionService.save(current);
+        }
+
         mailService.sendEmail(ordenVenta.getEmailDestino(), "HMT System - Aprobación de orden de venta", generateEmailOrdenVenta(ordenVenta), false, true);
         return ResponseEntity.created(new URI("/api/orden-ventas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("ordenVenta", result.getId().toString()))
             .body(result);
     }
 
-    private String generateEmailOrdenVenta(OrdenVenta ordenVenta){
+    private String generateEmailOrdenVenta(OrdenVenta ordenVenta) {
         StringBuilder sb = new StringBuilder("<h3>Tiene una nueva orden de venta: </h3>");
-        sb.append("<b>Codigo de cotización : "+ ordenVenta.getCotizacion().getId()+"</b>");
+        sb.append("<b>Codigo de cotización : " + ordenVenta.getCotizacion().getId() + "</b>");
         sb.append("<br></br>");
-        sb.append("<b>Servicio :</b>"+ ordenVenta.getCotizacion().getServicio().getNombre());
+        sb.append("<b>Servicio :</b>" + ordenVenta.getCotizacion().getServicio().getNombre());
         sb.append("<br></br>");
-        sb.append("<b>Cliente :</b>"+ ordenVenta.getCotizacion().getCliente().getNombre());
+        sb.append("<b>Cliente :</b>" + ordenVenta.getCotizacion().getCliente().getNombre());
         sb.append("<br></br>");
-        sb.append("<b>Fecha :</b>"+ ordenVenta.getCotizacion().getFecha());
+        sb.append("<b>Fecha :</b>" + ordenVenta.getCotizacion().getFecha());
         sb.append("<br></br>");
-        sb.append("<b>Origen :</b>"+ ordenVenta.getCotizacion().getOrigen());
+        sb.append("<b>Origen :</b>" + ordenVenta.getCotizacion().getOrigen());
         sb.append("<br></br>");
-        sb.append("<b>Destino :</b>"+ ordenVenta.getCotizacion().getDestino());
+        sb.append("<b>Destino :</b>" + ordenVenta.getCotizacion().getDestino());
         sb.append("<br></br>");
-        sb.append("<b>Mercaderia :</b>"+ ordenVenta.getCotizacion().getMercaderia());
+        sb.append("<b>Mercaderia :</b>" + ordenVenta.getCotizacion().getMercaderia());
         sb.append("<br></br>");
-        sb.append("<b>Precio :</b>"+ ordenVenta.getCotizacion().getPrecio());
+        sb.append("<b>Precio :</b>" + ordenVenta.getCotizacion().getPrecio());
 
         return sb.toString();
     }

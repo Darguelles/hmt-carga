@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myCotizacionLabel">Crear o editar cotización</h4>
+        <h4 class="modal-title" id="myCotizacionLabel">Create or edit a Cotizacion</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="control-label" for="field_fecha">Fecha</label>
                 <div class="input-group">
-                    <input id="field_fecha" type="text" class="form-control" name="fecha" uib-datepicker-popup="{{dateformat}}" ng-model="vm.cotizacion.fecha" ng-init="vm.cotizacion.fecha = vm.cotizacion.fecha || date_code" is-open="vm.datePickerOpenStatus.fecha"
+                    <input id="field_fecha" type="text" class="form-control" name="fecha" uib-datepicker-popup="{{dateformat}}" ng-model="vm.cotizacion.fecha" is-open="vm.datePickerOpenStatus.fecha"
                     required/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fecha')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -25,7 +25,7 @@
             <div ng-show="editForm.fecha.$invalid">
                 <p class="help-block"
                     ng-show="editForm.fecha.$error.required">
-                    Este campo es obligatorio.
+                    This field is required.
                 </p>
             </div>
         </div>
@@ -37,7 +37,7 @@
             <div ng-show="editForm.origen.$invalid">
                 <p class="help-block"
                     ng-show="editForm.origen.$error.required">
-                    Este campo es obligatorio.
+                    This field is required.
                 </p>
             </div>
         </div>
@@ -49,7 +49,7 @@
             <div ng-show="editForm.destino.$invalid">
                 <p class="help-block"
                     ng-show="editForm.destino.$error.required">
-                    Este campo es obligatorio.
+                    This field is required.
                 </p>
             </div>
         </div>
@@ -61,7 +61,7 @@
             <div ng-show="editForm.mercaderia.$invalid">
                 <p class="help-block"
                     ng-show="editForm.mercaderia.$error.required">
-                    Este campo es obligatorio.
+                    This field is required.
                 </p>
             </div>
         </div>
@@ -73,53 +73,40 @@
             <div ng-show="editForm.precio.$invalid">
                 <p class="help-block"
                     ng-show="editForm.precio.$error.required">
-                    Este campo es obligatorio.
+                    This field is required.
                 </p>
                 <p class="help-block"
                     ng-show="editForm.precio.$error.number">
-                    Solo se permiten números.
+                    This field should be a number.
                 </p>
             </div>
         </div>
-        <!--<div class="form-group">-->
-            <!--<label class="control-label" for="field_moneda">Moneda</label>-->
-            <!--<input type="number" class="form-control" name="moneda" id="field_moneda"-->
-                    <!--ng-model="vm.cotizacion.moneda"-->
-                    <!--required />-->
-            <!--<div ng-show="editForm.moneda.$invalid">-->
-                <!--<p class="help-block"-->
-                    <!--ng-show="editForm.moneda.$error.required">-->
-                    <!--Este campo es obligatorio.-->
-                <!--</p>-->
-                <!--<p class="help-block"-->
-                    <!--ng-show="editForm.moneda.$error.number">-->
-                    <!--Solo se permiten números.-->
-                <!--</p>-->
-            <!--</div>-->
-        <!--</div>-->
-
         <div class="form-group">
-            <label for="field_moneda">Moneda</label>
-            <select class="form-control" id="field_moneda" name="moneda" ng-model="vm.cotizacion.moneda" required>
-                <option value="1" ng-selected="vm.cotizacion.moneda==1" >Soles - S/.</option>
-                <!--<option value="2" ng-selected="vm.cotizacion.moneda==2" >Dolares - $</option>-->
-            </select>
-        </div>
-
-
-        <div class="form-group">
-            <label class="control-label" for="field_porcentajePago">Porcentaje Pago</label>
-            <input type="number" class="form-control" name="porcentajePago" id="field_porcentajePago"
-                    ng-model="vm.cotizacion.porcentajePago"
+            <label class="control-label" for="field_moneda">Moneda</label>
+            <input type="number" class="form-control" name="moneda" id="field_moneda"
+                    ng-model="vm.cotizacion.moneda"
                     required />
-            <div ng-show="editForm.porcentajePago.$invalid">
+            <div ng-show="editForm.moneda.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.porcentajePago.$error.required">
-                    Este campo es obligatorio.
+                    ng-show="editForm.moneda.$error.required">
+                    This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.porcentajePago.$error.number">
-                    Solo se permiten números.
+                    ng-show="editForm.moneda.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_estado">Estado</label>
+            <input type="text" class="form-control "  name="estado" id="field_estado"
+                    ng-model="vm.cotizacion.estado"
+                   ng-init="vm.cotizacion.estado = vm.cotizacion.estado || 'GENERADA'"
+                    required readonly />
+            <div ng-show="editForm.estado.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.estado.$error.required">
+                    This field is required.
                 </p>
             </div>
         </div>
@@ -133,7 +120,7 @@
         <div ng-show="editForm.cliente.$invalid">
             <p class="help-block"
                 ng-show="editForm.cliente.$error.required">
-                Este campo es obligatorio.
+                This field is required.
             </p>
         </div>
         <div class="form-group">
@@ -145,7 +132,7 @@
         <div ng-show="editForm.servicio.$invalid">
             <p class="help-block"
                 ng-show="editForm.servicio.$error.required">
-                Este campo es obligatorio.
+                This field is required.
             </p>
         </div>
         <div class="form-group">
@@ -157,19 +144,16 @@
         <div ng-show="editForm.tipoUnidad.$invalid">
             <p class="help-block"
                 ng-show="editForm.tipoUnidad.$error.required">
-                Este campo es obligatorio.
+                This field is required.
             </p>
         </div>
-        <button type="button" class="btn btn-primary" ng-click="goToOrdenVentaDialog()" ng-show="vm.cotizacion.id">
-            <span class="glyphicon glyphicon-share"></span>&nbsp;<span>Generar orden de venta</span>
-        </button>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>
 </form>

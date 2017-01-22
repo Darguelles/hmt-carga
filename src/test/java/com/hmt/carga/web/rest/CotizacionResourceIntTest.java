@@ -62,8 +62,8 @@ public class CotizacionResourceIntTest {
     private static final Integer DEFAULT_MONEDA = 1;
     private static final Integer UPDATED_MONEDA = 2;
 
-    private static final Double DEFAULT_PORCENTAJE_PAGO = 1D;
-    private static final Double UPDATED_PORCENTAJE_PAGO = 2D;
+    private static final String DEFAULT_ESTADO = "AAAAA";
+    private static final String UPDATED_ESTADO = "BBBBB";
 
     @Inject
     private CotizacionRepository cotizacionRepository;
@@ -108,7 +108,7 @@ public class CotizacionResourceIntTest {
                 .mercaderia(DEFAULT_MERCADERIA)
                 .precio(DEFAULT_PRECIO)
                 .moneda(DEFAULT_MONEDA)
-                .porcentajePago(DEFAULT_PORCENTAJE_PAGO);
+                .estado(DEFAULT_ESTADO);
         // Add required entity
         Cliente cliente = ClienteResourceIntTest.createEntity(em);
         em.persist(cliente);
@@ -154,7 +154,7 @@ public class CotizacionResourceIntTest {
         assertThat(testCotizacion.getMercaderia()).isEqualTo(DEFAULT_MERCADERIA);
         assertThat(testCotizacion.getPrecio()).isEqualTo(DEFAULT_PRECIO);
         assertThat(testCotizacion.getMoneda()).isEqualTo(DEFAULT_MONEDA);
-        assertThat(testCotizacion.getPorcentajePago()).isEqualTo(DEFAULT_PORCENTAJE_PAGO);
+        assertThat(testCotizacion.getEstado()).isEqualTo(DEFAULT_ESTADO);
     }
 
     @Test
@@ -267,10 +267,10 @@ public class CotizacionResourceIntTest {
 
     @Test
     @Transactional
-    public void checkPorcentajePagoIsRequired() throws Exception {
+    public void checkEstadoIsRequired() throws Exception {
         int databaseSizeBeforeTest = cotizacionRepository.findAll().size();
         // set the field null
-        cotizacion.setPorcentajePago(null);
+        cotizacion.setEstado(null);
 
         // Create the Cotizacion, which fails.
 
@@ -300,7 +300,7 @@ public class CotizacionResourceIntTest {
                 .andExpect(jsonPath("$.[*].mercaderia").value(hasItem(DEFAULT_MERCADERIA.toString())))
                 .andExpect(jsonPath("$.[*].precio").value(hasItem(DEFAULT_PRECIO.doubleValue())))
                 .andExpect(jsonPath("$.[*].moneda").value(hasItem(DEFAULT_MONEDA)))
-                .andExpect(jsonPath("$.[*].porcentajePago").value(hasItem(DEFAULT_PORCENTAJE_PAGO.doubleValue())));
+                .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO.toString())));
     }
 
     @Test
@@ -320,7 +320,7 @@ public class CotizacionResourceIntTest {
             .andExpect(jsonPath("$.mercaderia").value(DEFAULT_MERCADERIA.toString()))
             .andExpect(jsonPath("$.precio").value(DEFAULT_PRECIO.doubleValue()))
             .andExpect(jsonPath("$.moneda").value(DEFAULT_MONEDA))
-            .andExpect(jsonPath("$.porcentajePago").value(DEFAULT_PORCENTAJE_PAGO.doubleValue()));
+            .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO.toString()));
     }
 
     @Test
@@ -348,7 +348,7 @@ public class CotizacionResourceIntTest {
                 .mercaderia(UPDATED_MERCADERIA)
                 .precio(UPDATED_PRECIO)
                 .moneda(UPDATED_MONEDA)
-                .porcentajePago(UPDATED_PORCENTAJE_PAGO);
+                .estado(UPDATED_ESTADO);
 
         restCotizacionMockMvc.perform(put("/api/cotizacions")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -365,7 +365,7 @@ public class CotizacionResourceIntTest {
         assertThat(testCotizacion.getMercaderia()).isEqualTo(UPDATED_MERCADERIA);
         assertThat(testCotizacion.getPrecio()).isEqualTo(UPDATED_PRECIO);
         assertThat(testCotizacion.getMoneda()).isEqualTo(UPDATED_MONEDA);
-        assertThat(testCotizacion.getPorcentajePago()).isEqualTo(UPDATED_PORCENTAJE_PAGO);
+        assertThat(testCotizacion.getEstado()).isEqualTo(UPDATED_ESTADO);
     }
 
     @Test

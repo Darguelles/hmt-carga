@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="transporte.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Crear nuevo transporte
+                        Create new Transporte
                     </span>
                 </button>
             </div>
@@ -20,7 +20,6 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="marca"><span>Marca</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="modelo"><span>Modelo</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="tracto"><span>Tracto</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="carreta"><span>Carreta</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="placaTracto"><span>Placa Tracto</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -37,6 +36,9 @@
                     <th jh-sort-by="fechaRevisionTecnica"><span>Fecha Revision Tecnica</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="soat"><span>Soat</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fechaVencimientoSoat"><span>Fecha Vencimiento Soat</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="modelo"><span>Modelo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nombreConductor"><span>Nombre Conductor</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="licenciaConductor"><span>Licencia Conductor</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="tipoUnidad.nombre"><span>Tipo Unidad</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -45,7 +47,6 @@
                 <tr ng-repeat="transporte in vm.transportes track by transporte.id">
                     <td><a ui-sref="transporte-detail({id:transporte.id})">{{transporte.id}}</a></td>
                     <td>{{transporte.marca}}</td>
-                    <td>{{transporte.modelo}}</td>
                     <td>{{transporte.tracto}}</td>
                     <td>{{transporte.carreta}}</td>
                     <td>{{transporte.placaTracto}}</td>
@@ -59,9 +60,12 @@
                     <td>{{transporte.anoFabricacion}}</td>
                     <td>{{transporte.unidadPropia}}</td>
                     <td>{{transporte.kilometraje}}</td>
-                    <td>{{transporte.fechaRevisionTecnica | date:'mediumDate'}}</td>
+                        <td>{{transporte.fechaRevisionTecnica | date:'mediumDate'}}</td>
                     <td>{{transporte.soat}}</td>
-                    <td>{{transporte.fechaVencimientoSoat | date:'mediumDate'}}</td>
+                        <td>{{transporte.fechaVencimientoSoat | date:'mediumDate'}}</td>
+                    <td>{{transporte.modelo}}</td>
+                    <td>{{transporte.nombreConductor}}</td>
+                    <td>{{transporte.licenciaConductor}}</td>
                     <td>
                         <a ui-sref="tipo-unidad-detail({id:transporte.tipoUnidad.id})">{{transporte.tipoUnidad.nombre}}</a>
                     </td>

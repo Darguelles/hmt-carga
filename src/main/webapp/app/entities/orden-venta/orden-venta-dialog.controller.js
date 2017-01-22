@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('OrdenVentaDialogController', OrdenVentaDialogController);
 
-    OrdenVentaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'OrdenVenta', 'Cotizacion'];
+    OrdenVentaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'OrdenVenta', 'Cotizacion', 'CotizacionFilterGenerated'];
 
-    function OrdenVentaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, OrdenVenta, Cotizacion) {
+    function OrdenVentaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, OrdenVenta, Cotizacion, CotizacionFilterGenerated) {
         var vm = this;
 
         vm.ordenVenta = entity;
@@ -19,6 +19,13 @@
 
         $scope.date_code = new Date();
         $scope.cot_selected = JSON.parse(window.localStorage.getItem("current_cotizacion"));
+
+        $scope.cotizaciones = CotizacionFilterGenerated.query();
+
+        $scope.addCotizacion = function (selected) {
+            vm.ordenVenta.cotizacion = selected.originalObject;
+            // console.log('CURRENT GUIDE : '+ JSON.stringify(vm.guiaRemision));
+        };
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

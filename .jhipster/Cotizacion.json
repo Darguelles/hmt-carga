@@ -73,8 +73,8 @@
             ]
         },
         {
-            "fieldName": "porcentajePago",
-            "fieldType": "Double",
+            "fieldName": "estado",
+            "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]

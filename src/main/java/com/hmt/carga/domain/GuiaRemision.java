@@ -58,8 +58,11 @@ public class GuiaRemision implements Serializable {
     @Column(name = "observaciones")
     private String observaciones;
 
+    @Column(name = "descripcion")
+    private String descripcion;
+
     @ManyToOne
-    @NotNull
+//    @NotNull
     private Cotizacion cotizacion;
 
     @ManyToOne
@@ -243,6 +246,14 @@ public class GuiaRemision implements Serializable {
         return this;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public void setTransporte(Transporte transporte) {
         this.transporte = transporte;
     }
@@ -256,7 +267,7 @@ public class GuiaRemision implements Serializable {
             return false;
         }
         GuiaRemision guiaRemision = (GuiaRemision) o;
-        if(guiaRemision.id == null || id == null) {
+        if (guiaRemision.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, guiaRemision.id);

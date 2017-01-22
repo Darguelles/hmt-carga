@@ -133,6 +133,8 @@
                                 soat: null,
                                 fechaVencimientoSoat: null,
                                 modelo: null,
+                                nombreConductor: null,
+                                licenciaConductor: null,
                                 id: null
                             };
                         }

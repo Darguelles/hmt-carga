@@ -21,6 +21,9 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
+import static com.hmt.carga.util.Cotizacion.APROBADA;
+import static com.hmt.carga.util.Cotizacion.GENERADA;
+
 /**
  * REST controller for managing Cotizacion.
  */
@@ -29,7 +32,7 @@ import java.util.Optional;
 public class CotizacionResource {
 
     private final Logger log = LoggerFactory.getLogger(CotizacionResource.class);
-        
+
     @Inject
     private CotizacionService cotizacionService;
 
@@ -92,6 +95,26 @@ public class CotizacionResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+
+    @GetMapping("/cotizacionsByEstadoGenerated")
+    @Timed
+    public ResponseEntity<List<Cotizacion>> getAllCotizacionsByEstadoGenerada()
+        throws URISyntaxException {
+        log.debug("REST request to get a page of Cotizacions");
+        List<Cotizacion> page = cotizacionService.findAllByEstado(GENERADA.name());
+        return new ResponseEntity<>(page, HttpStatus.OK);
+    }
+
+    @GetMapping("/cotizacionsByEstadoApproved")
+    @Timed
+    public ResponseEntity<List<Cotizacion>> getAllCotizacionsByEstadoAprobada()
+        throws URISyntaxException {
+        log.debug("REST request to get a page of Cotizacions");
+        List<Cotizacion> page = cotizacionService.findAllByEstado(APROBADA.name());
+        return new ResponseEntity<>(page, HttpStatus.OK);
+    }
+
+
     /**
      * GET  /cotizacions/:id : get the "id" cotizacion.
      *
@@ -123,5 +146,11 @@ public class CotizacionResource {
         cotizacionService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("cotizacion", id.toString())).build();
     }
+
+//    @GetMapping("/cotizacions/{ruc}")
+//    public ResponseEntity<List<Cotizacion>> getCotizacionesPendientesByRuc(@PathVariable String ruc){
+//        List<Cotizacion> list = cotizacionService.findAllByEstadoAndRuc(ruc);
+//        return ResponseEntity.ok(list);
+//    }
 
 }

@@ -21,19 +21,7 @@
             <div ng-show="editForm.marca.$invalid">
                 <p class="help-block"
                     ng-show="editForm.marca.$error.required">
-                    Este campo es obligatorio.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_modelo">Modelo</label>
-            <input type="text" class="form-control" name="modelo" id="field_modelo"
-                   ng-model="vm.transporte.modelo"
-                   required />
-            <div ng-show="editForm.modelo.$invalid">
-                <p class="help-block"
-                   ng-show="editForm.modelo.$error.required">
-                    Este campo es obligatorio.
+                    This field is required.
                 </p>
             </div>
         </div>
@@ -92,13 +80,13 @@
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_gps">GPS</label>
+            <label class="control-label" for="field_gps">Gps</label>
             <input type="checkbox" class="form-control" name="gps" id="field_gps"
                     ng-model="vm.transporte.gps"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_anoFabricacion">Año de fabricación</label>
+            <label class="control-label" for="field_anoFabricacion">Ano Fabricacion</label>
             <input type="number" class="form-control" name="anoFabricacion" id="field_anoFabricacion"
                     ng-model="vm.transporte.anoFabricacion"
                      />
@@ -109,48 +97,77 @@
                     ng-model="vm.transporte.unidadPropia"
                      />
         </div>
-        <div ng-show="vm.transporte.unidadPropia" >
-            <div class="form-group">
-                <label class="control-label" for="field_kilometraje">Kilometraje</label>
-                <input type="number" class="form-control" name="kilometraje" id="field_kilometraje"
-                       ng-model="vm.transporte.kilometraje"
-                       ng-required="vm.transporte.unidadPropia"
-                />
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="field_fechaRevisionTecnica">Fecha de revisión tecnica</label>
+        <div class="form-group">
+            <label class="control-label" for="field_kilometraje">Kilometraje</label>
+            <input type="number" class="form-control" name="kilometraje" id="field_kilometraje"
+                    ng-model="vm.transporte.kilometraje"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaRevisionTecnica">Fecha Revision Tecnica</label>
                 <div class="input-group">
                     <input id="field_fechaRevisionTecnica" type="text" class="form-control" name="fechaRevisionTecnica" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transporte.fechaRevisionTecnica" is-open="vm.datePickerOpenStatus.fechaRevisionTecnica"
-                           ng-required="vm.transporte.unidadPropia"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaRevisionTecnica')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="field_soat">SOAT</label>
-                <input type="text" class="form-control" name="soat" id="field_soat"
-                       ng-model="vm.transporte.soat"
-                       ng-required="vm.transporte.unidadPropia"
-                />
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="field_fechaVencimientoSoat">Fecha de vencimiento SOAT</label>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_soat">Soat</label>
+            <input type="text" class="form-control" name="soat" id="field_soat"
+                    ng-model="vm.transporte.soat"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaVencimientoSoat">Fecha Vencimiento Soat</label>
                 <div class="input-group">
                     <input id="field_fechaVencimientoSoat" type="text" class="form-control" name="fechaVencimientoSoat" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transporte.fechaVencimientoSoat" is-open="vm.datePickerOpenStatus.fechaVencimientoSoat"
-                           ng-required="vm.transporte.unidadPropia"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaVencimientoSoat')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_modelo">Modelo</label>
+            <input type="text" class="form-control" name="modelo" id="field_modelo"
+                    ng-model="vm.transporte.modelo"
+                    required />
+            <div ng-show="editForm.modelo.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.modelo.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_nombreConductor">Nombre Conductor</label>
+            <input type="text" class="form-control" name="nombreConductor" id="field_nombreConductor"
+                    ng-model="vm.transporte.nombreConductor"
+                    required />
+            <div ng-show="editForm.nombreConductor.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nombreConductor.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_licenciaConductor">Licencia Conductor</label>
+            <input type="text" class="form-control" name="licenciaConductor" id="field_licenciaConductor"
+                    ng-model="vm.transporte.licenciaConductor"
+                    required />
+            <div ng-show="editForm.licenciaConductor.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.licenciaConductor.$error.required">
+                    This field is required.
+                </p>
             </div>
         </div>
 
-
         <div class="form-group">
-            <label for="field_tipoUnidad">Tipo de unidad</label>
+            <label for="field_tipoUnidad">Tipo Unidad</label>
             <select class="form-control" id="field_tipoUnidad" name="tipoUnidad" ng-model="vm.transporte.tipoUnidad" ng-options="tipoUnidad as tipoUnidad.nombre for tipoUnidad in vm.tipounidads track by tipoUnidad.id" required>
                 <option value=""></option>
             </select>
@@ -158,16 +175,16 @@
         <div ng-show="editForm.tipoUnidad.$invalid">
             <p class="help-block"
                 ng-show="editForm.tipoUnidad.$error.required">
-                Este campo es obligatorio.
+                This field is required.
             </p>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>
 </form>

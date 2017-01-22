@@ -20,7 +20,7 @@ import java.util.List;
 public class CotizacionService {
 
     private final Logger log = LoggerFactory.getLogger(CotizacionService.class);
-    
+
     @Inject
     private CotizacionRepository cotizacionRepository;
 
@@ -38,13 +38,14 @@ public class CotizacionService {
 
     /**
      *  Get all the cotizacions.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Cotizacion> findAll(Pageable pageable) {
         log.debug("Request to get all Cotizacions");
+        //Page<Cotizacion> result = cotizacionRepository.findAll(pageable);
         Page<Cotizacion> result = cotizacionRepository.findAll(pageable);
         return result;
     }
@@ -55,7 +56,7 @@ public class CotizacionService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Cotizacion findOne(Long id) {
         log.debug("Request to get Cotizacion : {}", id);
         Cotizacion cotizacion = cotizacionRepository.findOne(id);
@@ -70,5 +71,13 @@ public class CotizacionService {
     public void delete(Long id) {
         log.debug("Request to delete Cotizacion : {}", id);
         cotizacionRepository.delete(id);
+    }
+
+    public List<Cotizacion> findAllByEstado(String estado){
+        return cotizacionRepository.findAllByEstado(estado);
+    }
+
+    public List<Cotizacion> findAllByEstadoAndRuc(String ruc){
+        return cotizacionRepository.findAllByClienteRucAndEstado(ruc, "ACTIVO");
     }
 }

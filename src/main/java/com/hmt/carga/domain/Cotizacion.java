@@ -48,8 +48,8 @@ public class Cotizacion implements Serializable {
     private Integer moneda;
 
     @NotNull
-    @Column(name = "porcentaje_pago", nullable = false)
-    private Double porcentajePago;
+    @Column(name = "estado", nullable = false)
+    private String estado;
 
     @ManyToOne
     @NotNull
@@ -149,17 +149,17 @@ public class Cotizacion implements Serializable {
         this.moneda = moneda;
     }
 
-    public Double getPorcentajePago() {
-        return porcentajePago;
+    public String getEstado() {
+        return estado;
     }
 
-    public Cotizacion porcentajePago(Double porcentajePago) {
-        this.porcentajePago = porcentajePago;
+    public Cotizacion estado(String estado) {
+        this.estado = estado;
         return this;
     }
 
-    public void setPorcentajePago(Double porcentajePago) {
-        this.porcentajePago = porcentajePago;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Cliente getCliente() {
@@ -231,7 +231,7 @@ public class Cotizacion implements Serializable {
             ", mercaderia='" + mercaderia + "'" +
             ", precio='" + precio + "'" +
             ", moneda='" + moneda + "'" +
-            ", porcentajePago='" + porcentajePago + "'" +
+            ", estado='" + estado + "'" +
             '}';
     }
 }

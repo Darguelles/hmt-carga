@@ -8,10 +8,6 @@
         <dd>
             <span>{{vm.transporte.marca}}</span>
         </dd>
-        <dt><span>Modelo</span></dt>
-        <dd>
-            <span>{{vm.transporte.modelo}}</span>
-        </dd>
         <dt><span>Tracto</span></dt>
         <dd>
             <span>{{vm.transporte.tracto}}</span>
@@ -48,11 +44,11 @@
         <dd>
             <span>{{vm.transporte.registroMatpel}}</span>
         </dd>
-        <dt><span>GPS</span></dt>
+        <dt><span>Gps</span></dt>
         <dd>
             <span>{{vm.transporte.gps}}</span>
         </dd>
-        <dt><span>Año de fabricacion</span></dt>
+        <dt><span>Ano Fabricacion</span></dt>
         <dd>
             <span>{{vm.transporte.anoFabricacion}}</span>
         </dd>
@@ -64,19 +60,31 @@
         <dd>
             <span>{{vm.transporte.kilometraje}}</span>
         </dd>
-        <dt><span>Fecha de revisión técnica</span></dt>
+        <dt><span>Fecha Revision Tecnica</span></dt>
         <dd>
             <span>{{vm.transporte.fechaRevisionTecnica | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>SOAT</span></dt>
+        <dt><span>Soat</span></dt>
         <dd>
             <span>{{vm.transporte.soat}}</span>
         </dd>
-        <dt><span>Fecha de vencimiento SOAT</span></dt>
+        <dt><span>Fecha Vencimiento Soat</span></dt>
         <dd>
             <span>{{vm.transporte.fechaVencimientoSoat | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>Tipo de unidad</span></dt>
+        <dt><span>Modelo</span></dt>
+        <dd>
+            <span>{{vm.transporte.modelo}}</span>
+        </dd>
+        <dt><span>Nombre Conductor</span></dt>
+        <dd>
+            <span>{{vm.transporte.nombreConductor}}</span>
+        </dd>
+        <dt><span>Licencia Conductor</span></dt>
+        <dd>
+            <span>{{vm.transporte.licenciaConductor}}</span>
+        </dd>
+        <dt><span>Tipo Unidad</span></dt>
         <dd>
             <a ui-sref="tipo-unidad-detail({id:vm.transporte.tipoUnidad.id})">{{vm.transporte.tipoUnidad.nombre}}</a>
         </dd>
@@ -85,11 +93,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Volver</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button" ui-sref="transporte-detail.edit({id:vm.transporte.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-xs hidden-sm"> Editar</span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
     </button>
 </div>

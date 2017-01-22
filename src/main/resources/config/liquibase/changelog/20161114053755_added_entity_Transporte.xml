@@ -93,6 +93,14 @@
                 <constraints nullable="false" />
             </column>
             
+            <column name="nombre_conductor" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="licencia_conductor" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
             <column name="tipo_unidad_id" type="bigint">
                 <constraints nullable="false" />
             </column>

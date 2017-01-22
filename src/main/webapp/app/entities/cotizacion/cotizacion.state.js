@@ -121,7 +121,7 @@
                                 mercaderia: null,
                                 precio: null,
                                 moneda: null,
-                                porcentajePago: null,
+                                estado: null,
                                 id: null
                             };
                         }

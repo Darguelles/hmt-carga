@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('GuiaRemisionDialogController', GuiaRemisionDialogController);
 
-    GuiaRemisionDialogController.$inject = ['$location', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte'];
+    GuiaRemisionDialogController.$inject = ['$location', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte', 'CotizacionFilter'];
 
-    function GuiaRemisionDialogController ($location, $timeout, $scope, $stateParams, $uibModalInstance, entity, GuiaRemision, Cotizacion, Proveedor, Transporte) {
+    function GuiaRemisionDialogController ($location, $timeout, $scope, $stateParams, $uibModalInstance, entity, GuiaRemision, Cotizacion, Proveedor, Transporte, CotizacionFilter) {
         var vm = this;
 
         vm.guiaRemision = entity;
@@ -16,8 +16,14 @@
         vm.openCalendar = openCalendar;
         vm.save = save;
         vm.cotizacions = Cotizacion.query();
+        vm.cotizacionsPendientes = CotizacionFilter.query();
         vm.proveedors = Proveedor.query();
         vm.transportes = Transporte.query();
+
+        $scope.addCotizacion = function (selected) {
+            vm.guiaRemision.cotizacion = selected.originalObject;
+            console.log('CURRENT GUIDE : '+ JSON.stringify(vm.guiaRemision));
+        };
 
         $scope.date_code = new Date();
 
@@ -40,6 +46,10 @@
             $location.path('/factura/new');
             window.localStorage.setItem("current_guia_remision", JSON.stringify(vm.guiaRemision));
         }
+
+        $scope.cotizaciones = CotizacionFilter.query();
+        //
+
 
         function clear () {
             $uibModalInstance.dismiss('cancel');

@@ -79,6 +79,14 @@ public class Transporte implements Serializable {
     @Column(name = "modelo", nullable = false)
     private String modelo;
 
+    @NotNull
+    @Column(name = "nombre_conductor", nullable = false)
+    private String nombreConductor;
+
+    @NotNull
+    @Column(name = "licencia_conductor", nullable = false)
+    private String licenciaConductor;
+
     @ManyToOne
     @NotNull
     private TipoUnidad tipoUnidad;
@@ -325,6 +333,32 @@ public class Transporte implements Serializable {
         this.modelo = modelo;
     }
 
+    public String getNombreConductor() {
+        return nombreConductor;
+    }
+
+    public Transporte nombreConductor(String nombreConductor) {
+        this.nombreConductor = nombreConductor;
+        return this;
+    }
+
+    public void setNombreConductor(String nombreConductor) {
+        this.nombreConductor = nombreConductor;
+    }
+
+    public String getLicenciaConductor() {
+        return licenciaConductor;
+    }
+
+    public Transporte licenciaConductor(String licenciaConductor) {
+        this.licenciaConductor = licenciaConductor;
+        return this;
+    }
+
+    public void setLicenciaConductor(String licenciaConductor) {
+        this.licenciaConductor = licenciaConductor;
+    }
+
     public TipoUnidad getTipoUnidad() {
         return tipoUnidad;
     }
@@ -380,6 +414,8 @@ public class Transporte implements Serializable {
             ", soat='" + soat + "'" +
             ", fechaVencimientoSoat='" + fechaVencimientoSoat + "'" +
             ", modelo='" + modelo + "'" +
+            ", nombreConductor='" + nombreConductor + "'" +
+            ", licenciaConductor='" + licenciaConductor + "'" +
             '}';
     }
 }

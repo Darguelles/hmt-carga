@@ -24,45 +24,49 @@
             <column name="codigo" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="fecha_emision" type="date">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="fecha_traslado" type="date">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="cantidad" type="double">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="peso" type="double">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="unidad_medida" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="costo_minimo" type="double">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="fecha_ingreso" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="fecha_salida" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="observaciones" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
+            <column name="descripcion" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="cotizacion_id" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="proveedor_id" type="bigint">
@@ -77,6 +81,6 @@
         </createTable>
         <dropDefaultValue tableName="guia_remision" columnName="fecha_ingreso" columnDataType="datetime"/>
         <dropDefaultValue tableName="guia_remision" columnName="fecha_salida" columnDataType="datetime"/>
-        
+
     </changeSet>
 </databaseChangeLog>

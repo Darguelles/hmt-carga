@@ -1,6 +1,5 @@
 (function() {
     'use strict';
-
     angular
         .module('hmtcargaApp', [
             'ngStorage',
@@ -11,7 +10,9 @@
             'ngFileUpload',
             'ui.bootstrap',
             'ui.bootstrap.datetimepicker',
-            'ui.router'
+            'ui.router',
+            'angucomplete-alt'
+
             //'infinite-scroll',
             // jhipster-needle-angularjs-add-module JHipster will add new module here
             //'angular-loading-bar'
