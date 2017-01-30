@@ -51,7 +51,7 @@
                     <td>{{guiaRemision.fechaSalida | date:'medium'}}</td>
                     <td>{{guiaRemision.observaciones}}</td>
                     <td>{{guiaRemision.descripcion}}</td>
-                    <td>{{guiaRemision.origenDatos}}</td>
+                    <td>{{guiaRemision.origenDatos?'Si':'No'}}</td>
                     <td>
                         <a ui-sref="cotizacion-detail({id:guiaRemision.cotizacion.id})">{{guiaRemision.cotizacion.cliente.nombre}}</a>
                     </td>

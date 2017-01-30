@@ -23,6 +23,7 @@
         $scope.cotizaciones = CotizacionFilterGenerated.query();
 
         $scope.addCotizacion = function (selected) {
+            console.log('>>>>>>>'+selected.originalObject)
             vm.ordenVenta.cotizacion = selected.originalObject;
             // console.log('CURRENT GUIDE : '+ JSON.stringify(vm.guiaRemision));
         };
