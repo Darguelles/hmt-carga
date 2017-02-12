@@ -67,7 +67,7 @@ class GuiaRemisionGatlingTest extends Simulation {
             .exec(http("Create new guiaRemision")
             .post("/api/guia-remisions")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "codigo":"SAMPLE_TEXT", "fechaEmision":"2020-01-01T00:00:00.000Z", "fechaTraslado":"2020-01-01T00:00:00.000Z", "cantidad":null, "peso":null, "unidadMedida":"SAMPLE_TEXT", "costoMinimo":null, "fechaIngreso":"2020-01-01T00:00:00.000Z", "fechaSalida":"2020-01-01T00:00:00.000Z", "observaciones":"SAMPLE_TEXT", "descripcion":"SAMPLE_TEXT", "origenDatos":null}""")).asJSON
+            .body(StringBody("""{"id":null, "codigo":"SAMPLE_TEXT", "fechaEmision":"2020-01-01T00:00:00.000Z", "fechaTraslado":"2020-01-01T00:00:00.000Z", "cantidad":null, "peso":null, "unidadMedida":"SAMPLE_TEXT", "costoMinimo":null, "fechaIngreso":"2020-01-01T00:00:00.000Z", "fechaSalida":"2020-01-01T00:00:00.000Z", "observaciones":"SAMPLE_TEXT", "descripcion":"SAMPLE_TEXT", "origenDatos":null, "facturada":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_guiaRemision_url"))).exitHereIfFailed
             .pause(10)

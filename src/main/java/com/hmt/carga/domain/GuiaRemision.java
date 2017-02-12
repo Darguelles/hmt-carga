@@ -64,6 +64,9 @@ public class GuiaRemision implements Serializable {
     @Column(name = "origen_datos")
     private Boolean origenDatos;
 
+    @Column(name = "facturada")
+    private Boolean facturada;
+
     @ManyToOne
     private Cotizacion cotizacion;
 
@@ -74,6 +77,9 @@ public class GuiaRemision implements Serializable {
     @ManyToOne
     @NotNull
     private Transporte transporte;
+
+    @ManyToOne
+    private Factura factura;
 
     public Long getId() {
         return id;
@@ -239,6 +245,19 @@ public class GuiaRemision implements Serializable {
         this.origenDatos = origenDatos;
     }
 
+    public Boolean isFacturada() {
+        return facturada;
+    }
+
+    public GuiaRemision facturada(Boolean facturada) {
+        this.facturada = facturada;
+        return this;
+    }
+
+    public void setFacturada(Boolean facturada) {
+        this.facturada = facturada;
+    }
+
     public Cotizacion getCotizacion() {
         return cotizacion;
     }
@@ -278,6 +297,19 @@ public class GuiaRemision implements Serializable {
         this.transporte = transporte;
     }
 
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public GuiaRemision factura(Factura factura) {
+        this.factura = factura;
+        return this;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -314,6 +346,7 @@ public class GuiaRemision implements Serializable {
             ", observaciones='" + observaciones + "'" +
             ", descripcion='" + descripcion + "'" +
             ", origenDatos='" + origenDatos + "'" +
+            ", facturada='" + facturada + "'" +
             '}';
     }
 }

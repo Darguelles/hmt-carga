@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('GuiaRemisionDialogController', GuiaRemisionDialogController);
 
-    GuiaRemisionDialogController.$inject = ['$location', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte', 'CotizacionFilter'];
+    GuiaRemisionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte', 'Factura', 'CotizacionFilter'];
 
-    function GuiaRemisionDialogController ($location, $timeout, $scope, $stateParams, $uibModalInstance, entity, GuiaRemision, Cotizacion, Proveedor, Transporte, CotizacionFilter) {
+    function GuiaRemisionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, GuiaRemision, Cotizacion, Proveedor, Transporte, Factura, CotizacionFilter) {
         var vm = this;
 
         vm.guiaRemision = entity;
@@ -19,6 +19,7 @@
         vm.cotizacionsPendientes = CotizacionFilter.query();
         vm.proveedors = Proveedor.query();
         vm.transportes = Transporte.query();
+        vm.facturas = Factura.query();
 
         $scope.addCotizacion = function (selected) {
             vm.guiaRemision.cotizacion = selected.originalObject;

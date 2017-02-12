@@ -24,6 +24,12 @@
                 "required"
             ],
             "otherEntityField": "marca"
+        },
+        {
+            "relationshipName": "factura",
+            "otherEntityName": "factura",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "codigo"
         }
     ],
     "fields": [
@@ -86,6 +92,10 @@
         },
         {
             "fieldName": "origenDatos",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "facturada",
             "fieldType": "Boolean"
         }
     ],

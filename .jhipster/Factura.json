@@ -18,12 +18,6 @@
                 "required"
             ],
             "otherEntityField": "nombre"
-        },
-        {
-            "relationshipName": "guiaRemision",
-            "otherEntityName": "guiaRemision",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "codigo"
         }
     ],
     "fields": [

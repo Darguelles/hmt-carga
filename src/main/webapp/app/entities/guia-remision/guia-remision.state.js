@@ -127,6 +127,7 @@
                                 observaciones: null,
                                 descripcion: null,
                                 origenDatos: null,
+                                facturada: null,
                                 id: null
                             };
                         }

@@ -26,5 +26,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="transporte"/>
 
+        <addForeignKeyConstraint baseColumnNames="factura_id"
+                                 baseTableName="guia_remision"
+                                 constraintName="fk_guia_remision_factura_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="factura"/>
+
     </changeSet>
 </databaseChangeLog>

@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('GuiaRemisionDetailController', GuiaRemisionDetailController);
 
-    GuiaRemisionDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte'];
+    GuiaRemisionDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte', 'Factura'];
 
-    function GuiaRemisionDetailController($scope, $rootScope, $stateParams, previousState, entity, GuiaRemision, Cotizacion, Proveedor, Transporte) {
+    function GuiaRemisionDetailController($scope, $rootScope, $stateParams, previousState, entity, GuiaRemision, Cotizacion, Proveedor, Transporte, Factura) {
         var vm = this;
 
         vm.guiaRemision = entity;

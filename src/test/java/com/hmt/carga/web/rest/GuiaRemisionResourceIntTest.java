@@ -84,6 +84,9 @@ public class GuiaRemisionResourceIntTest {
     private static final Boolean DEFAULT_ORIGEN_DATOS = false;
     private static final Boolean UPDATED_ORIGEN_DATOS = true;
 
+    private static final Boolean DEFAULT_FACTURADA = false;
+    private static final Boolean UPDATED_FACTURADA = true;
+
     @Inject
     private GuiaRemisionRepository guiaRemisionRepository;
 
@@ -132,7 +135,8 @@ public class GuiaRemisionResourceIntTest {
                 .fechaSalida(DEFAULT_FECHA_SALIDA)
                 .observaciones(DEFAULT_OBSERVACIONES)
                 .descripcion(DEFAULT_DESCRIPCION)
-                .origenDatos(DEFAULT_ORIGEN_DATOS);
+                .origenDatos(DEFAULT_ORIGEN_DATOS)
+                .facturada(DEFAULT_FACTURADA);
         // Add required entity
         Proveedor proveedor = ProveedorResourceIntTest.createEntity(em);
         em.persist(proveedor);
@@ -179,6 +183,7 @@ public class GuiaRemisionResourceIntTest {
         assertThat(testGuiaRemision.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
         assertThat(testGuiaRemision.getDescripcion()).isEqualTo(DEFAULT_DESCRIPCION);
         assertThat(testGuiaRemision.isOrigenDatos()).isEqualTo(DEFAULT_ORIGEN_DATOS);
+        assertThat(testGuiaRemision.isFacturada()).isEqualTo(DEFAULT_FACTURADA);
     }
 
     @Test
@@ -275,7 +280,8 @@ public class GuiaRemisionResourceIntTest {
                 .andExpect(jsonPath("$.[*].fechaSalida").value(hasItem(DEFAULT_FECHA_SALIDA_STR)))
                 .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES.toString())))
                 .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
-                .andExpect(jsonPath("$.[*].origenDatos").value(hasItem(DEFAULT_ORIGEN_DATOS.booleanValue())));
+                .andExpect(jsonPath("$.[*].origenDatos").value(hasItem(DEFAULT_ORIGEN_DATOS.booleanValue())))
+                .andExpect(jsonPath("$.[*].facturada").value(hasItem(DEFAULT_FACTURADA.booleanValue())));
     }
 
     @Test
@@ -300,7 +306,8 @@ public class GuiaRemisionResourceIntTest {
             .andExpect(jsonPath("$.fechaSalida").value(DEFAULT_FECHA_SALIDA_STR))
             .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES.toString()))
             .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION.toString()))
-            .andExpect(jsonPath("$.origenDatos").value(DEFAULT_ORIGEN_DATOS.booleanValue()));
+            .andExpect(jsonPath("$.origenDatos").value(DEFAULT_ORIGEN_DATOS.booleanValue()))
+            .andExpect(jsonPath("$.facturada").value(DEFAULT_FACTURADA.booleanValue()));
     }
 
     @Test
@@ -333,7 +340,8 @@ public class GuiaRemisionResourceIntTest {
                 .fechaSalida(UPDATED_FECHA_SALIDA)
                 .observaciones(UPDATED_OBSERVACIONES)
                 .descripcion(UPDATED_DESCRIPCION)
-                .origenDatos(UPDATED_ORIGEN_DATOS);
+                .origenDatos(UPDATED_ORIGEN_DATOS)
+                .facturada(UPDATED_FACTURADA);
 
         restGuiaRemisionMockMvc.perform(put("/api/guia-remisions")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -356,6 +364,7 @@ public class GuiaRemisionResourceIntTest {
         assertThat(testGuiaRemision.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
         assertThat(testGuiaRemision.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
         assertThat(testGuiaRemision.isOrigenDatos()).isEqualTo(UPDATED_ORIGEN_DATOS);
+        assertThat(testGuiaRemision.isFacturada()).isEqualTo(UPDATED_FACTURADA);
     }
 
     @Test
