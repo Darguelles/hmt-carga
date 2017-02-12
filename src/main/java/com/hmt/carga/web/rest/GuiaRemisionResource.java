@@ -1,7 +1,9 @@
 package com.hmt.carga.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.hmt.carga.domain.Cotizacion;
 import com.hmt.carga.domain.GuiaRemision;
+import com.hmt.carga.service.CotizacionService;
 import com.hmt.carga.service.GuiaRemisionService;
 import com.hmt.carga.web.rest.util.HeaderUtil;
 import com.hmt.carga.web.rest.util.PaginationUtil;
@@ -21,6 +23,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
+import static com.hmt.carga.util.Cotizacion.EJECUTADA;
+
 /**
  * REST controller for managing GuiaRemision.
  */
@@ -29,9 +33,11 @@ import java.util.Optional;
 public class GuiaRemisionResource {
 
     private final Logger log = LoggerFactory.getLogger(GuiaRemisionResource.class);
-        
+
     @Inject
     private GuiaRemisionService guiaRemisionService;
+    @Inject
+    private CotizacionService cotizacionService;
 
     /**
      * POST  /guia-remisions : Create a new guiaRemision.
@@ -48,6 +54,14 @@ public class GuiaRemisionResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("guiaRemision", "idexists", "A new guiaRemision cannot already have an ID")).body(null);
         }
         GuiaRemision result = guiaRemisionService.save(guiaRemision);
+
+        //Update status oc Cotizacion
+        if(result.getCotizacion()!=null){
+            Cotizacion current = result.getCotizacion();
+            current.setEstado(EJECUTADA.name());
+            cotizacionService.save(current);
+        }
+
         return ResponseEntity.created(new URI("/api/guia-remisions/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("guiaRemision", result.getId().toString()))
             .body(result);
@@ -122,6 +136,17 @@ public class GuiaRemisionResource {
         log.debug("REST request to delete GuiaRemision : {}", id);
         guiaRemisionService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("guiaRemision", id.toString())).build();
+    }
+
+    @GetMapping("/pendingGuides")
+    @Timed
+    public ResponseEntity<List<GuiaRemision>> getGuiasRemisionNoFacturadas()
+        throws URISyntaxException {
+        log.debug("REST request to get a page of Cotizacions");
+        System.out.println("=============================FINDING ");
+        List<GuiaRemision> guiasNoFacturadas = guiaRemisionService.findAllByFacturada(false);
+        System.out.println("=============================FOUNDED : "+guiasNoFacturadas.size());
+        return new ResponseEntity<>(guiasNoFacturadas, HttpStatus.OK);
     }
 
 }

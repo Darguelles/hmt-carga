@@ -20,7 +20,7 @@ import java.util.List;
 public class GuiaRemisionService {
 
     private final Logger log = LoggerFactory.getLogger(GuiaRemisionService.class);
-    
+
     @Inject
     private GuiaRemisionRepository guiaRemisionRepository;
 
@@ -38,11 +38,11 @@ public class GuiaRemisionService {
 
     /**
      *  Get all the guiaRemisions.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<GuiaRemision> findAll(Pageable pageable) {
         log.debug("Request to get all GuiaRemisions");
         Page<GuiaRemision> result = guiaRemisionRepository.findAll(pageable);
@@ -55,7 +55,7 @@ public class GuiaRemisionService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public GuiaRemision findOne(Long id) {
         log.debug("Request to get GuiaRemision : {}", id);
         GuiaRemision guiaRemision = guiaRemisionRepository.findOne(id);
@@ -70,5 +70,9 @@ public class GuiaRemisionService {
     public void delete(Long id) {
         log.debug("Request to delete GuiaRemision : {}", id);
         guiaRemisionRepository.delete(id);
+    }
+
+    public List<GuiaRemision> findAllByFacturada(Boolean facturada){
+        return guiaRemisionRepository.findAllByFacturada(facturada);
     }
 }

@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('FacturaDialogController', FacturaDialogController);
 
-    FacturaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Factura', 'Cliente', 'Servicio', 'GuiaRemision'];
+    FacturaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Factura', 'Cliente', 'Servicio', 'GuiaRemisionFilter'];
 
-    function FacturaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Factura, Cliente, Servicio, GuiaRemision) {
+    function FacturaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Factura, Cliente, Servicio, GuiaRemisionFilter) {
         var vm = this;
 
         vm.factura = entity;
@@ -17,7 +17,26 @@
         vm.save = save;
         vm.clientes = Cliente.query();
         vm.servicios = Servicio.query();
-        vm.guiaremisions = GuiaRemision.query();
+
+        vm.guiaremisions = GuiaRemisionFilter.query();
+
+        console.log('FOUNDED GUIDES : ')
+        console.log('FOUNDED GUIDES : '+vm.guiaremisions)
+
+        vm.guiasSeleccionadas = [];
+
+        $scope.guiaremisions = GuiaRemisionFilter.query();
+
+        $scope.addGuiaToArray = function (selected) {
+            // if(vm.guiasSeleccionadas.filter(function (cot) {
+            //        return cot.id == selected.originalObject.id
+            //     })){
+            //     console.log('Already added')
+            // }else{
+                vm.guiasSeleccionadas.push(selected.originalObject);
+            // }
+            console.log('CURRENT GUIDE : '+ JSON.stringify(vm.guiasSeleccionadas));
+        };
 
         $scope.date_code = new Date();
 

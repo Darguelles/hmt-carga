@@ -33,7 +33,6 @@
                     <th jh-sort-by="precio"><span>Precio</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="cliente.nombre"><span>Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="servicio.nombre"><span>Servicio</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="guiaRemision.codigo"><span>Guia Remision</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -57,9 +56,6 @@
                     </td>
                     <td>
                         <a ui-sref="servicio-detail({id:factura.servicio.id})">{{factura.servicio.nombre}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="guia-remision-detail({id:factura.guiaRemision.id})">{{factura.guiaRemision.codigo}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

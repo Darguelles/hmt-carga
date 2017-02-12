@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('FacturaDetailController', FacturaDetailController);
 
-    FacturaDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Factura', 'Cliente', 'Servicio', 'GuiaRemision'];
+    FacturaDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Factura', 'Cliente', 'Servicio'];
 
-    function FacturaDetailController($scope, $rootScope, $stateParams, previousState, entity, Factura, Cliente, Servicio, GuiaRemision) {
+    function FacturaDetailController($scope, $rootScope, $stateParams, previousState, entity, Factura, Cliente, Servicio) {
         var vm = this;
 
         vm.factura = entity;

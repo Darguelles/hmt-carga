@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -74,8 +75,8 @@ public class Factura implements Serializable {
     @NotNull
     private Servicio servicio;
 
-    @ManyToOne
-    private GuiaRemision guiaRemision;
+    @Transient
+    List<GuiaRemision> listaGuias;
 
     public Long getId() {
         return id;
@@ -267,17 +268,13 @@ public class Factura implements Serializable {
         this.servicio = servicio;
     }
 
-    public GuiaRemision getGuiaRemision() {
-        return guiaRemision;
+
+    public List<GuiaRemision> getListaGuias() {
+        return listaGuias;
     }
 
-    public Factura guiaRemision(GuiaRemision guiaRemision) {
-        this.guiaRemision = guiaRemision;
-        return this;
-    }
-
-    public void setGuiaRemision(GuiaRemision guiaRemision) {
-        this.guiaRemision = guiaRemision;
+    public void setListaGuias(List<GuiaRemision> listaGuias) {
+        this.listaGuias = listaGuias;
     }
 
     @Override

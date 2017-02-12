@@ -69,7 +69,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="facturada" type="bit" defaultValueBoolean="false">
+            <column name="facturada" type="bit" defaultValueBoolean="0">
                 <constraints nullable="true" />
             </column>
 
