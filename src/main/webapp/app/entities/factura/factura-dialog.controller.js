@@ -28,15 +28,26 @@
         $scope.guiaremisions = GuiaRemisionFilter.query();
 
         $scope.addGuiaToArray = function (selected) {
-            // if(vm.guiasSeleccionadas.filter(function (cot) {
-            //        return cot.id == selected.originalObject.id
-            //     })){
-            //     console.log('Already added')
-            // }else{
+            console.log('ORIGINAL OBJ '+selected.originalObject)
+            if(existeGuiaInCurrentArray(selected.originalObject.id)){
+                console.log('Already added')
+            }else{
                 vm.guiasSeleccionadas.push(selected.originalObject);
-            // }
+            }
             console.log('CURRENT GUIDE : '+ JSON.stringify(vm.guiasSeleccionadas));
         };
+
+        function existeGuiaInCurrentArray(currId) {
+            var exist = false;
+            vm.guiasSeleccionadas.forEach(function (item) {
+                if(item.id == currId){
+                    exist = true;
+                }else{
+                    exist = false;
+                }
+            })
+            return exist;
+        }
 
         $scope.date_code = new Date();
 
