@@ -2,7 +2,9 @@ package com.hmt.carga.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.hmt.carga.domain.Factura;
+import com.hmt.carga.domain.GuiaRemision;
 import com.hmt.carga.service.FacturaService;
+import com.hmt.carga.service.GuiaRemisionService;
 import com.hmt.carga.web.rest.util.HeaderUtil;
 import com.hmt.carga.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -29,9 +31,12 @@ import java.util.Optional;
 public class FacturaResource {
 
     private final Logger log = LoggerFactory.getLogger(FacturaResource.class);
-        
+
     @Inject
     private FacturaService facturaService;
+
+    @Inject
+    private GuiaRemisionService guiaRemisionService;
 
     /**
      * POST  /facturas : Create a new factura.
@@ -44,10 +49,22 @@ public class FacturaResource {
     @Timed
     public ResponseEntity<Factura> createFactura(@Valid @RequestBody Factura factura) throws URISyntaxException {
         log.debug("REST request to save Factura : {}", factura);
+
         if (factura.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("factura", "idexists", "A new factura cannot already have an ID")).body(null);
         }
+
         Factura result = facturaService.save(factura);
+        result.setListaGuias(null);
+        System.out.println("RESULT : "+result);
+
+        for (GuiaRemision guiaRemision : factura.getListaGuias()){
+            System.out.println("CURETN GUIDE : "+ guiaRemision);
+            guiaRemision.setFactura(result);
+            guiaRemision.setFacturada(true);
+            guiaRemisionService.save(guiaRemision);
+        }
+
         return ResponseEntity.created(new URI("/api/facturas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("factura", result.getId().toString()))
             .body(result);

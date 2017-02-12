@@ -20,15 +20,14 @@
 
         vm.guiaremisions = GuiaRemisionFilter.query();
 
-        console.log('FOUNDED GUIDES : ')
-        console.log('FOUNDED GUIDES : '+vm.guiaremisions)
-
         vm.guiasSeleccionadas = [];
 
         $scope.guiaremisions = GuiaRemisionFilter.query();
 
         $scope.addGuiaToArray = function (selected) {
+
             console.log('ORIGINAL OBJ '+selected.originalObject)
+            console.log('FACTURA OBJ '+JSON.stringify(vm.factura))
             if(existeGuiaInCurrentArray(selected.originalObject.id)){
                 console.log('Already added')
             }else{
@@ -82,6 +81,8 @@
             if (vm.factura.id !== null) {
                 Factura.update(vm.factura, onSaveSuccess, onSaveError);
             } else {
+                vm.factura.listaGuias = vm.guiasSeleccionadas;
+                console.log('FACTURA TO SAVE : '+JSON.stringify(vm.factura))
                 Factura.save(vm.factura, onSaveSuccess, onSaveError);
             }
         }

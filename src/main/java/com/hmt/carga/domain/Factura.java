@@ -1,5 +1,8 @@
 package com.hmt.carga.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -75,6 +78,8 @@ public class Factura implements Serializable {
     @NotNull
     private Servicio servicio;
 
+    @JsonSerialize
+    @JsonDeserialize
     @Transient
     List<GuiaRemision> listaGuias;
 
@@ -313,6 +318,7 @@ public class Factura implements Serializable {
             ", contingencia='" + contingencia + "'" +
             ", motivo='" + motivo + "'" +
             ", precio='" + precio + "'" +
+            ", listaGuias='" + listaGuias + "'" +
             '}';
     }
 }
