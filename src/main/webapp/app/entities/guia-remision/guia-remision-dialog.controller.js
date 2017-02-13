@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('GuiaRemisionDialogController', GuiaRemisionDialogController);
 
-    GuiaRemisionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte', 'Factura', 'CotizacionFilter'];
+    GuiaRemisionDialogController.$inject = ['$location','$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte', 'Factura', 'CotizacionFilter'];
 
-    function GuiaRemisionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, GuiaRemision, Cotizacion, Proveedor, Transporte, Factura, CotizacionFilter) {
+    function GuiaRemisionDialogController ($location, $timeout, $scope, $stateParams, $uibModalInstance, entity, GuiaRemision, Cotizacion, Proveedor, Transporte, Factura, CotizacionFilter) {
         var vm = this;
 
         vm.guiaRemision = entity;

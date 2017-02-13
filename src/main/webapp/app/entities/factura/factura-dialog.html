@@ -51,15 +51,15 @@
         </div>
 
         <!--<div class="form-group">-->
-            <!--<label for="field_guiaRemision">Guia Remision</label>-->
-            <!--<select class="form-control" id="field_guiaRemision" name="guiaRemision" ng-model="vm.factura.guiaRemision"-->
-                    <!--ng-options="guiaRemision as guiaRemision.codigo for guiaRemision in vm.guiaremisions track by guiaRemision.id"-->
-                    <!--ng-init="vm.factura.guiaRemision = vm.factura.guiaRemision || guia_selected">-->
-                <!--<option value=""></option>-->
-            <!--</select>-->
+        <!--<label for="field_guiaRemision">Guia Remision</label>-->
+        <!--<select class="form-control" id="field_guiaRemision" name="guiaRemision" ng-model="vm.factura.guiaRemision"-->
+        <!--ng-options="guiaRemision as guiaRemision.codigo for guiaRemision in vm.guiaremisions track by guiaRemision.id"-->
+        <!--ng-init="vm.factura.guiaRemision = vm.factura.guiaRemision || guia_selected">-->
+        <!--<option value=""></option>-->
+        <!--</select>-->
         <!--</div>-->
 
-        <div class="form-group" >
+        <div class="form-group">
             <label>Guia Remision</label>
             <angucomplete-alt id="ex1"
                               placeholder="Ingrese codigo de guia de remision"
@@ -75,14 +75,21 @@
         </div>
 
 
-
+        <div class="form-group" ng-show="vm.guiasSeleccionadas.length > 0">
+            <ul>
+                <li ng-repeat="guia in vm.guiasSeleccionadas">
+                    <span>{{guia.codigo}}</span>
+                    <button ng-click="removeGuiaFromArray(guia.id)">Eliminar</button>
+                </li>
+            </ul>
+        </div>
 
 
         <div class="form-group">
             <label for="field_cliente">Cliente</label>
             <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.factura.cliente"
                     ng-options="cliente as cliente.nombre for cliente in vm.clientes track by cliente.id" required
-                    ng-init="vm.factura.cliente = vm.factura.cliente || vm.factura.guiaRemision.cotizacion.cliente || vm.factura.cliente">
+                    ng-init="vm.factura.cliente = vm.factura.cliente || vm.guiasSeleccionadas[0].cliente || vm.factura.cliente">
                 <option value=""></option>
             </select>
         </div>
@@ -111,6 +118,7 @@
             <label class="control-label" for="field_precioUnitario">Precio unitario</label>
             <input type="number" class="form-control" name="precioUnitario" id="field_precioUnitario"
                    ng-model="vm.factura.precioUnitario"
+                   ng-blur="vm.calcularPrefioFinal()"
                    ng-init="vm.factura.precioUnitario = vm.factura.precioUnitario || vm.factura.guiaRemision.cotizacion.precio"
                    required/>
             <div ng-show="editForm.precioUnitario.$invalid">
@@ -128,6 +136,7 @@
             <label class="control-label" for="field_cantidad">Cantidad</label>
             <input type="number" class="form-control" name="cantidad" id="field_cantidad"
                    ng-model="vm.factura.cantidad"
+                   ng-blur="vm.calcularPrefioFinal()"
                    ng-init="vm.factura.cantidad = vm.factura.cantidad || vm.factura.guiaRemision.cantidad"
                    required/>
             <div ng-show="editForm.cantidad.$invalid">
@@ -143,18 +152,18 @@
         </div>
 
         <!--<div class="form-group">-->
-            <!--<label class="control-label" for="field_descuento">Descuento</label>-->
-            <!--<input type="number" class="form-control" name="descuento" id="field_descuento"-->
-                   <!--ng-model="vm.factura.descuento"-->
-                   <!--ng-readonly="false"-->
-            <!--/>-->
+        <!--<label class="control-label" for="field_descuento">Descuento</label>-->
+        <!--<input type="number" class="form-control" name="descuento" id="field_descuento"-->
+        <!--ng-model="vm.factura.descuento"-->
+        <!--ng-readonly="false"-->
+        <!--/>-->
         <!--</div>-->
         <!--<div class="form-group">-->
-            <!--<label class="control-label" for="field_tipoDescuento">Tipo Descuento</label>-->
-            <!--<input type="text" class="form-control" name="tipoDescuento" id="field_tipoDescuento"-->
-                   <!--ng-model="vm.factura.tipoDescuento"-->
-                   <!--ng-readonly="false"-->
-            <!--/>-->
+        <!--<label class="control-label" for="field_tipoDescuento">Tipo Descuento</label>-->
+        <!--<input type="text" class="form-control" name="tipoDescuento" id="field_tipoDescuento"-->
+        <!--ng-model="vm.factura.tipoDescuento"-->
+        <!--ng-readonly="false"-->
+        <!--/>-->
         <!--</div>-->
 
         <div class="form-group">
@@ -162,12 +171,13 @@
             <input type="number" class="form-control" name="descuento" id="field_descuento"
                    ng-init="vm.factura.descuento = vm.factura.descuento || vm.factura.cliente.descuento"
                    ng-model="vm.factura.descuento" ng-readonly="false"
+                   ng-blur="vm.calcularPrefioFinal()"
             />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_tipoDescuento">Tipo Descuento</label>
             <select class="form-control" name="tipoDescuento" ng-model="vm.factura.tipoDescuento"
-                    id="field_tipoDescuento" ng-change="precioBase()"
+                    id="field_tipoDescuento" ng-change="vm.calcularPrefioFinal()"
                     ng-init="vm.factura.tipoDescuento = vm.factura.tipoDescuento || vm.factura.cliente.tipoDescuento">
                 <option value="porcentaje" data-translate="hmtcargaApp.TIPO_DESCUENTO.porcentaje">Porcentaje</option>
                 <option value="monto" data-translate="hmtcargaApp.TIPO_DESCUENTO.monto">Monto</option>
@@ -190,7 +200,7 @@
         <div class="form-group">
             <label class="control-label" for="field_precio">Precio</label>
             <input type="number" class="form-control" name="precio" id="field_precio"
-                   ng-model="vm.factura.precio"
+                   ng-model="vm.factura.precio"  ng-blur="vm.calcularPrefioFinal()"
             />
         </div>
 
@@ -199,7 +209,8 @@
             <label class="control-label" for="field_precioBase">Precio Base</label>
             <input type="number" class="form-control" name="precioBase" id="field_precioBase"
                    ng-model="vm.factura.precioBase"
-                   required value="{{precioBase()}}" ng-readonly="true"/>
+                   ng-init="vm.factura.precioBase"
+                   ng-readonly="true"/>
             <div ng-show="editForm.precioBase.$invalid">
                 <p class="help-block"
                    ng-show="editForm.precioBase.$error.required">

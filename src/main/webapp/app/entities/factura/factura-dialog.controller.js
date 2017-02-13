@@ -12,6 +12,7 @@
 
         vm.factura = entity;
         vm.clear = clear;
+        vm.calcularPrefioFinal = calcularPrefioFinal;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
@@ -30,11 +31,37 @@
             console.log('FACTURA OBJ '+JSON.stringify(vm.factura))
             if(existeGuiaInCurrentArray(selected.originalObject.id)){
                 console.log('Already added')
+                return;
             }else{
                 vm.guiasSeleccionadas.push(selected.originalObject);
             }
-            console.log('CURRENT GUIDE : '+ JSON.stringify(vm.guiasSeleccionadas));
+            vm.factura.cliente = vm.guiasSeleccionadas[0].cotizacion.cliente;
+            vm.factura.descuento = vm.guiasSeleccionadas[0].cotizacion.cliente.descuento;
+            vm.factura.tipoDescuento = vm.guiasSeleccionadas[0].cotizacion.cliente.tipoDescuento;
+            // vm.factura.precioBase += vm.guiasSeleccionadas[0].cotizacion.precio
+            calcularPrefioFinal();
         };
+
+        $scope.removeGuiaFromArray = function (selected) {
+            removeFromArray(vm.guiasSeleccionadas, 'id', selected)
+            console.log('CURRENT ARRAY : '+JSON.stringify(vm.guiasSeleccionadas))
+            calcularPrefioFinal();
+        };
+
+        function removeFromArray(arr, attr, value){
+            var i = arr.length;
+            while(i--){
+                if( arr[i]
+                    && arr[i].hasOwnProperty(attr)
+                    && (arguments.length > 2 && arr[i][attr] === value ) ){
+
+                    arr.splice(i,1);
+
+                }
+            }
+            return arr;
+        }
+
 
         function existeGuiaInCurrentArray(currId) {
             var exist = false;
@@ -50,11 +77,45 @@
 
         $scope.date_code = new Date();
 
+//      TRAER GUIA ALMACENADA EN LOCAL STORAGE
         $scope.guia_selected = JSON.parse(window.localStorage.getItem("current_guia_remision"));
 
-        $scope.precioBase = function () {
-            vm.factura.precioBase = (vm.factura.cantidad * vm.factura.precioUnitario) + (vm.factura.precio || 0.0);
+        if($scope.guia_selected!= null){
+            var guia_actual = $scope.guia_selected
+            vm.guiasSeleccionadas.push(guia_actual);
+            vm.factura.cliente = guia_actual.cotizacion.cliente;
+            vm.factura.precioBase += guia_actual.cotizacion.precio
+//          REMOVE FROM LOCAL STORAGE
+            window.localStorage.removeItem('current_guia_remision');
+            calcularPrefioFinal();
+        }
+
+        function calcularPrefioFinal() {
+
+            if(!vm.guiasSeleccionadas){
+                console.log('RETORNO')
+                return;
+            }
+            vm.factura.precioBase = 0.0;
+            var precioAcumulado = 0;
+            vm.guiasSeleccionadas.forEach(function (item) {
+                precioAcumulado+=item.cotizacion.precio;
+            })
+            vm.factura.precioBase += precioAcumulado;
+            console.log('RETORNO  1 '+vm.factura.precioBase)
+            vm.factura.precioBase += ((vm.factura.cantidad * vm.factura.precioUnitario) || 0.0)
+            console.log('RETORNO  2 '+vm.factura.precioBase)
+            vm.factura.precioBase += (vm.factura.precio || 0.0);
+            console.log('RETORNO  3 '+vm.factura.precioBase)
+
+            // if(vm.factura.precio){
+            //     console.log('PRECIO : '+vm.factura.precio)
+            //     vm.factura.precioBase += (vm.factura.precio)
+            // }
+
+
             vm.factura.igv = vm.factura.precioBase * 0.18;
+            console.log('IGV BASE : '+vm.factura.igv)
             if(vm.factura.tipoDescuento == 'porcentaje'){
                 var precio = vm.factura.precioBase + vm.factura.igv ;
                 var valorPorcentaje = (precio * vm.factura.descuento)/100;

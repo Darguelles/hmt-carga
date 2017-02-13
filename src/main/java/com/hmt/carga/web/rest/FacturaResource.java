@@ -50,6 +50,8 @@ public class FacturaResource {
     public ResponseEntity<Factura> createFactura(@Valid @RequestBody Factura factura) throws URISyntaxException {
         log.debug("REST request to save Factura : {}", factura);
 
+        List<GuiaRemision> currentGuides = factura.getListaGuias();
+
         if (factura.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("factura", "idexists", "A new factura cannot already have an ID")).body(null);
         }
@@ -58,7 +60,7 @@ public class FacturaResource {
         result.setListaGuias(null);
         System.out.println("RESULT : "+result);
 
-        for (GuiaRemision guiaRemision : factura.getListaGuias()){
+        for (GuiaRemision guiaRemision : currentGuides){
             System.out.println("CURETN GUIDE : "+ guiaRemision);
             guiaRemision.setFactura(result);
             guiaRemision.setFacturada(true);
