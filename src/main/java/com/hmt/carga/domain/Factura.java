@@ -27,11 +27,11 @@ public class Factura implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+//    @NotNull
     @Column(name = "precio_unitario", nullable = false)
     private Double precioUnitario;
 
-    @NotNull
+//    @NotNull
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
@@ -75,7 +75,6 @@ public class Factura implements Serializable {
     private Cliente cliente;
 
     @ManyToOne
-    @NotNull
     private Servicio servicio;
 
     @JsonSerialize

@@ -22,64 +22,64 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="precio_unitario" type="double">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
-            
+
             <column name="cantidad" type="integer">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
-            
+
             <column name="precio_base" type="double">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="igv" type="double">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="precio_total" type="double">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="codigo" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="descuento" type="double">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="tipo_descuento" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="fecha" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="contingencia" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="motivo" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="precio" type="double">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="cliente_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 
             <column name="servicio_id" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="factura" columnName="fecha" columnDataType="datetime"/>
-        
+
     </changeSet>
 </databaseChangeLog>

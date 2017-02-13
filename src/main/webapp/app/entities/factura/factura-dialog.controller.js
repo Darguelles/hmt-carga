@@ -27,8 +27,10 @@
 
         $scope.addGuiaToArray = function (selected) {
 
-            console.log('ORIGINAL OBJ '+selected.originalObject)
-            console.log('FACTURA OBJ '+JSON.stringify(vm.factura))
+            if(!selected.originalObject.id){
+                console.log('Invalid')
+                return;
+            }
             if(existeGuiaInCurrentArray(selected.originalObject.id)){
                 console.log('Already added')
                 return;
@@ -38,7 +40,6 @@
             vm.factura.cliente = vm.guiasSeleccionadas[0].cotizacion.cliente;
             vm.factura.descuento = vm.guiasSeleccionadas[0].cotizacion.cliente.descuento;
             vm.factura.tipoDescuento = vm.guiasSeleccionadas[0].cotizacion.cliente.tipoDescuento;
-            // vm.factura.precioBase += vm.guiasSeleccionadas[0].cotizacion.precio
             calcularPrefioFinal();
         };
 

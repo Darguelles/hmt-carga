@@ -34,7 +34,7 @@
         </div>
 
 
-        <div class="form-group" ng-show="vm.guiaRemision.origenDatos" >
+        <div class="form-group" >
             <label for="field_cotizacion">Cotizacion</label>
             <angucomplete-alt id="ex1"
                               placeholder="Search countries"
@@ -46,15 +46,16 @@
                               minlength="1"
                               input-class="form-control form-control-small"
                               override-suggestions="true"
-                              field-required="false"/>
+                              field-required="true"/>
+
+            <div ng-show="editForm.cotizacion.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.cotizacion.$error.required">
+                    Este campo es obligatorio.
+                </p>
+            </div>
         </div>
 
-        <div ng-show="editForm.cotizacion.$invalid">
-            <p class="help-block"
-               ng-show="editForm.cotizacion.$error.required">
-                Este campo es obligatorio.
-            </p>
-        </div>
         <div class="form-group">
             <label class="control-label" for="field_fechaEmision">Fecha Emision</label>
             <div class="input-group">

@@ -102,30 +102,30 @@
         <div class="form-group">
             <label for="field_servicio">Servicio</label>
             <select class="form-control" id="field_servicio" name="servicio" ng-model="vm.factura.servicio"
-                    ng-options="servicio as servicio.nombre for servicio in vm.servicios track by servicio.id" required
+                    ng-options="servicio as servicio.nombre for servicio in vm.servicios track by servicio.id"
                     ng-init="vm.factura.servicio = vm.factura.servicio || vm.factura.guiaRemision.cotizacion.servicio"
             >
                 <option value=""></option>
             </select>
         </div>
-        <div ng-show="editForm.servicio.$invalid">
-            <p class="help-block"
-               ng-show="editForm.servicio.$error.required">
-                Este campo es obligatorio.
-            </p>
-        </div>
+        <!--<div ng-show="editForm.servicio.$invalid">-->
+            <!--<p class="help-block"-->
+               <!--ng-show="editForm.servicio.$error.required">-->
+                <!--Este campo es obligatorio.-->
+            <!--</p>-->
+        <!--</div>-->
         <div class="form-group">
             <label class="control-label" for="field_precioUnitario">Precio unitario</label>
             <input type="number" class="form-control" name="precioUnitario" id="field_precioUnitario"
                    ng-model="vm.factura.precioUnitario"
                    ng-blur="vm.calcularPrefioFinal()"
                    ng-init="vm.factura.precioUnitario = vm.factura.precioUnitario || vm.factura.guiaRemision.cotizacion.precio"
-                   required/>
+                   />
             <div ng-show="editForm.precioUnitario.$invalid">
-                <p class="help-block"
-                   ng-show="editForm.precioUnitario.$error.required">
-                    Este campo es obligatorio.
-                </p>
+                <!--<p class="help-block"-->
+                   <!--ng-show="editForm.precioUnitario.$error.required">-->
+                    <!--Este campo es obligatorio.-->
+                <!--</p>-->
                 <p class="help-block"
                    ng-show="editForm.precioUnitario.$error.number">
                     This field should be a number.
@@ -138,12 +138,12 @@
                    ng-model="vm.factura.cantidad"
                    ng-blur="vm.calcularPrefioFinal()"
                    ng-init="vm.factura.cantidad = vm.factura.cantidad || vm.factura.guiaRemision.cantidad"
-                   required/>
+                   />
             <div ng-show="editForm.cantidad.$invalid">
-                <p class="help-block"
-                   ng-show="editForm.cantidad.$error.required">
-                    Este campo es obligatorio.
-                </p>
+                <!--<p class="help-block"-->
+                   <!--ng-show="editForm.cantidad.$error.required">-->
+                    <!--Este campo es obligatorio.-->
+                <!--</p>-->
                 <p class="help-block"
                    ng-show="editForm.cantidad.$error.number">
                     This field should be a number.

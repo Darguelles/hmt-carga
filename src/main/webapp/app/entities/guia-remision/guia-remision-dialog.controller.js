@@ -57,6 +57,11 @@
         }
 
         function save () {
+
+            if(!vm.guiaRemision.cotizacion){
+                return false;
+            }
+
             vm.isSaving = true;
             if (vm.guiaRemision.id !== null) {
                 GuiaRemision.update(vm.guiaRemision, onSaveSuccess, onSaveError);
