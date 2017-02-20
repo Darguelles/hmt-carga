@@ -65,12 +65,8 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="origen_datos" type="bit">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="facturada" type="bit" defaultValueBoolean="0">
-                <constraints nullable="true" />
+            <column name="facturada" type="integer" defaultValueNumeric="0">
+                <constraints nullable="false" />
             </column>
 
             <column name="cotizacion_id" type="bigint">

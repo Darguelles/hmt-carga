@@ -12,6 +12,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface GuiaRemisionRepository extends JpaRepository<GuiaRemision,Long> {
 
-    List<GuiaRemision> findAllByFacturada(Boolean facturada);
+    List<GuiaRemision> findAllByFacturada(Integer facturada);
 
 }

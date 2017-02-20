@@ -40,7 +40,7 @@
                 <!--<option value=""></option>-->
             <!--</select>-->
             <angucomplete-alt id="ex1"
-                              placeholder="Search countries"
+                              placeholder="Ingrese DNI/RUC de cliente"
                               pause="100"
                               selected-object="addCotizacion"
                               local-data="cotizaciones"
@@ -56,6 +56,11 @@
                 Este campo es obligatorio.
             </p>
         </div>
+
+        <div ng-show="vm.ordenVenta.cotizacion">
+            <b>Cotización aprobada para cliente : </b> {{vm.ordenVenta.cotizacion.cliente.nombre}}
+        </div>
+
 
         <div class="form-group">
             <label class="control-label" for="field_emailDestino">Email destino</label>

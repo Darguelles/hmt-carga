@@ -30,7 +30,6 @@
                     <th jh-sort-by="fechaSalida"><span>Fecha Salida</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="observaciones"><span>Observaciones</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="descripcion"><span>Descripcion</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="origenDatos"><span>Origen Datos</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="facturada"><span>Facturada</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="cotizacion.cliente"><span>Cotizacion</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="proveedor.nombre"><span>Proveedor</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -53,7 +52,6 @@
                     <td>{{guiaRemision.fechaSalida | date:'medium'}}</td>
                     <td>{{guiaRemision.observaciones}}</td>
                     <td>{{guiaRemision.descripcion}}</td>
-                    <td>{{guiaRemision.origenDatos?'Si':'No'}}</td>
                     <td>{{guiaRemision.facturada}}</td>
                     <td>
                         <a ui-sref="cotizacion-detail({id:guiaRemision.cotizacion.id})">{{guiaRemision.cotizacion.cliente.nombre}}</a>

@@ -1,4 +1,3 @@
-
 <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
     <div class="modal-header">
@@ -11,16 +10,16 @@
         <div class="form-group" ng-show="vm.transporte.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.transporte.id" readonly />
+                   ng-model="vm.transporte.id" readonly/>
         </div>
         <div class="form-group">
             <label class="control-label" for="field_marca">Marca</label>
             <input type="text" class="form-control" name="marca" id="field_marca"
-                    ng-model="vm.transporte.marca"
-                    required />
+                   ng-model="vm.transporte.marca"
+                   required/>
             <div ng-show="editForm.marca.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.marca.$error.required">
+                   ng-show="editForm.marca.$error.required">
                     Este campo es obligatorio.
                 </p>
             </div>
@@ -28,76 +27,80 @@
         <div class="form-group">
             <label class="control-label" for="field_tracto">Tracto</label>
             <input type="text" class="form-control" name="tracto" id="field_tracto"
-                    ng-model="vm.transporte.tracto"
-                     />
+                   ng-model="vm.transporte.tracto"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_carreta">Carreta</label>
             <input type="text" class="form-control" name="carreta" id="field_carreta"
-                    ng-model="vm.transporte.carreta"
-                     />
+                   ng-model="vm.transporte.carreta"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_placaTracto">Placa Tracto</label>
             <input type="text" class="form-control" name="placaTracto" id="field_placaTracto"
-                    ng-model="vm.transporte.placaTracto"
-                     />
+                   ng-model="vm.transporte.placaTracto"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_placaCarreta">Placa Carreta</label>
             <input type="text" class="form-control" name="placaCarreta" id="field_placaCarreta"
-                    ng-model="vm.transporte.placaCarreta"
-                     />
+                   ng-model="vm.transporte.placaCarreta"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_largoCarreta">Largo Carreta</label>
             <input type="number" class="form-control" name="largoCarreta" id="field_largoCarreta"
-                    ng-model="vm.transporte.largoCarreta"
-                     />
+                   ng-model="vm.transporte.largoCarreta"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_anchoCarreta">Ancho Carreta</label>
             <input type="number" class="form-control" name="anchoCarreta" id="field_anchoCarreta"
-                    ng-model="vm.transporte.anchoCarreta"
-                     />
+                   ng-model="vm.transporte.anchoCarreta"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_altoCarreta">Alto Carreta</label>
             <input type="number" class="form-control" name="altoCarreta" id="field_altoCarreta"
-                    ng-model="vm.transporte.altoCarreta"
-                     />
+                   ng-model="vm.transporte.altoCarreta"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_cargaUtil">Carga Util</label>
             <input type="number" class="form-control" name="cargaUtil" id="field_cargaUtil"
-                    ng-model="vm.transporte.cargaUtil"
-                     />
+                   ng-model="vm.transporte.cargaUtil"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_registroMatpel">Registro Matpel</label>
+            <!--<select class="form-control" id="field_registroMatpel" name="registroMatpel" ng-model="vm.transporte.registroMatpel" required>-->
+                <!--<option value="Si" ng-selected="vm.transporte.registroMatpel=='Si'" >Si</option>-->
+                <!--<option value="No" ng-selected="vm.transporte.registroMatpel=='No'" >No</option>-->
+            <!--</select>-->
             <input type="checkbox" class="form-control" name="registroMatpel" id="field_registroMatpel"
-                    ng-model="vm.transporte.registroMatpel"
-                     />
+                   ng-model="vm.transporte.registroMatpel"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_gps">GPS</label>
             <input type="checkbox" class="form-control" name="gps" id="field_gps"
-                    ng-model="vm.transporte.gps"
-                     />
+                   ng-model="vm.transporte.gps"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_anoFabricacion">Año de fabricación</label>
             <input type="number" class="form-control" name="anoFabricacion" id="field_anoFabricacion"
-                    ng-model="vm.transporte.anoFabricacion"
-                     />
+                   ng-model="vm.transporte.anoFabricacion"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_unidadPropia">Unidad Propia</label>
             <input type="checkbox" class="form-control" name="unidadPropia" id="field_unidadPropia"
-                    ng-model="vm.transporte.unidadPropia"
-                     />
+                   ng-model="vm.transporte.unidadPropia"
+            />
         </div>
-        <div ng-show="vm.transporte.unidadPropia" >
+        <div ng-show="vm.transporte.unidadPropia">
             <div class="form-group">
                 <label class="control-label" for="field_kilometraje">Kilometraje</label>
                 <input type="number" class="form-control" name="kilometraje" id="field_kilometraje"
@@ -108,11 +111,15 @@
             <div class="form-group">
                 <label class="control-label" for="field_fechaRevisionTecnica">Fecha de revisión tecnica</label>
                 <div class="input-group">
-                    <input id="field_fechaRevisionTecnica" type="text" class="form-control" name="fechaRevisionTecnica" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transporte.fechaRevisionTecnica" is-open="vm.datePickerOpenStatus.fechaRevisionTecnica"
+                    <input id="field_fechaRevisionTecnica" type="text" class="form-control" name="fechaRevisionTecnica"
+                           uib-datepicker-popup="{{dateformat}}" ng-model="vm.transporte.fechaRevisionTecnica"
+                           is-open="vm.datePickerOpenStatus.fechaRevisionTecnica"
                            ng-required="vm.transporte.unidadPropia"
                     />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaRevisionTecnica')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default"
+                                ng-click="vm.openCalendar('fechaRevisionTecnica')"><i
+                            class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
             </div>
@@ -126,36 +133,42 @@
             <div class="form-group">
                 <label class="control-label" for="field_fechaVencimientoSoat">Fecha de vencimiento SOAT</label>
                 <div class="input-group">
-                    <input id="field_fechaVencimientoSoat" type="text" class="form-control" name="fechaVencimientoSoat" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transporte.fechaVencimientoSoat" is-open="vm.datePickerOpenStatus.fechaVencimientoSoat"
+                    <input id="field_fechaVencimientoSoat" type="text" class="form-control" name="fechaVencimientoSoat"
+                           uib-datepicker-popup="{{dateformat}}" ng-model="vm.transporte.fechaVencimientoSoat"
+                           is-open="vm.datePickerOpenStatus.fechaVencimientoSoat"
                            ng-required="vm.transporte.unidadPropia"
                     />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaVencimientoSoat')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default"
+                                ng-click="vm.openCalendar('fechaVencimientoSoat')"><i
+                            class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
+            </div>
+
         </div>
+
         <div class="form-group">
             <label class="control-label" for="field_modelo">Modelo</label>
             <input type="text" class="form-control" name="modelo" id="field_modelo"
-                    ng-model="vm.transporte.modelo"
-                    required />
+                   ng-model="vm.transporte.modelo"
+                   required/>
             <div ng-show="editForm.modelo.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.modelo.$error.required">
+                   ng-show="editForm.modelo.$error.required">
                     This field is required.
                 </p>
             </div>
         </div>
 
-
         <div class="form-group">
             <label class="control-label" for="field_nombreConductor">Nombre Conductor</label>
             <input type="text" class="form-control" name="nombreConductor" id="field_nombreConductor"
-                    ng-model="vm.transporte.nombreConductor"
-                    required />
+                   ng-model="vm.transporte.nombreConductor"
+                   required/>
             <div ng-show="editForm.nombreConductor.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.nombreConductor.$error.required">
+                   ng-show="editForm.nombreConductor.$error.required">
                     This field is required.
                 </p>
             </div>
@@ -163,11 +176,11 @@
         <div class="form-group">
             <label class="control-label" for="field_licenciaConductor">Licencia Conductor</label>
             <input type="text" class="form-control" name="licenciaConductor" id="field_licenciaConductor"
-                    ng-model="vm.transporte.licenciaConductor"
-                    required />
+                   ng-model="vm.transporte.licenciaConductor"
+                   required/>
             <div ng-show="editForm.licenciaConductor.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.licenciaConductor.$error.required">
+                   ng-show="editForm.licenciaConductor.$error.required">
                     This field is required.
                 </p>
             </div>
@@ -175,23 +188,24 @@
 
         <div class="form-group">
             <label for="field_tipoUnidad">Tipo Unidad</label>
-            <select class="form-control" id="field_tipoUnidad" name="tipoUnidad" ng-model="vm.transporte.tipoUnidad" ng-options="tipoUnidad as tipoUnidad.nombre for tipoUnidad in vm.tipounidads track by tipoUnidad.id" required>
+            <select class="form-control" id="field_tipoUnidad" name="tipoUnidad" ng-model="vm.transporte.tipoUnidad"
+                    ng-options="tipoUnidad as tipoUnidad.nombre for tipoUnidad in vm.tipounidads track by tipoUnidad.id"
+                    required>
                 <option value=""></option>
             </select>
         </div>
         <div ng-show="editForm.tipoUnidad.$invalid">
             <p class="help-block"
-                ng-show="editForm.tipoUnidad.$error.required">
+               ng-show="editForm.tipoUnidad.$error.required">
                 Este campo es obligatorio.
             </p>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
-        </button>
-        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
-        </button>
-    </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+                <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
+            </button>
+            <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
+            </button>
+        </div>
 </form>

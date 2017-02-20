@@ -53,6 +53,7 @@ public class GuiaRemisionResource {
         if (guiaRemision.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("guiaRemision", "idexists", "A new guiaRemision cannot already have an ID")).body(null);
         }
+        guiaRemision.setFacturada(0);
         GuiaRemision result = guiaRemisionService.save(guiaRemision);
 
         //Update status oc Cotizacion
@@ -144,7 +145,7 @@ public class GuiaRemisionResource {
         throws URISyntaxException {
         log.debug("REST request to get a page of Cotizacions");
         System.out.println("=============================FINDING ");
-        List<GuiaRemision> guiasNoFacturadas = guiaRemisionService.findAllByFacturada(false);
+        List<GuiaRemision> guiasNoFacturadas = guiaRemisionService.findAllByFacturada(0);
         System.out.println("=============================FOUNDED : "+guiasNoFacturadas.size());
         return new ResponseEntity<>(guiasNoFacturadas, HttpStatus.OK);
     }

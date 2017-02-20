@@ -63,7 +63,7 @@ public class FacturaResource {
         for (GuiaRemision guiaRemision : currentGuides){
             System.out.println("CURETN GUIDE : "+ guiaRemision);
             guiaRemision.setFactura(result);
-            guiaRemision.setFacturada(true);
+            guiaRemision.setFacturada(1);
             guiaRemisionService.save(guiaRemision);
         }
 

@@ -61,11 +61,8 @@ public class GuiaRemision implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "origen_datos")
-    private Boolean origenDatos;
-
     @Column(name = "facturada")
-    private Boolean facturada;
+    private Integer facturada;
 
     @ManyToOne
     private Cotizacion cotizacion;
@@ -232,29 +229,11 @@ public class GuiaRemision implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Boolean isOrigenDatos() {
-        return origenDatos;
-    }
-
-    public GuiaRemision origenDatos(Boolean origenDatos) {
-        this.origenDatos = origenDatos;
-        return this;
-    }
-
-    public void setOrigenDatos(Boolean origenDatos) {
-        this.origenDatos = origenDatos;
-    }
-
-    public Boolean isFacturada() {
+    public Integer getFacturada() {
         return facturada;
     }
 
-    public GuiaRemision facturada(Boolean facturada) {
-        this.facturada = facturada;
-        return this;
-    }
-
-    public void setFacturada(Boolean facturada) {
+    public void setFacturada(Integer facturada) {
         this.facturada = facturada;
     }
 
@@ -345,7 +324,6 @@ public class GuiaRemision implements Serializable {
             ", fechaSalida='" + fechaSalida + "'" +
             ", observaciones='" + observaciones + "'" +
             ", descripcion='" + descripcion + "'" +
-            ", origenDatos='" + origenDatos + "'" +
             ", facturada='" + facturada + "'" +
             '}';
     }

@@ -43,8 +43,13 @@
 
         //Abrir modal nueva orden de venta
         $scope.goToOrdenVentaDialog = function () {
-            $location.path('/orden-venta/new');
-            window.localStorage.setItem("current_cotizacion", JSON.stringify(vm.cotizacion));
+            if(vm.cotizacion.estado == 'GENERADA'){
+                $location.path('/orden-venta/new');
+                window.localStorage.setItem("current_cotizacion", JSON.stringify(vm.cotizacion));
+            }
+            else {
+                alert('La cotizacion ya fue aprobada en un proceso anterior.')
+            }
         }
 
         function onSaveSuccess (result) {

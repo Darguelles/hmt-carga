@@ -72,7 +72,7 @@ public class GuiaRemisionService {
         guiaRemisionRepository.delete(id);
     }
 
-    public List<GuiaRemision> findAllByFacturada(Boolean facturada){
+    public List<GuiaRemision> findAllByFacturada(Integer facturada){
         return guiaRemisionRepository.findAllByFacturada(facturada);
     }
 }

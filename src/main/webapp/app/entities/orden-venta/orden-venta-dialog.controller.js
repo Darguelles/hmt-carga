@@ -18,7 +18,12 @@
         vm.cotizacions = Cotizacion.query();
 
         $scope.date_code = new Date();
+
         $scope.cot_selected = JSON.parse(window.localStorage.getItem("current_cotizacion"));
+
+        if($scope.cot_selected){
+            vm.ordenVenta.cotizacion = $scope.cot_selected
+        }
 
         $scope.cotizaciones = CotizacionFilterGenerated.query();
 

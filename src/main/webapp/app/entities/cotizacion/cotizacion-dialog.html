@@ -173,7 +173,7 @@
                 Este campo es obligatorio.
             </p>
         </div>
-        <button type="button" class="btn btn-primary" ng-click="goToOrdenVentaDialog()" ng-show="vm.cotizacion.id">
+        <button type="button" class="btn btn-primary" ng-click="goToOrdenVentaDialog()" ng-show="vm.cotizacion.id && vm.cotizacion.estado == 'GENERADA'">
             <span class="glyphicon glyphicon-share"></span>&nbsp;<span>Generar orden de venta</span>
         </button>
     </div>
