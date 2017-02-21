@@ -7,21 +7,37 @@ import com.hmt.carga.service.FacturaService;
 import com.hmt.carga.service.GuiaRemisionService;
 import com.hmt.carga.web.rest.util.HeaderUtil;
 import com.hmt.carga.web.rest.util.PaginationUtil;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import static com.hmt.carga.service.util.DocumentExporter.printFactura;
 
 /**
  * REST controller for managing Factura.
@@ -47,7 +63,7 @@ public class FacturaResource {
      */
     @PostMapping("/facturas")
     @Timed
-    public ResponseEntity<Factura> createFactura(@Valid @RequestBody Factura factura) throws URISyntaxException {
+    public ResponseEntity<Factura> createFactura(@Valid @RequestBody Factura factura) throws URISyntaxException, IOException {
         log.debug("REST request to save Factura : {}", factura);
 
         List<GuiaRemision> currentGuides = factura.getListaGuias();
@@ -67,6 +83,7 @@ public class FacturaResource {
             guiaRemisionService.save(guiaRemision);
         }
 
+        printFactura(result);
         return ResponseEntity.created(new URI("/api/facturas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("factura", result.getId().toString()))
             .body(result);
@@ -83,7 +100,7 @@ public class FacturaResource {
      */
     @PutMapping("/facturas")
     @Timed
-    public ResponseEntity<Factura> updateFactura(@Valid @RequestBody Factura factura) throws URISyntaxException {
+    public ResponseEntity<Factura> updateFactura(@Valid @RequestBody Factura factura) throws URISyntaxException, IOException {
         log.debug("REST request to update Factura : {}", factura);
         if (factura.getId() == null) {
             return createFactura(factura);

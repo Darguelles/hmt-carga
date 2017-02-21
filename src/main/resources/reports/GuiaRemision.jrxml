@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-02-20T02:12:35 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GuiaRemision" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="4ba3ee14-2fe9-43d6-91c1-23ca01c608de">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<subDataset name="Dataset1" uuid="dcf1e11e-3e22-433e-86bf-5272284ccfdd">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="1666b13f-5180-41de-81bc-2438e3caa186">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<parameter name="nombreCliente" class="java.lang.String"/>
+	<parameter name="direccionCliente" class="java.lang.String"/>
+	<parameter name="rucCliente" class="java.lang.String"/>
+	<parameter name="condicionPago" class="java.lang.String"/>
+	<parameter name="guias" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="117">
+			<textField evaluationTime="Report">
+				<reportElement x="50" y="18" width="100" height="30" uuid="760a5a5d-e47b-4c07-9d99-ab63eeba088e"/>
+				<textFieldExpression><![CDATA[$P{nombreCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="48" width="100" height="30" uuid="f6594a01-ecc6-4f9d-8099-e0a52eb9049a"/>
+				<textFieldExpression><![CDATA[$P{direccionCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="78" width="100" height="30" uuid="b667c932-2018-413b-b62e-27d3dd9bd5a3"/>
+				<textFieldExpression><![CDATA[$P{rucCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="78" width="100" height="30" uuid="2eb7adc7-ab24-42cd-a60b-8d7097f4cc00"/>
+				<textFieldExpression><![CDATA[$P{condicionPago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="432" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="20" width="550" height="90" uuid="c686da0d-9f8d-48c5-a92b-510bb2eba6c8">
+					<property name="net.sf.jasperreports.export.headertoolbar.table.name" value="guias"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset2" uuid="09095b5b-559c-45d5-8482-6a15c80d7bce">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource() ]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="90" width="550"/>
+				</jr:list>
+			</componentElement>
+			<textField evaluationTime="Report">
+				<reportElement x="40" y="40" width="100" height="30" uuid="565518c8-9864-463f-8524-a567fd380122"/>
+				<textFieldExpression><![CDATA[$P{guias}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50"/>
+	</detail>
+</jasperReport>

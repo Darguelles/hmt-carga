@@ -7,6 +7,9 @@ import com.hmt.carga.service.CotizacionService;
 import com.hmt.carga.service.GuiaRemisionService;
 import com.hmt.carga.web.rest.util.HeaderUtil;
 import com.hmt.carga.web.rest.util.PaginationUtil;
+//import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -17,10 +20,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.hmt.carga.util.Cotizacion.EJECUTADA;
@@ -100,9 +111,10 @@ public class GuiaRemisionResource {
     @GetMapping("/guia-remisions")
     @Timed
     public ResponseEntity<List<GuiaRemision>> getAllGuiaRemisions(Pageable pageable)
-        throws URISyntaxException {
+        throws URISyntaxException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         log.debug("REST request to get a page of GuiaRemisions");
         Page<GuiaRemision> page = guiaRemisionService.findAll(pageable);
+        List<GuiaRemision> guias = guiaRemisionService.findAllByFacturada(1);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/guia-remisions");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -149,5 +161,8 @@ public class GuiaRemisionResource {
         System.out.println("=============================FOUNDED : "+guiasNoFacturadas.size());
         return new ResponseEntity<>(guiasNoFacturadas, HttpStatus.OK);
     }
+
+
+
 
 }
