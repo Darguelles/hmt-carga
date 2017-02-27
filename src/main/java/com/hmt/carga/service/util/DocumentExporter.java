@@ -8,10 +8,15 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.io.IOException;
@@ -53,8 +58,13 @@ public class DocumentExporter {
 
         try {
 //            JasperReport report = JasperCompileManager.compileReport(reportFile.toString());
+            String filename = "factura"+factura.getId()+".pdf";
             JasperPrint print = JasperFillManager.fillReport(reportFile.getPath(), parameters, conn);
-            JasperExportManager.exportReportToPdfFile(print, "C:/Works/factura"+factura.getId()+".pdf");
+            JasperExportManager.exportReportToPdfFile(print, "C:/Works/"+filename);
+
+
+
+
 //            File pdf = File.createTempFile("factura"+factura.getId(), ".pdf");
 //            JasperExportManager.exportReportToPdfStream(print, new FileOutputStream(pdf));
 //            JasperViewer.viewReport(print);

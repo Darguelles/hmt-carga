@@ -11,12 +11,14 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -29,6 +31,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -84,6 +89,7 @@ public class FacturaResource {
         }
 
         printFactura(result);
+        getFile();
         return ResponseEntity.created(new URI("/api/facturas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("factura", result.getId().toString()))
             .body(result);
@@ -123,6 +129,7 @@ public class FacturaResource {
     public ResponseEntity<List<Factura>> getAllFacturas(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Facturas");
+
         Page<Factura> page = facturaService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/facturas");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
@@ -158,6 +165,21 @@ public class FacturaResource {
         log.debug("REST request to delete Factura : {}", id);
         facturaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("factura", id.toString())).build();
+    }
+
+    @Async
+    @ResponseBody
+    public ResponseEntity<byte[]> getFile() throws IOException {
+
+        Path path = Paths.get("C:/Works/factura11.pdf");
+        byte[] data = Files.readAllBytes(path);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        String filename = "output.pdf";
+        headers.setContentDispositionFormData(filename, filename);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(data, headers, HttpStatus.OK);
+        return response;
     }
 
 }
