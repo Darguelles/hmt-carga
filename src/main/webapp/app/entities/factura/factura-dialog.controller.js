@@ -5,9 +5,11 @@
         .module('hmtcargaApp')
         .controller('FacturaDialogController', FacturaDialogController);
 
-    FacturaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Factura', 'Cliente', 'Servicio', 'GuiaRemisionFilter'];
 
-    function FacturaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Factura, Cliente, Servicio, GuiaRemisionFilter) {
+
+    FacturaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Factura', 'Cliente', 'Servicio', 'GuiaRemisionFilter', 'FileSaver'];
+
+    function FacturaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Factura, Cliente, Servicio, GuiaRemisionFilter, FileSaver) {
         var vm = this;
 
         vm.factura = entity;
@@ -150,9 +152,15 @@
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('hmtcargaApp:facturaUpdate', result);
-            $uibModalInstance.close(result);
-            vm.isSaving = false;
+            console.log(result)
+            var blob = new Blob([result], {type: 'application/octet-stream'});
+            FileSaver.saveAs(blob, "yourFile.pdf");
+
+
+
+            // // $scope.$emit('hmtcargaApp:facturaUpdate', result);
+            // $uibModalInstance.close(result);
+            // vm.isSaving = false;
         }
 
         function onSaveError () {

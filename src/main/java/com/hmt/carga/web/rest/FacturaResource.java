@@ -66,10 +66,39 @@ public class FacturaResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new factura, or with status 400 (Bad Request) if the factura has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
+//    @PostMapping("/facturas")
+//    @Timed
+//    public ResponseEntity<Factura> createFactura(@Valid @RequestBody Factura factura) throws URISyntaxException, IOException {
+//        log.debug("REST request to save Factura : {}", factura);
+//
+//        List<GuiaRemision> currentGuides = factura.getListaGuias();
+//
+//        if (factura.getId() != null) {
+//            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("factura", "idexists", "A new factura cannot already have an ID")).body(null);
+//        }
+//
+//        Factura result = facturaService.save(factura);
+//        result.setListaGuias(null);
+//        System.out.println("RESULT : "+result);
+//
+//        for (GuiaRemision guiaRemision : currentGuides){
+//            System.out.println("CURETN GUIDE : "+ guiaRemision);
+//            guiaRemision.setFactura(result);
+//            guiaRemision.setFacturada(1);
+//            guiaRemisionService.save(guiaRemision);
+//        }
+//
+//        printFactura(result);
+//        getFile();
+//        return ResponseEntity.created(new URI("/api/facturas/" + result.getId()))
+//            .headers(HeaderUtil.createEntityCreationAlert("factura", result.getId().toString()))
+//            .body(result);
+//    }
+
+
+//    @Timed
     @PostMapping("/facturas")
-    @Timed
-    public ResponseEntity<Factura> createFactura(@Valid @RequestBody Factura factura) throws URISyntaxException, IOException {
-        log.debug("REST request to save Factura : {}", factura);
+    public ResponseEntity<byte[]> createFactura(@Valid @RequestBody Factura factura) throws IOException, URISyntaxException, IOException{
 
         List<GuiaRemision> currentGuides = factura.getListaGuias();
 
@@ -88,11 +117,47 @@ public class FacturaResource {
             guiaRemisionService.save(guiaRemision);
         }
 
-        printFactura(result);
-        getFile();
-        return ResponseEntity.created(new URI("/api/facturas/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("factura", result.getId().toString()))
-            .body(result);
+        System.out.println("FIND FACTURA");
+        File reportFile = new File("C:/Works/HMTransportes/hmt-carga/src/main/resources/reports/factura.jasper");
+        Map parameters = new HashMap();
+        parameters.put("nombreCliente", factura.getCliente().getNombre());
+        parameters.put("direccionCliente", factura.getCliente().getDireccion());
+        parameters.put("rucCliente", factura.getCliente().getRuc().toString());
+        parameters.put("condicionPago", factura.getCliente().getCondicionPago().getNombre());
+        parameters.put("idFactura", factura.getId().intValue());
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://192.168.99.100:3306/hmtcarga";
+            String usr = "root";
+            String psw = "";
+            conn = DriverManager.getConnection(url, usr, psw);
+
+        } catch (SQLException ex) {
+        } catch (ClassNotFoundException ex) {
+
+        }
+        try {
+            String filename = "factura" + factura.getId() + ".pdf";
+            JasperPrint print = JasperFillManager.fillReport(reportFile.getPath(), parameters, conn);
+
+//            File file = new File("C:\\temp\\testing1.txt");
+//            byte[] pdfBytes = JasperExportManager.exportReportToPdf(print);
+            Path path = Paths.get("C:/Works/factura11.pdf");
+//            byte[] pdfBytes = JasperExportManager.exportReportToPdf(print);
+        byte[] pdfBytes = Files.readAllBytes(path);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType("application/pdf"));
+            headers.setContentDispositionFormData(filename, filename);
+            headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+            ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfBytes, headers, HttpStatus.OK);
+            System.out.println("EXPORT");
+            return response;
+        } catch (JRException ex) {
+            log.info("WIIIIIIIII " + ex);
+            return null;
+        }
     }
 
     /**
@@ -108,9 +173,9 @@ public class FacturaResource {
     @Timed
     public ResponseEntity<Factura> updateFactura(@Valid @RequestBody Factura factura) throws URISyntaxException, IOException {
         log.debug("REST request to update Factura : {}", factura);
-        if (factura.getId() == null) {
-            return createFactura(factura);
-        }
+//        if (factura.getId() == null) {
+//            return createFactura(factura);
+//        }
         Factura result = facturaService.save(factura);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("factura", factura.getId().toString()))
@@ -167,19 +232,19 @@ public class FacturaResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("factura", id.toString())).build();
     }
 
-    @Async
-    @ResponseBody
-    public ResponseEntity<byte[]> getFile() throws IOException {
-
-        Path path = Paths.get("C:/Works/factura11.pdf");
-        byte[] data = Files.readAllBytes(path);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/pdf"));
-        String filename = "output.pdf";
-        headers.setContentDispositionFormData(filename, filename);
-        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(data, headers, HttpStatus.OK);
-        return response;
-    }
+//    @Async
+//    @ResponseBody
+//    public ResponseEntity<byte[]> getFile() throws IOException {
+//
+//        Path path = Paths.get("C:/Works/factura11.pdf");
+//        byte[] data = Files.readAllBytes(path);
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+//        String filename = "output.pdf";
+//        headers.setContentDispositionFormData(filename, filename);
+//        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+//        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(data, headers, HttpStatus.OK);
+//        return response;
+//    }
 
 }

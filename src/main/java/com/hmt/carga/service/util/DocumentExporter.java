@@ -34,7 +34,6 @@ public class DocumentExporter {
     private static final Logger log = LoggerFactory.getLogger(DocumentExporter.class);
 
 
-
     public static void printFactura(Factura factura) throws IOException {
         File reportFile = new File("C:/Works/HMTransportes/hmt-carga/src/main/resources/reports/factura.jasper");
         Map parameters = new HashMap();
@@ -55,22 +54,13 @@ public class DocumentExporter {
         } catch (ClassNotFoundException ex) {
 
         }
-
         try {
-//            JasperReport report = JasperCompileManager.compileReport(reportFile.toString());
-            String filename = "factura"+factura.getId()+".pdf";
+            String filename = "factura" + factura.getId() + ".pdf";
             JasperPrint print = JasperFillManager.fillReport(reportFile.getPath(), parameters, conn);
-            JasperExportManager.exportReportToPdfFile(print, "C:/Works/"+filename);
 
-
-
-
-//            File pdf = File.createTempFile("factura"+factura.getId(), ".pdf");
-//            JasperExportManager.exportReportToPdfStream(print, new FileOutputStream(pdf));
-//            JasperViewer.viewReport(print);
+            byte[] pdfBytes = JasperExportManager.exportReportToPdf(print);
         } catch (JRException ex) {
-            log.info("WIIIIIIIII "+ex);
-//            Logger.getLogger(TestDashboardView.class.getName()).log(Level.SEVERE, null, ex);
+            log.info("WIIIIIIIII " + ex);
         }
     }
 
