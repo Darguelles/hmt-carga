@@ -1,5 +1,7 @@
 package com.hmt.carga.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -7,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -22,6 +25,11 @@ public class Cotizacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @JsonSerialize
+    @JsonDeserialize
+    @Transient
+    private String email;
 
     @NotNull
     @Column(name = "fecha", nullable = false)
@@ -214,6 +222,14 @@ public class Cotizacion implements Serializable {
             return false;
         }
         return Objects.equals(id, cotizacion.id);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

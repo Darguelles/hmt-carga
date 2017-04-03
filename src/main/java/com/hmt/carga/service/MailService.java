@@ -1,8 +1,12 @@
 package com.hmt.carga.service;
 
 import com.hmt.carga.config.JHipsterProperties;
+import com.hmt.carga.domain.Cotizacion;
+import com.hmt.carga.domain.Factura;
 import com.hmt.carga.domain.User;
 
+import com.hmt.carga.util.PDFExporter;
+import net.sf.jasperreports.engine.*;
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +28,13 @@ import javax.mail.Multipart;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Service for sending e-mails.
@@ -55,12 +65,15 @@ public class MailService {
 
 
     @Async
-    public void sendEmailWithAttachment(String to, String subject, String content, boolean isMultipart, boolean isHtml, String attachmentDocument) {
+    public void sendEmailWithAttachment(String to, String subject, String content, boolean isMultipart, boolean isHtml, String attachmentDocument, Cotizacion cotizacion) {
         log.debug("Send e-mail[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
             isMultipart, isHtml, to, subject, content);
 
+        System.out.println("Sending email");
+
         // Prepare message using a Spring helper
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
             message.setTo(to);
@@ -72,7 +85,7 @@ public class MailService {
             BodyPart messageBodyPart = new MimeBodyPart();
 
             // Now set the actual message
-            messageBodyPart.setText("This is message body");
+            messageBodyPart.setText(content);
 
             // Create a multipar message
             Multipart multipart = new MimeMultipart();
@@ -81,16 +94,44 @@ public class MailService {
             multipart.addBodyPart(messageBodyPart);
 
             // Part two is attachment
-            messageBodyPart = new MimeBodyPart();
-            String filename = "C:/Works/"+attachmentDocument;
-            DataSource source = new FileDataSource(filename);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(filename);
-            multipart.addBodyPart(messageBodyPart);
+
+            if(attachmentDocument!=null){
+
+
+                InputStream jasperStream = this.getClass().getResourceAsStream("/reports/cotizacion.jrxml");
+
+                Map<String, Object> parameters = new HashMap();
+                parameters.put("nombreCliente", cotizacion.getCliente().getNombre());
+                parameters.put("rucCliente", cotizacion.getCliente().getRuc());
+                parameters.put("direccionCliente", cotizacion.getCliente().getDireccion());
+                parameters.put("origen", cotizacion.getOrigen());
+                parameters.put("destino", cotizacion.getDestino());
+                parameters.put("mercaderia", cotizacion.getMercaderia());
+                parameters.put("tipoUnidad", cotizacion.getTipoUnidad().getNombre());
+                parameters.put("precio", String.valueOf(cotizacion.getPrecio()));
+                parameters.put("formaPago", cotizacion.getCliente().getFormaPago().getNombre());
+
+                Connection conn = PDFExporter.getConnection();
+
+                JasperReport report = JasperCompileManager.compileReport(jasperStream);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, conn);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
+                DataSource source =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
+
+                messageBodyPart = new MimeBodyPart();
+
+                messageBodyPart.setDataHandler(new DataHandler(source));
+                messageBodyPart.setFileName("La coti.pdf");
+                multipart.addBodyPart(messageBodyPart);
+
+            }
 
             mimeMessage.setContent(multipart);
 
             javaMailSender.send(mimeMessage);
+            System.out.println("Sending email " + "SENDED");
             log.debug("Sent e-mail to User '{}'", to);
         } catch (Exception e) {
             log.warn("E-mail could not be sent to user '{}'", to, e);

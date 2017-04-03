@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-04-02T23:58:24 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="26b49b12-773a-488f-8cd4-752e682b33fd">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Y2xpZW50ZSAsMjEsMjQsNDdmOGQ3MDgtYWZjYy00ZmI0LWE3ZTYtY2EzMjdlOThhOGEwOw=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="idFactura" class="java.lang.String"/>
+	<parameter name="nombreCliente" class="java.lang.String"/>
+	<parameter name="direccionCliente" class="java.lang.String"/>
+	<parameter name="rucCliente" class="java.lang.String"/>
+	<parameter name="condicionPago" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select 
+gr.cantidad as cantidad,
+gr.codigo as codigoGuia,
+co.origen as origen,
+co.destino as destino,
+se.descripcion as descripcion,
+co.precio as precio,
+co.moneda as moneda
+from guia_remision gr join factura f
+on gr.factura_id = f.id
+join cotizacion co 
+on co.id = gr.cotizacion_id
+join servicio se
+on se.id = co.servicio_id
+where f.codigo = $P{idFactura}]]>
+	</queryString>
+	<field name="cantidad" class="java.lang.String"/>
+	<field name="codigoGuia" class="java.lang.String"/>
+	<field name="origen" class="java.lang.String"/>
+	<field name="destino" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="precio" class="java.lang.String"/>
+	<field name="moneda" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="33" width="261" height="30" uuid="3792c695-1d11-40f3-802d-1a10a42ea27c"/>
+				<text><![CDATA[TEST THIS MUST APPEAR]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="143" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="61" y="26" width="219" height="30" uuid="49ae5e10-ed13-4b78-a53d-8a5a76083a98"/>
+				<textFieldExpression><![CDATA[$P{nombreCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="56" width="220" height="30" uuid="b7298a8e-6eac-49fb-9419-e6c19151ce5f"/>
+				<textFieldExpression><![CDATA[$P{direccionCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="86" width="220" height="30" uuid="80bde826-3429-411a-b872-7fe7a30c25b0"/>
+				<textFieldExpression><![CDATA[$P{rucCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="86" width="140" height="30" uuid="df96eafc-997b-494e-966b-4b3905d8b36f"/>
+				<textFieldExpression><![CDATA[$P{condicionPago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="30" uuid="651d0d91-3d10-4053-957b-85dabfbfd848"/>
+				<text><![CDATA[cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="0" width="70" height="30" uuid="ec3034ec-274d-4db7-a546-7963ace7673a"/>
+				<text><![CDATA[codigoGuia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="90" height="30" uuid="014d6eef-c80c-4314-a477-52de974e5be6"/>
+				<text><![CDATA[origen]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="100" height="30" uuid="ce951153-d833-43e4-81f5-da7159ae58d2"/>
+				<text><![CDATA[destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="30" uuid="866a4480-0711-4152-8104-b9e6da1213be"/>
+				<text><![CDATA[precio]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="60" height="30" uuid="a18dfe60-c236-4fe8-936d-52addc2ccc9d"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="70" height="30" uuid="b3dfdfd1-6485-4e2c-8ba5-edafb0ee3c0d"/>
+				<textFieldExpression><![CDATA[$F{codigoGuia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="90" height="30" uuid="eee50d3d-f232-48d0-9938-77ffe6ace9d6"/>
+				<textFieldExpression><![CDATA[$F{origen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="100" height="30" uuid="a7fe2923-fb93-4fcb-9c9f-bc05bb3a2a16"/>
+				<textFieldExpression><![CDATA[$F{destino}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="30" uuid="5b67005d-3e3d-4208-ac07-51333d451e22"/>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

@@ -35,33 +35,33 @@ public class DocumentExporter {
 
 
     public static void printFactura(Factura factura) throws IOException {
-        File reportFile = new File("C:/Works/HMTransportes/hmt-carga/src/main/resources/reports/factura.jasper");
-        Map parameters = new HashMap();
-        parameters.put("nombreCliente", factura.getCliente().getNombre());
-        parameters.put("direccionCliente", factura.getCliente().getDireccion());
-        parameters.put("rucCliente", factura.getCliente().getRuc().toString());
-        parameters.put("condicionPago", factura.getCliente().getCondicionPago().getNombre());
-        parameters.put("idFactura", factura.getId().intValue());
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://192.168.99.100:3306/hmtcarga";
-            String usr = "root";
-            String psw = "";
-            conn = DriverManager.getConnection(url, usr, psw);
-
-        } catch (SQLException ex) {
-        } catch (ClassNotFoundException ex) {
-
-        }
-        try {
-            String filename = "factura" + factura.getId() + ".pdf";
-            JasperPrint print = JasperFillManager.fillReport(reportFile.getPath(), parameters, conn);
-
-            byte[] pdfBytes = JasperExportManager.exportReportToPdf(print);
-        } catch (JRException ex) {
-            log.info("WIIIIIIIII " + ex);
-        }
+//        File reportFile = new File("C:/Works/HMTransportes/hmt-carga/src/main/resources/reports/factura.jasper");
+//        Map parameters = new HashMap();
+//        parameters.put("nombreCliente", factura.getCliente().getNombre());
+//        parameters.put("direccionCliente", factura.getCliente().getDireccion());
+//        parameters.put("rucCliente", factura.getCliente().getRuc().toString());
+//        parameters.put("condicionPago", factura.getCliente().getCondicionPago().getNombre());
+//        parameters.put("idFactura", factura.getId().intValue());
+//        PDFExporter conn = null;
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//            String url = "jdbc:mysql://192.168.99.100:3306/hmtcarga";
+//            String usr = "root";
+//            String psw = "";
+//            conn = DriverManager.getConnection(url, usr, psw);
+//
+//        } catch (SQLException ex) {
+//        } catch (ClassNotFoundException ex) {
+//
+//        }
+//        try {
+//            String filename = "factura" + factura.getId() + ".pdf";
+//            JasperPrint print = JasperFillManager.fillReport(reportFile.getPath(), parameters, conn);
+//
+//            byte[] pdfBytes = JasperExportManager.exportReportToPdf(print);
+//        } catch (JRException ex) {
+//            log.info("WIIIIIIIII " + ex);
+//        }
     }
 
 }

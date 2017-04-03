@@ -3,6 +3,7 @@ package com.hmt.carga.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.hmt.carga.domain.Cotizacion;
 import com.hmt.carga.service.CotizacionService;
+import com.hmt.carga.service.MailService;
 import com.hmt.carga.web.rest.util.HeaderUtil;
 import com.hmt.carga.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -36,6 +37,9 @@ public class CotizacionResource {
     @Inject
     private CotizacionService cotizacionService;
 
+    @Inject
+    private MailService mailService;
+
     /**
      * POST  /cotizacions : Create a new cotizacion.
      *
@@ -47,10 +51,17 @@ public class CotizacionResource {
     @Timed
     public ResponseEntity<Cotizacion> createCotizacion(@Valid @RequestBody Cotizacion cotizacion) throws URISyntaxException {
         log.debug("REST request to save Cotizacion : {}", cotizacion);
+
+        System.out.println(cotizacion.getEmail());
+
         if (cotizacion.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("cotizacion", "idexists", "A new cotizacion cannot already have an ID")).body(null);
         }
         Cotizacion result = cotizacionService.save(cotizacion);
+
+        mailService.sendEmailWithAttachment(cotizacion.getEmail(), "HMT System - Aprobación de orden de venta", "EmailContent", false, true, "factura", result);
+
+
         return ResponseEntity.created(new URI("/api/cotizacions/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("cotizacion", result.getId().toString()))
             .body(result);

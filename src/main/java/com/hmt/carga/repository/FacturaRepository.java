@@ -12,4 +12,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface FacturaRepository extends JpaRepository<Factura,Long> {
 
+    Factura findOneByCodigo(String codigo);
+
 }

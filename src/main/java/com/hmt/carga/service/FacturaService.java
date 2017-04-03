@@ -20,7 +20,7 @@ import java.util.List;
 public class FacturaService {
 
     private final Logger log = LoggerFactory.getLogger(FacturaService.class);
-    
+
     @Inject
     private FacturaRepository facturaRepository;
 
@@ -38,11 +38,11 @@ public class FacturaService {
 
     /**
      *  Get all the facturas.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<Factura> findAll(Pageable pageable) {
         log.debug("Request to get all Facturas");
         Page<Factura> result = facturaRepository.findAll(pageable);
@@ -55,7 +55,7 @@ public class FacturaService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Factura findOne(Long id) {
         log.debug("Request to get Factura : {}", id);
         Factura factura = facturaRepository.findOne(id);
@@ -70,5 +70,9 @@ public class FacturaService {
     public void delete(Long id) {
         log.debug("Request to delete Factura : {}", id);
         facturaRepository.delete(id);
+    }
+
+    public Factura findOneByCodigo(String codigo){
+        return facturaRepository.findOneByCodigo(codigo);
     }
 }

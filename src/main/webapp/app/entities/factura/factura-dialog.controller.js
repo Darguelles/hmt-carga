@@ -7,9 +7,9 @@
 
 
 
-    FacturaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Factura', 'Cliente', 'Servicio', 'GuiaRemisionFilter', 'FileSaver'];
+    FacturaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Factura', 'Cliente', 'Servicio', 'GuiaRemisionFilter', 'FileSaver', '$http'];
 
-    function FacturaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Factura, Cliente, Servicio, GuiaRemisionFilter, FileSaver) {
+    function FacturaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Factura, Cliente, Servicio, GuiaRemisionFilter, FileSaver, $http) {
         var vm = this;
 
         vm.factura = entity;
@@ -93,6 +93,16 @@
             calcularPrefioFinal();
         }
 
+
+
+        $scope.getPdf = function(id){
+            window.open('/api/pdf/'+id);
+        }
+
+
+
+
+
         function calcularPrefioFinal() {
 
             if(!vm.guiasSeleccionadas){
@@ -152,15 +162,16 @@
         }
 
         function onSaveSuccess (result) {
+            console.log('RESULT:')
+            console.log(vm.factura)
             console.log(result)
-            var blob = new Blob([result], {type: 'application/octet-stream'});
-            FileSaver.saveAs(blob, "yourFile.pdf");
+            console.log(result.headers)
+            console.log(result.body)
 
-
-
-            // // $scope.$emit('hmtcargaApp:facturaUpdate', result);
-            // $uibModalInstance.close(result);
-            // vm.isSaving = false;
+            $scope.$emit('hmtcargaApp:facturaUpdate', result);
+            $uibModalInstance.close(result);
+            vm.isSaving = false;
+            $scope.getPdf(vm.factura.codigo)
         }
 
         function onSaveError () {

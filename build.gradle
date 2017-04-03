@@ -184,17 +184,29 @@ dependencies {
     compile "fr.ippon.spark.metrics:metrics-spark-reporter:${metrics_spark_reporter_version}"
     compile "org.mapstruct:mapstruct-jdk8:${mapstruct_version}"
 // https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports
-    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '4.5.0'
-    // https://mvnrepository.com/artifact/org.apache.poi/poi
+//    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '5.0.1'
+// https://mvnrepository.com/artifact/com.lowagie/itext
+    // https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports
+    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.3.1'
+
+//    compile group: 'com.lowagie', name: 'itext', version: '2.1.7'
+
+
+//    // https://mvnrepository.com/artifact/org.apache.poi/poi
 //    compile group: 'org.apache.poi', name: 'poi', version: '3.9'
-//// https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-fonts
+////// https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-fonts
 //    compile group: 'net.sf.jasperreports', name: 'jasperreports-fonts', version: '6.0.0'
-//// https://mvnrepository.com/artifact/commons-collections/commons-collections
+////// https://mvnrepository.com/artifact/commons-collections/commons-collections
 //    compile group: 'commons-collections', name: 'commons-collections', version: '3.2.1'
-//// https://mvnrepository.com/artifact/commons-digester/commons-digester
+////// https://mvnrepository.com/artifact/commons-digester/commons-digester
 //    compile group: 'commons-digester', name: 'commons-digester', version: '2.1'
-//// https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
-//    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.2'
+////// https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
+//    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.8.2'
+//    // https://mvnrepository.com/artifact/commons-logging/commons-logging
+//    compile group: 'commons-logging', name: 'commons-logging', version: '1.1.1'
+//// https://mvnrepository.com/artifact/jfree/jcommon
+//    compile group: 'jfree', name: 'jcommon', version: '1.0.15'
+
 
 
     testCompile "com.jayway.awaitility:awaitility:${awaility_version}"

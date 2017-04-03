@@ -67,7 +67,7 @@ public class OrdenVentaResource {
         }
 
         mailService.sendEmail(ordenVenta.getEmailDestino(), "HMT System - Aprobación de orden de venta", generateEmailOrdenVenta(ordenVenta), false, true);
-        mailService.sendEmailWithAttachment(ordenVenta.getEmailDestino(), "HMT System - Aprobación de orden de venta", generateEmailOrdenVenta(ordenVenta), false, true, null);
+//        mailService.sendEmailWithAttachment(ordenVenta.getEmailDestino(), "HMT System - Aprobación de orden de venta", generateEmailOrdenVenta(ordenVenta), false, true, null);
         return ResponseEntity.created(new URI("/api/orden-ventas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("ordenVenta", result.getId().toString()))
             .body(result);
