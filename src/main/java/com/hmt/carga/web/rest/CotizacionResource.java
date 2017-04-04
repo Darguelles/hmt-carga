@@ -51,9 +51,6 @@ public class CotizacionResource {
     @Timed
     public ResponseEntity<Cotizacion> createCotizacion(@Valid @RequestBody Cotizacion cotizacion) throws URISyntaxException {
         log.debug("REST request to save Cotizacion : {}", cotizacion);
-
-        System.out.println(cotizacion.getEmail());
-
         if (cotizacion.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("cotizacion", "idexists", "A new cotizacion cannot already have an ID")).body(null);
         }

@@ -128,6 +128,7 @@
                                 descripcion: null,
                                 origenDatos: null,
                                 facturada: null,
+                                guiaRemisionRemitente: null,
                                 id: null
                             };
                         }

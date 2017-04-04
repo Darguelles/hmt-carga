@@ -64,6 +64,9 @@ public class GuiaRemision implements Serializable {
     @Column(name = "facturada")
     private Integer facturada;
 
+    @Column(name = "guia_remision_remitente")
+    private String guiaRemisionRemitente;
+
     @ManyToOne
     private Cotizacion cotizacion;
 
@@ -302,6 +305,14 @@ public class GuiaRemision implements Serializable {
             return false;
         }
         return Objects.equals(id, guiaRemision.id);
+    }
+
+    public String getGuiaRemisionRemitente() {
+        return guiaRemisionRemitente;
+    }
+
+    public void setGuiaRemisionRemitente(String guiaRemisionRemitente) {
+        this.guiaRemisionRemitente = guiaRemisionRemitente;
     }
 
     @Override

@@ -45,7 +45,6 @@ public class CotizacionService {
     @Transactional(readOnly = true)
     public Page<Cotizacion> findAll(Pageable pageable) {
         log.debug("Request to get all Cotizacions");
-        //Page<Cotizacion> result = cotizacionRepository.findAll(pageable);
         Page<Cotizacion> result = cotizacionRepository.findAll(pageable);
         return result;
     }

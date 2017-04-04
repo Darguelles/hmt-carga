@@ -56,7 +56,7 @@
         <div class="form-group">
             <label class="control-label" for="field_telefono">Teléfono</label>
             <input type="number" class="form-control" name="telefono" id="field_telefono"
-                    ng-model="vm.cliente.telefono"
+                    ng-model="vm.cliente.telefono" maxlength="9"
                     required />
             <div ng-show="editForm.telefono.$invalid">
                 <p class="help-block"

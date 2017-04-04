@@ -138,6 +138,19 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label" for="field_condiciones">Condiciones</label>
+            <input type="text" class="form-control" name="condiciones" id="field_condiciones"
+                    ng-model="vm.cotizacion.condiciones"
+                    required />
+            <div ng-show="editForm.condiciones.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.condiciones.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label for="field_cliente">Cliente</label>
             <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.cotizacion.cliente" ng-options="cliente as cliente.nombre for cliente in vm.clientes track by cliente.id" required>
                 <option value=""></option>
@@ -173,6 +186,32 @@
                 Este campo es obligatorio.
             </p>
         </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_nombreReceptor">Dirigido a:</label>
+            <input type="text" class="form-control" name="nombreReceptor" id="field_nombreReceptor"
+                   ng-model="vm.cotizacion.nombreReceptor"
+                   required />
+            <div ng-show="editForm.nombreReceptor.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.nombreReceptor.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_cargoReceptor">Cargo: </label>
+            <input type="text" class="form-control" name="cargoReceptor" id="field_cargoReceptor"
+                   ng-model="vm.cotizacion.cargoReceptor"
+                   required />
+            <div ng-show="editForm.cargoReceptor.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.cargoReceptor.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="control-label" for="field_estado">Email</label>
             <input type="text" class="form-control "  name="estado" id="field_email"

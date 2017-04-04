@@ -193,7 +193,11 @@
             />
         </div>
 
-
+        <div class="form-group">
+            <label class="control-label" for="field_observaciones">Guia Remision Remitente</label>
+            <input type="text" class="form-control" name="guiaRemisionRemitente" id="field_guiaRemisionRemitente"
+                   ng-model="vm.guiaRemision.guiaRemisionRemitente"  />
+        </div>
 
         <button type="button" class="btn btn-primary" ng-click="goToFacturaDialog()" ng-show="vm.guiaRemision.id">
             <span class="glyphicon glyphicon-share"></span>&nbsp;<span>Generar factura</span>

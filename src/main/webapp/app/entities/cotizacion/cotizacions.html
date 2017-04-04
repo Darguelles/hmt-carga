@@ -26,7 +26,10 @@
                     <th jh-sort-by="precio"><span>Precio</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="moneda"><span>Moneda</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="estado"><span>Estado</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="cliente.nombre"><span>Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nombreReceptor"><span>Nombre Receptor</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cargoReceptor"><span>Cargo Receptor</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="condiciones"><span>Condiciones</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cliente.nombre ruc direccion"><span>Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="servicio.nombre"><span>Servicio</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="tipoUnidad.nombre"><span>Tipo Unidad</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
@@ -42,6 +45,9 @@
                     <td>{{cotizacion.precio}}</td>
                     <td>{{cotizacion.moneda}}</td>
                     <td>{{cotizacion.estado}}</td>
+                    <td>{{cotizacion.nombreReceptor}}</td>
+                    <td>{{cotizacion.cargoReceptor}}</td>
+                    <td>{{cotizacion.condiciones}}</td>
                     <td>
                         <a ui-sref="cliente-detail({id:cotizacion.cliente.id})">{{cotizacion.cliente.nombre}}</a>
                     </td>

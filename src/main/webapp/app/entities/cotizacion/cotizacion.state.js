@@ -122,6 +122,9 @@
                                 precio: null,
                                 moneda: null,
                                 estado: null,
+                                nombreReceptor: null,
+                                cargoReceptor: null,
+                                condiciones: null,
                                 id: null
                             };
                         }

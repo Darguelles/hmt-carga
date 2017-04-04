@@ -49,6 +49,18 @@
                 <constraints nullable="false" />
             </column>
             
+            <column name="nombre_receptor" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="cargo_receptor" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="condiciones" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            
             <column name="cliente_id" type="bigint">
                 <constraints nullable="false" />
             </column>

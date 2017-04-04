@@ -32,6 +32,18 @@
         <dd>
             <span>{{vm.cotizacion.estado}}</span>
         </dd>
+        <dt><span>Nombre Receptor</span></dt>
+        <dd>
+            <span>{{vm.cotizacion.nombreReceptor}}</span>
+        </dd>
+        <dt><span>Cargo Receptor</span></dt>
+        <dd>
+            <span>{{vm.cotizacion.cargoReceptor}}</span>
+        </dd>
+        <dt><span>Condiciones</span></dt>
+        <dd>
+            <span>{{vm.cotizacion.condiciones}}</span>
+        </dd>
         <dt><span>Cliente</span></dt>
         <dd>
             <a ui-sref="cliente-detail({id:vm.cotizacion.cliente.id})">{{vm.cotizacion.cliente.nombre}}</a>

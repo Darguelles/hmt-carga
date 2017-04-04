@@ -65,6 +65,15 @@ public class CotizacionResourceIntTest {
     private static final String DEFAULT_ESTADO = "AAAAA";
     private static final String UPDATED_ESTADO = "BBBBB";
 
+    private static final String DEFAULT_NOMBRE_RECEPTOR = "AAAAA";
+    private static final String UPDATED_NOMBRE_RECEPTOR = "BBBBB";
+
+    private static final String DEFAULT_CARGO_RECEPTOR = "AAAAA";
+    private static final String UPDATED_CARGO_RECEPTOR = "BBBBB";
+
+    private static final String DEFAULT_CONDICIONES = "AAAAA";
+    private static final String UPDATED_CONDICIONES = "BBBBB";
+
     @Inject
     private CotizacionRepository cotizacionRepository;
 
@@ -108,7 +117,10 @@ public class CotizacionResourceIntTest {
                 .mercaderia(DEFAULT_MERCADERIA)
                 .precio(DEFAULT_PRECIO)
                 .moneda(DEFAULT_MONEDA)
-                .estado(DEFAULT_ESTADO);
+                .estado(DEFAULT_ESTADO)
+                .nombreReceptor(DEFAULT_NOMBRE_RECEPTOR)
+                .cargoReceptor(DEFAULT_CARGO_RECEPTOR)
+                .condiciones(DEFAULT_CONDICIONES);
         // Add required entity
         Cliente cliente = ClienteResourceIntTest.createEntity(em);
         em.persist(cliente);
@@ -155,6 +167,9 @@ public class CotizacionResourceIntTest {
         assertThat(testCotizacion.getPrecio()).isEqualTo(DEFAULT_PRECIO);
         assertThat(testCotizacion.getMoneda()).isEqualTo(DEFAULT_MONEDA);
         assertThat(testCotizacion.getEstado()).isEqualTo(DEFAULT_ESTADO);
+        assertThat(testCotizacion.getNombreReceptor()).isEqualTo(DEFAULT_NOMBRE_RECEPTOR);
+        assertThat(testCotizacion.getCargoReceptor()).isEqualTo(DEFAULT_CARGO_RECEPTOR);
+        assertThat(testCotizacion.getCondiciones()).isEqualTo(DEFAULT_CONDICIONES);
     }
 
     @Test
@@ -285,6 +300,60 @@ public class CotizacionResourceIntTest {
 
     @Test
     @Transactional
+    public void checkNombreReceptorIsRequired() throws Exception {
+        int databaseSizeBeforeTest = cotizacionRepository.findAll().size();
+        // set the field null
+        cotizacion.setNombreReceptor(null);
+
+        // Create the Cotizacion, which fails.
+
+        restCotizacionMockMvc.perform(post("/api/cotizacions")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(cotizacion)))
+                .andExpect(status().isBadRequest());
+
+        List<Cotizacion> cotizacions = cotizacionRepository.findAll();
+        assertThat(cotizacions).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkCargoReceptorIsRequired() throws Exception {
+        int databaseSizeBeforeTest = cotizacionRepository.findAll().size();
+        // set the field null
+        cotizacion.setCargoReceptor(null);
+
+        // Create the Cotizacion, which fails.
+
+        restCotizacionMockMvc.perform(post("/api/cotizacions")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(cotizacion)))
+                .andExpect(status().isBadRequest());
+
+        List<Cotizacion> cotizacions = cotizacionRepository.findAll();
+        assertThat(cotizacions).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkCondicionesIsRequired() throws Exception {
+        int databaseSizeBeforeTest = cotizacionRepository.findAll().size();
+        // set the field null
+        cotizacion.setCondiciones(null);
+
+        // Create the Cotizacion, which fails.
+
+        restCotizacionMockMvc.perform(post("/api/cotizacions")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(cotizacion)))
+                .andExpect(status().isBadRequest());
+
+        List<Cotizacion> cotizacions = cotizacionRepository.findAll();
+        assertThat(cotizacions).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllCotizacions() throws Exception {
         // Initialize the database
         cotizacionRepository.saveAndFlush(cotizacion);
@@ -300,7 +369,10 @@ public class CotizacionResourceIntTest {
                 .andExpect(jsonPath("$.[*].mercaderia").value(hasItem(DEFAULT_MERCADERIA.toString())))
                 .andExpect(jsonPath("$.[*].precio").value(hasItem(DEFAULT_PRECIO.doubleValue())))
                 .andExpect(jsonPath("$.[*].moneda").value(hasItem(DEFAULT_MONEDA)))
-                .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO.toString())));
+                .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO.toString())))
+                .andExpect(jsonPath("$.[*].nombreReceptor").value(hasItem(DEFAULT_NOMBRE_RECEPTOR.toString())))
+                .andExpect(jsonPath("$.[*].cargoReceptor").value(hasItem(DEFAULT_CARGO_RECEPTOR.toString())))
+                .andExpect(jsonPath("$.[*].condiciones").value(hasItem(DEFAULT_CONDICIONES.toString())));
     }
 
     @Test
@@ -320,7 +392,10 @@ public class CotizacionResourceIntTest {
             .andExpect(jsonPath("$.mercaderia").value(DEFAULT_MERCADERIA.toString()))
             .andExpect(jsonPath("$.precio").value(DEFAULT_PRECIO.doubleValue()))
             .andExpect(jsonPath("$.moneda").value(DEFAULT_MONEDA))
-            .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO.toString()));
+            .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO.toString()))
+            .andExpect(jsonPath("$.nombreReceptor").value(DEFAULT_NOMBRE_RECEPTOR.toString()))
+            .andExpect(jsonPath("$.cargoReceptor").value(DEFAULT_CARGO_RECEPTOR.toString()))
+            .andExpect(jsonPath("$.condiciones").value(DEFAULT_CONDICIONES.toString()));
     }
 
     @Test
@@ -348,7 +423,10 @@ public class CotizacionResourceIntTest {
                 .mercaderia(UPDATED_MERCADERIA)
                 .precio(UPDATED_PRECIO)
                 .moneda(UPDATED_MONEDA)
-                .estado(UPDATED_ESTADO);
+                .estado(UPDATED_ESTADO)
+                .nombreReceptor(UPDATED_NOMBRE_RECEPTOR)
+                .cargoReceptor(UPDATED_CARGO_RECEPTOR)
+                .condiciones(UPDATED_CONDICIONES);
 
         restCotizacionMockMvc.perform(put("/api/cotizacions")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -366,6 +444,9 @@ public class CotizacionResourceIntTest {
         assertThat(testCotizacion.getPrecio()).isEqualTo(UPDATED_PRECIO);
         assertThat(testCotizacion.getMoneda()).isEqualTo(UPDATED_MONEDA);
         assertThat(testCotizacion.getEstado()).isEqualTo(UPDATED_ESTADO);
+        assertThat(testCotizacion.getNombreReceptor()).isEqualTo(UPDATED_NOMBRE_RECEPTOR);
+        assertThat(testCotizacion.getCargoReceptor()).isEqualTo(UPDATED_CARGO_RECEPTOR);
+        assertThat(testCotizacion.getCondiciones()).isEqualTo(UPDATED_CONDICIONES);
     }
 
     @Test

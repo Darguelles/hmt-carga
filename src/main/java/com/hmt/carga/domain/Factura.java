@@ -27,11 +27,11 @@ public class Factura implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @NotNull
+    //    @NotNull
     @Column(name = "precio_unitario", nullable = false)
     private Double precioUnitario;
 
-//    @NotNull
+    //    @NotNull
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
@@ -76,6 +76,9 @@ public class Factura implements Serializable {
 
     @ManyToOne
     private Servicio servicio;
+
+    @Column(name = "numero_orden_compra")
+    private String numeroOrdenCompra;
 
     @JsonSerialize
     @JsonDeserialize
@@ -290,10 +293,18 @@ public class Factura implements Serializable {
             return false;
         }
         Factura factura = (Factura) o;
-        if(factura.id == null || id == null) {
+        if (factura.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, factura.id);
+    }
+
+    public String getNumeroOrdenCompra() {
+        return numeroOrdenCompra;
+    }
+
+    public void setNumeroOrdenCompra(String numeroOrdenCompra) {
+        this.numeroOrdenCompra = numeroOrdenCompra;
     }
 
     @Override

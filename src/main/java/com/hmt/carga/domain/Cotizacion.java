@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -58,6 +57,18 @@ public class Cotizacion implements Serializable {
     @NotNull
     @Column(name = "estado", nullable = false)
     private String estado;
+
+    @NotNull
+    @Column(name = "nombre_receptor", nullable = false)
+    private String nombreReceptor;
+
+    @NotNull
+    @Column(name = "cargo_receptor", nullable = false)
+    private String cargoReceptor;
+
+    @NotNull
+    @Column(name = "condiciones", nullable = false)
+    private String condiciones;
 
     @ManyToOne
     @NotNull
@@ -170,6 +181,45 @@ public class Cotizacion implements Serializable {
         this.estado = estado;
     }
 
+    public String getNombreReceptor() {
+        return nombreReceptor;
+    }
+
+    public Cotizacion nombreReceptor(String nombreReceptor) {
+        this.nombreReceptor = nombreReceptor;
+        return this;
+    }
+
+    public void setNombreReceptor(String nombreReceptor) {
+        this.nombreReceptor = nombreReceptor;
+    }
+
+    public String getCargoReceptor() {
+        return cargoReceptor;
+    }
+
+    public Cotizacion cargoReceptor(String cargoReceptor) {
+        this.cargoReceptor = cargoReceptor;
+        return this;
+    }
+
+    public void setCargoReceptor(String cargoReceptor) {
+        this.cargoReceptor = cargoReceptor;
+    }
+
+    public String getCondiciones() {
+        return condiciones;
+    }
+
+    public Cotizacion condiciones(String condiciones) {
+        this.condiciones = condiciones;
+        return this;
+    }
+
+    public void setCondiciones(String condiciones) {
+        this.condiciones = condiciones;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -248,6 +298,9 @@ public class Cotizacion implements Serializable {
             ", precio='" + precio + "'" +
             ", moneda='" + moneda + "'" +
             ", estado='" + estado + "'" +
+            ", nombreReceptor='" + nombreReceptor + "'" +
+            ", cargoReceptor='" + cargoReceptor + "'" +
+            ", condiciones='" + condiciones + "'" +
             '}';
     }
 }

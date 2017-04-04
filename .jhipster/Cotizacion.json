@@ -78,7 +78,29 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "nombreReceptor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cargoReceptor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "condiciones",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
+
     ],
     "changelogDate": "20161120033910",
     "dto": "no",

@@ -127,6 +127,7 @@
                                 contingencia: null,
                                 motivo: null,
                                 precio: null,
+                                numeroOrdenCompra: null,
                                 id: null
                             };
                         }
