@@ -75,4 +75,8 @@ public class GuiaRemisionService {
     public List<GuiaRemision> findAllByFacturada(Integer facturada){
         return guiaRemisionRepository.findAllByFacturada(facturada);
     }
+
+    public GuiaRemision findOneByCodigo(String codigo) {
+        return guiaRemisionRepository.findOneByCodigo(codigo);
+    }
 }

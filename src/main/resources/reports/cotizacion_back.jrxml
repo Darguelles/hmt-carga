@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-11T01:41:49 -->
+<!-- 2017-04-03T02:24:25 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cotizacion" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4072b19d-bb63-457c-936e-e1a4aeaa210d">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="nombreCliente" class="java.lang.String"/>
@@ -14,14 +14,6 @@
 	<parameter name="tipoUnidad" class="java.lang.String"/>
 	<parameter name="precio" class="java.lang.String"/>
 	<parameter name="formaPago" class="java.lang.String"/>
-	<parameter name="destinatario" class="java.lang.String"/>
-	<parameter name="cargo" class="java.lang.String"/>
-	<parameter name="condiciones" class="java.lang.String"/>
-    <parameter name="logo1" class="java.io.InputStream"/>
-    <parameter name="logo2" class="java.io.InputStream"/>
-    <parameter name="terminosycondiciones" class="java.io.InputStream"/>
-    <parameter name="advertencia" class="java.io.InputStream"/>
-    <parameter name="firma" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -29,14 +21,10 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="120" splitType="Stretch">
+		<band height="126" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="240" height="100" uuid="428a9db5-b8db-4360-bdf4-1b4658da8dce"/>
-				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="310" y="0" width="240" height="100" uuid="2ada1790-2dbd-49ee-a878-ebdb9bd55273"/>
-				<imageExpression><![CDATA[$P{logo2}]]></imageExpression>
+				<reportElement x="-10" y="0" width="585" height="120" uuid="4974e96e-f688-4c63-be98-243faff93917"/>
+				<imageExpression><![CDATA["C:/Users/D-Developer/Pictures/cotHeader.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -68,7 +56,7 @@
 				<textFieldExpression><![CDATA[$P{direccionCliente}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="380" y="110" width="170" height="20" uuid="1fac88a2-fdfd-454d-8536-5ff51732ee95"/>
+				<reportElement x="380" y="80" width="170" height="20" uuid="1fac88a2-fdfd-454d-8536-5ff51732ee95"/>
 				<textElement>
 					<font isBold="true" isItalic="true"/>
 				</textElement>
@@ -146,47 +134,21 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{tipoUnidad}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="0" y="80" width="70" height="20" uuid="cc53e75e-fe01-4cc1-8faf-55d016a1f22b"/>
-				<text><![CDATA[Atencion: ]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="70" y="80" width="290" height="20" uuid="a2b80268-74e3-4c94-8252-89a349bba010"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{destinatario}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="70" y="100" width="290" height="20" uuid="2c6f0e5b-8af0-435f-ab00-1004f77fb181"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
-			</textField>
 		</band>
 	</pageHeader>
 	<pageFooter>
-		<band height="384" splitType="Stretch">
+		<band height="400" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="40" uuid="07626374-c0cb-409b-bb1c-5e205c460d4a"/>
+				<text><![CDATA[Términos y condiciones....]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="0" y="180" width="280" height="20" uuid="d0da8eff-bfeb-4ebd-b64d-a4ed6bde3ae1"/>
+				<reportElement x="0" y="40" width="280" height="20" uuid="d0da8eff-bfeb-4ebd-b64d-a4ed6bde3ae1"/>
 				<textFieldExpression><![CDATA[$P{formaPago}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="0" y="160" width="544" height="20" uuid="ae5d061e-a5bc-4921-92be-3f6e9bf74429"/>
-				<textFieldExpression><![CDATA[$P{condiciones}]]></textFieldExpression>
-			</textField>
 			<image>
-				<reportElement x="0" y="40" width="550" height="120" uuid="c4987205-62d4-46d2-80ba-cb5672d85e6e"/>
-				<imageExpression><![CDATA[$P{terminosycondiciones}]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="177" y="210" width="200" height="160" uuid="4da54c11-9ace-43dd-ac17-c2a46cffe22f"/>
-				<imageExpression><![CDATA[$P{firma}]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="0" y="0" width="550" height="30" uuid="90a0a69e-e4e8-4851-a840-b9555c56e20a"/>
-				<imageExpression><![CDATA[$P{advertencia}]]></imageExpression>
+				<reportElement x="0" y="60" width="560" height="320" uuid="c439622c-9ee3-45b7-ad55-1076f057a417"/>
+				<imageExpression><![CDATA["C:/Users/D-Developer/Pictures/footerCotizacion.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

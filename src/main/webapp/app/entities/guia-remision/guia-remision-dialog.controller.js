@@ -28,6 +28,10 @@
 
         $scope.date_code = new Date();
 
+        $scope.getPdf = function(id){
+            window.open('/api/guia-remisions/pdf/'+id);
+        }
+
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
@@ -74,6 +78,7 @@
             $scope.$emit('hmtcargaApp:guiaRemisionUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
+            $scope.getPdf(vm.guiaRemision.codigo)
         }
 
         function onSaveError () {

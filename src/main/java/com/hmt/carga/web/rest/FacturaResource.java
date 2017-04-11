@@ -5,6 +5,7 @@ import com.hmt.carga.domain.Factura;
 import com.hmt.carga.domain.GuiaRemision;
 import com.hmt.carga.service.FacturaService;
 import com.hmt.carga.service.GuiaRemisionService;
+import com.hmt.carga.util.NumberConverter;
 import com.hmt.carga.util.PDFExporter;
 import com.hmt.carga.web.rest.util.HeaderUtil;
 import com.hmt.carga.web.rest.util.PaginationUtil;
@@ -25,10 +26,8 @@ import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.time.format.TextStyle;
+import java.util.*;
 
 /**
  * REST controller for managing Factura.
@@ -80,7 +79,7 @@ public class FacturaResource {
 
 
 
-    @RequestMapping(value = "/pdf/{codigoFactura}", method = RequestMethod.GET)
+    @RequestMapping(value = "/factura/pdf/{codigoFactura}", method = RequestMethod.GET)
     @Timed
     public @ResponseBody byte[] exportFacturaAsPDF(HttpServletResponse response, @PathVariable String codigoFactura) throws JRException {
 
@@ -94,9 +93,16 @@ public class FacturaResource {
         Map<String, Object> parameters = new HashMap();
         parameters.put("nombreCliente", factura.getCliente().getNombre());
         parameters.put("direccionCliente", factura.getCliente().getDireccion());
-        parameters.put("rucCliente", factura.getCliente().getRuc());
+        parameters.put("rucCliente", factura.getCliente().getRuc().toString());
         parameters.put("condicionPago", factura.getCliente().getCondicionPago().getNombre());
         parameters.put("idFactura", codigoFactura);
+        parameters.put("totalLetras", NumberConverter.convertir(factura.getPrecioTotal().toString(), true, " NUEVOS SOLES"));
+        parameters.put("subTotal", factura.getPrecioBase());
+        parameters.put("igv", factura.getIgv());
+        parameters.put("total", factura.getPrecioTotal());
+        parameters.put("fechaActualDia", String.valueOf(factura.getFecha().getDayOfMonth()));
+        parameters.put("fechaActualMes", String.valueOf(factura.getFecha().getMonth().getDisplayName(TextStyle.FULL, new Locale("es_PE"))));
+        parameters.put("fechaActualAnio", String.valueOf(factura.getFecha().getYear()-2000));
 
         Connection conn = PDFExporter.getConnection();
 

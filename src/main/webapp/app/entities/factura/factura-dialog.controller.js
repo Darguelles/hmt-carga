@@ -96,7 +96,7 @@
 
 
         $scope.getPdf = function(id){
-            window.open('/api/pdf/'+id);
+            window.open('/api/factura/pdf/'+id);
         }
 
 

@@ -2,7 +2,6 @@ package com.hmt.carga.service;
 
 import com.hmt.carga.config.JHipsterProperties;
 import com.hmt.carga.domain.Cotizacion;
-import com.hmt.carga.domain.Factura;
 import com.hmt.carga.domain.User;
 
 import com.hmt.carga.util.PDFExporter;
@@ -21,7 +20,6 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.inject.Inject;
 import javax.mail.BodyPart;
 import javax.mail.Multipart;
@@ -78,7 +76,7 @@ public class MailService {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
             message.setTo(to);
             message.setFrom(jHipsterProperties.getMail().getFrom());
-            message.setSubject(subject);
+            message.setSubject("HMT Cotización - "+cotizacion.getServicio().getNombre());
             message.setText(content, isHtml);
 
             // Create the message part
@@ -110,6 +108,14 @@ public class MailService {
                 parameters.put("tipoUnidad", cotizacion.getTipoUnidad().getNombre());
                 parameters.put("precio", String.valueOf(cotizacion.getPrecio()));
                 parameters.put("formaPago", cotizacion.getCliente().getFormaPago().getNombre());
+                parameters.put("destinatario", cotizacion.getNombreReceptor());
+                parameters.put("cargo", cotizacion.getCargoReceptor());
+                parameters.put("condiciones", cotizacion.getCondiciones());
+                parameters.put("logo1", this.getClass().getResourceAsStream("/reports/images/Logo_1.png"));
+                parameters.put("logo2", this.getClass().getResourceAsStream("/reports/images/Logo_2.png"));
+                parameters.put("terminosycondiciones", this.getClass().getResourceAsStream("/reports/images/terminos_y_condiciones.png"));
+                parameters.put("advertencia", this.getClass().getResourceAsStream("/reports/images/Item.png"));
+                parameters.put("firma", this.getClass().getResourceAsStream("/reports/images/firma.png"));
 
                 Connection conn = PDFExporter.getConnection();
 

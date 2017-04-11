@@ -2,9 +2,11 @@ package com.hmt.carga.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.hmt.carga.domain.Cotizacion;
+import com.hmt.carga.domain.Factura;
 import com.hmt.carga.domain.GuiaRemision;
 import com.hmt.carga.service.CotizacionService;
 import com.hmt.carga.service.GuiaRemisionService;
+import com.hmt.carga.util.PDFExporter;
 import com.hmt.carga.web.rest.util.HeaderUtil;
 import com.hmt.carga.web.rest.util.PaginationUtil;
 //import net.sf.jasperreports.engine.*;
@@ -24,11 +26,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,6 +81,47 @@ public class GuiaRemisionResource {
         return ResponseEntity.created(new URI("/api/guia-remisions/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("guiaRemision", result.getId().toString()))
             .body(result);
+    }
+
+    @RequestMapping(value = "/guia-remisions/pdf/{codigoGuia}", method = RequestMethod.GET)
+    @Timed
+    public @ResponseBody byte[] exportFacturaAsPDF(HttpServletResponse response, @PathVariable String codigoGuia) throws JRException {
+
+        response.setHeader("Content-Disposition", "inline; filename=file.pdf");
+        response.setContentType("application/pdf");
+
+        InputStream jasperStream = this.getClass().getResourceAsStream("/reports/guia_remision.jrxml");
+
+        GuiaRemision guia = guiaRemisionService.findOneByCodigo(codigoGuia);
+
+        Map<String, Object> parameters = new HashMap();
+        parameters.put("direccionPartida", guia.getCotizacion().getOrigen().toString());
+        parameters.put("direccionLlegada", guia.getCotizacion().getDestino().toString());
+        parameters.put("remitente", "HM Transportes");
+        parameters.put("destinatario", guia.getCotizacion().getNombreReceptor().toString());
+        parameters.put("fechaSalida", guia.getFechaSalida().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
+        parameters.put("fechaingreso", guia.getFechaIngreso().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
+        parameters.put("marcaVehiculo", guia.getTransporte().getMarca().toString());
+        parameters.put("tracto", guia.getTransporte().getTracto().toString());
+        parameters.put("plataforma", guia.getTransporte().getPlacaCarreta().toString());
+        parameters.put("configuracionVehicular", guia.getTransporte().getTipoUnidad().getConfiguracion().toString());
+        parameters.put("conductor", guia.getTransporte().getNombreConductor().toString());
+        parameters.put("camaBaja", guia.getTransporte().getAnchoCarreta().toString());
+        parameters.put("certificacionInscripcion", guia.getTransporte().getSoat().toString());
+        parameters.put("licenciaConducir", guia.getTransporte().getLicenciaConductor().toString());
+        parameters.put("datosEmpresa", "UNDEFINED");
+        parameters.put("observaciones", guia.getObservaciones());
+        parameters.put("fechaEmision", guia.getFechaEmision().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
+        parameters.put("fechaTraslado", guia.getFechaTraslado().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
+        parameters.put("numeroGuia", guia.getCodigo().toString());
+
+
+        Connection conn = PDFExporter.getConnection();
+
+        JasperReport report = JasperCompileManager.compileReport(jasperStream);
+        JasperPrint print = JasperFillManager.fillReport(report, parameters, conn);
+        byte[] file = JasperExportManager.exportReportToPdf(print);
+        return file;
     }
 
     /**

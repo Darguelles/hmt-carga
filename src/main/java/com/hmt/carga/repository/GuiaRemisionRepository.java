@@ -14,4 +14,6 @@ public interface GuiaRemisionRepository extends JpaRepository<GuiaRemision,Long>
 
     List<GuiaRemision> findAllByFacturada(Integer facturada);
 
+    GuiaRemision findOneByCodigo(String codigo);
+
 }
