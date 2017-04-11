@@ -77,6 +77,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="numero_orden_compra" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="factura" columnName="fecha" columnDataType="datetime"/>

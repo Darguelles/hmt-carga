@@ -1,0 +1,211 @@
+
+<div>
+    <h2><span>Evento</span> {{vm.evento.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Numero Orden Venta</span></dt>
+        <dd>
+            <span>{{vm.evento.numeroOrdenVenta}}</span>
+        </dd>
+        <dt><span>Cliente Guia</span></dt>
+        <dd>
+            <span>{{vm.evento.clienteGuia}}</span>
+        </dd>
+        <dt><span>Cliente Factura</span></dt>
+        <dd>
+            <span>{{vm.evento.clienteFactura}}</span>
+        </dd>
+        <dt><span>Cliente Ruc</span></dt>
+        <dd>
+            <span>{{vm.evento.clienteRuc}}</span>
+        </dd>
+        <dt><span>Cliente Razon Social</span></dt>
+        <dd>
+            <span>{{vm.evento.clienteRazonSocial}}</span>
+        </dd>
+        <dt><span>Cliente Peso</span></dt>
+        <dd>
+            <span>{{vm.evento.clientePeso}}</span>
+        </dd>
+        <dt><span>Cliente Monto</span></dt>
+        <dd>
+            <span>{{vm.evento.clienteMonto}}</span>
+        </dd>
+        <dt><span>Cliente Total</span></dt>
+        <dd>
+            <span>{{vm.evento.clienteTotal}}</span>
+        </dd>
+        <dt><span>Cliente Adelanto</span></dt>
+        <dd>
+            <span>{{vm.evento.clienteAdelanto}}</span>
+        </dd>
+        <dt><span>Fecha Emision Factura</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaEmisionFactura | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Fecha Vencimiento Factura</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaVencimientoFactura | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Plazo</span></dt>
+        <dd>
+            <span>{{vm.evento.plazo}}</span>
+        </dd>
+        <dt><span>Fecha Entrega</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaEntrega | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Letra</span></dt>
+        <dd>
+            <span>{{vm.evento.letra}}</span>
+        </dd>
+        <dt><span>Estado Letra</span></dt>
+        <dd>
+            <span>{{vm.evento.estadoLetra}}</span>
+        </dd>
+        <dt><span>Fecha Emision Letra</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaEmisionLetra | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Plazo Pago</span></dt>
+        <dd>
+            <span>{{vm.evento.plazoPago}}</span>
+        </dd>
+        <dt><span>Vencimiento Pago</span></dt>
+        <dd>
+            <span>{{vm.evento.vencimientoPago | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Saldo Cobrar</span></dt>
+        <dd>
+            <span>{{vm.evento.saldoCobrar}}</span>
+        </dd>
+        <dt><span>Monto Detraccion</span></dt>
+        <dd>
+            <span>{{vm.evento.montoDetraccion}}</span>
+        </dd>
+        <dt><span>Cliente Estado</span></dt>
+        <dd>
+            <span>{{vm.evento.clienteEstado}}</span>
+        </dd>
+        <dt><span>Proveedor Guia</span></dt>
+        <dd>
+            <span>{{vm.evento.proveedorGuia}}</span>
+        </dd>
+        <dt><span>Proveedor Factura</span></dt>
+        <dd>
+            <span>{{vm.evento.proveedorFactura}}</span>
+        </dd>
+        <dt><span>Proveedor Ruc</span></dt>
+        <dd>
+            <span>{{vm.evento.proveedorRuc}}</span>
+        </dd>
+        <dt><span>Proveedor Razon Social</span></dt>
+        <dd>
+            <span>{{vm.evento.proveedorRazonSocial}}</span>
+        </dd>
+        <dt><span>Material Transporte</span></dt>
+        <dd>
+            <span>{{vm.evento.materialTransporte}}</span>
+        </dd>
+        <dt><span>Fecha Salida</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaSalida | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Monto Servicio</span></dt>
+        <dd>
+            <span>{{vm.evento.montoServicio}}</span>
+        </dd>
+        <dt><span>Total</span></dt>
+        <dd>
+            <span>{{vm.evento.total}}</span>
+        </dd>
+        <dt><span>Adelanto 1</span></dt>
+        <dd>
+            <span>{{vm.evento.adelanto1}}</span>
+        </dd>
+        <dt><span>Fecha Adelanto 1</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaAdelanto1 | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Adelanto 2</span></dt>
+        <dd>
+            <span>{{vm.evento.adelanto2}}</span>
+        </dd>
+        <dt><span>Fecha Adelanto 2</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaAdelanto2 | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Adelanto 3</span></dt>
+        <dd>
+            <span>{{vm.evento.adelanto3}}</span>
+        </dd>
+        <dt><span>Fecha Adelanto 3</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaAdelanto3 | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Adelanto 4</span></dt>
+        <dd>
+            <span>{{vm.evento.adelanto4}}</span>
+        </dd>
+        <dt><span>Fecha Adelanto 4</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaAdelanto4 | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Fecha Pago Saldo</span></dt>
+        <dd>
+            <span>{{vm.evento.fechaPagoSaldo | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Proveedor Monto Detraccion</span></dt>
+        <dd>
+            <span>{{vm.evento.proveedorMontoDetraccion}}</span>
+        </dd>
+        <dt><span>Proveedor Comision Detraccion</span></dt>
+        <dd>
+            <span>{{vm.evento.proveedorComisionDetraccion}}</span>
+        </dd>
+        <dt><span>Proveedor Total Pagar</span></dt>
+        <dd>
+            <span>{{vm.evento.proveedorTotalPagar}}</span>
+        </dd>
+        <dt><span>Proveedor Estado</span></dt>
+        <dd>
+            <span>{{vm.evento.proveedorEstado}}</span>
+        </dd>
+        <dt><span>Compra Factura</span></dt>
+        <dd>
+            <span>{{vm.evento.compraFactura}}</span>
+        </dd>
+        <dt><span>Compra Proveedor</span></dt>
+        <dd>
+            <span>{{vm.evento.compraProveedor}}</span>
+        </dd>
+        <dt><span>Compra Producto</span></dt>
+        <dd>
+            <span>{{vm.evento.compraProducto}}</span>
+        </dd>
+        <dt><span>Compra Total</span></dt>
+        <dd>
+            <span>{{vm.evento.compraTotal}}</span>
+        </dd>
+        <dt><span>Compra Total Igv</span></dt>
+        <dd>
+            <span>{{vm.evento.compraTotalIgv}}</span>
+        </dd>
+        <dt><span>Compra Estado</span></dt>
+        <dd>
+            <span>{{vm.evento.compraEstado}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="evento-detail.edit({id:vm.evento.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

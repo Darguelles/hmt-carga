@@ -1,0 +1,154 @@
+<div>
+    <h2>Eventos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="evento.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Evento
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="numeroOrdenVenta"><span>Numero Orden Venta</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="clienteGuia"><span>Cliente Guia</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="clienteFactura"><span>Cliente Factura</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="clienteRuc"><span>Cliente Ruc</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="clienteRazonSocial"><span>Cliente Razon Social</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="clientePeso"><span>Cliente Peso</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="clienteMonto"><span>Cliente Monto</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="clienteTotal"><span>Cliente Total</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="clienteAdelanto"><span>Cliente Adelanto</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaEmisionFactura"><span>Fecha Emision Factura</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaVencimientoFactura"><span>Fecha Vencimiento Factura</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="plazo"><span>Plazo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaEntrega"><span>Fecha Entrega</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="letra"><span>Letra</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="estadoLetra"><span>Estado Letra</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaEmisionLetra"><span>Fecha Emision Letra</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="plazoPago"><span>Plazo Pago</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="vencimientoPago"><span>Vencimiento Pago</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="saldoCobrar"><span>Saldo Cobrar</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="montoDetraccion"><span>Monto Detraccion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="clienteEstado"><span>Cliente Estado</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="proveedorGuia"><span>Proveedor Guia</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="proveedorFactura"><span>Proveedor Factura</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="proveedorRuc"><span>Proveedor Ruc</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="proveedorRazonSocial"><span>Proveedor Razon Social</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="materialTransporte"><span>Material Transporte</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaSalida"><span>Fecha Salida</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="montoServicio"><span>Monto Servicio</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="total"><span>Total</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="adelanto1"><span>Adelanto 1</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaAdelanto1"><span>Fecha Adelanto 1</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="adelanto2"><span>Adelanto 2</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaAdelanto2"><span>Fecha Adelanto 2</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="adelanto3"><span>Adelanto 3</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaAdelanto3"><span>Fecha Adelanto 3</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="adelanto4"><span>Adelanto 4</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaAdelanto4"><span>Fecha Adelanto 4</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaPagoSaldo"><span>Fecha Pago Saldo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="proveedorMontoDetraccion"><span>Proveedor Monto Detraccion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="proveedorComisionDetraccion"><span>Proveedor Comision Detraccion</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="proveedorTotalPagar"><span>Proveedor Total Pagar</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="proveedorEstado"><span>Proveedor Estado</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="compraFactura"><span>Compra Factura</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="compraProveedor"><span>Compra Proveedor</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="compraProducto"><span>Compra Producto</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="compraTotal"><span>Compra Total</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="compraTotalIgv"><span>Compra Total Igv</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="compraEstado"><span>Compra Estado</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="evento in vm.eventos track by evento.id">
+                    <td><a ui-sref="evento-detail({id:evento.id})">{{evento.id}}</a></td>
+                    <td>{{evento.numeroOrdenVenta}}</td>
+                    <td>{{evento.clienteGuia}}</td>
+                    <td>{{evento.clienteFactura}}</td>
+                    <td>{{evento.clienteRuc}}</td>
+                    <td>{{evento.clienteRazonSocial}}</td>
+                    <td>{{evento.clientePeso}}</td>
+                    <td>{{evento.clienteMonto}}</td>
+                    <td>{{evento.clienteTotal}}</td>
+                    <td>{{evento.clienteAdelanto}}</td>
+                        <td>{{evento.fechaEmisionFactura | date:'mediumDate'}}</td>
+                        <td>{{evento.fechaVencimientoFactura | date:'mediumDate'}}</td>
+                    <td>{{evento.plazo}}</td>
+                        <td>{{evento.fechaEntrega | date:'mediumDate'}}</td>
+                    <td>{{evento.letra}}</td>
+                    <td>{{evento.estadoLetra}}</td>
+                        <td>{{evento.fechaEmisionLetra | date:'mediumDate'}}</td>
+                    <td>{{evento.plazoPago}}</td>
+                        <td>{{evento.vencimientoPago | date:'mediumDate'}}</td>
+                    <td>{{evento.saldoCobrar}}</td>
+                    <td>{{evento.montoDetraccion}}</td>
+                    <td>{{evento.clienteEstado}}</td>
+                    <td>{{evento.proveedorGuia}}</td>
+                    <td>{{evento.proveedorFactura}}</td>
+                    <td>{{evento.proveedorRuc}}</td>
+                    <td>{{evento.proveedorRazonSocial}}</td>
+                    <td>{{evento.materialTransporte}}</td>
+                        <td>{{evento.fechaSalida | date:'mediumDate'}}</td>
+                    <td>{{evento.montoServicio}}</td>
+                    <td>{{evento.total}}</td>
+                    <td>{{evento.adelanto1}}</td>
+                        <td>{{evento.fechaAdelanto1 | date:'mediumDate'}}</td>
+                    <td>{{evento.adelanto2}}</td>
+                        <td>{{evento.fechaAdelanto2 | date:'mediumDate'}}</td>
+                    <td>{{evento.adelanto3}}</td>
+                        <td>{{evento.fechaAdelanto3 | date:'mediumDate'}}</td>
+                    <td>{{evento.adelanto4}}</td>
+                        <td>{{evento.fechaAdelanto4 | date:'mediumDate'}}</td>
+                        <td>{{evento.fechaPagoSaldo | date:'mediumDate'}}</td>
+                    <td>{{evento.proveedorMontoDetraccion}}</td>
+                    <td>{{evento.proveedorComisionDetraccion}}</td>
+                    <td>{{evento.proveedorTotalPagar}}</td>
+                    <td>{{evento.proveedorEstado}}</td>
+                    <td>{{evento.compraFactura}}</td>
+                    <td>{{evento.compraProveedor}}</td>
+                    <td>{{evento.compraProducto}}</td>
+                    <td>{{evento.compraTotal}}</td>
+                    <td>{{evento.compraTotalIgv}}</td>
+                    <td>{{evento.compraEstado}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="evento-detail({id:evento.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="evento.edit({id:evento.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="evento.delete({id:evento.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>

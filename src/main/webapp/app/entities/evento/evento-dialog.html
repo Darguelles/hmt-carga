@@ -1,0 +1,384 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myEventoLabel">Create or edit a Evento</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.evento.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.evento.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_numeroOrdenVenta">N° Orden Venta</label>
+            <input type="text" class="form-control" name="numeroOrdenVenta" id="field_numeroOrdenVenta"
+                    ng-model="vm.evento.numeroOrdenVenta"
+                    required />
+            <div ng-show="editForm.numeroOrdenVenta.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.numeroOrdenVenta.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <h3>Cliente</h3>
+        <div class="form-group">
+            <label class="control-label" for="field_clienteGuia">Guia de Remision</label>
+            <input type="text" class="form-control" name="clienteGuia" id="field_clienteGuia"
+                    ng-model="vm.evento.clienteGuia"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_clienteFactura">Factura</label>
+            <input type="text" class="form-control" name="clienteFactura" id="field_clienteFactura"
+                    ng-model="vm.evento.clienteFactura"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_clienteRuc">Ruc</label>
+            <input type="text" class="form-control" name="clienteRuc" id="field_clienteRuc"
+                    ng-model="vm.evento.clienteRuc"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_clienteRazonSocial">Razon Social</label>
+            <input type="text" class="form-control" name="clienteRazonSocial" id="field_clienteRazonSocial"
+                    ng-model="vm.evento.clienteRazonSocial"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_clientePeso">Peso</label>
+            <input type="text" class="form-control" name="clientePeso" id="field_clientePeso"
+                    ng-model="vm.evento.clientePeso"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_clienteMonto">Monto</label>
+            <input type="number" class="form-control" name="clienteMonto" id="field_clienteMonto"
+                    ng-model="vm.evento.clienteMonto"
+                   ng-blur="calcularClienteTotal()"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_clienteAdelanto">Adelanto</label>
+            <input type="number" class="form-control" name="clienteAdelanto" id="field_clienteAdelanto"
+                    ng-model="vm.evento.clienteAdelanto"
+                   ng-blur="calcularClienteTotal()"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_clienteTotal">Total</label>
+            <input type="number" class="form-control" name="clienteTotal" id="field_clienteTotal"
+                   ng-model="vm.evento.clienteTotal"
+            />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_fechaEmisionFactura">Fecha Emision Factura</label>
+                <div class="input-group">
+                    <input id="field_fechaEmisionFactura" type="text" class="form-control" name="fechaEmisionFactura" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.fechaEmisionFactura" is-open="vm.datePickerOpenStatus.fechaEmisionFactura"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaEmisionFactura')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaVencimientoFactura">Fecha Vencimiento Factura</label>
+                <div class="input-group">
+                    <input id="field_fechaVencimientoFactura" type="text" class="form-control" name="fechaVencimientoFactura" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.fechaVencimientoFactura" is-open="vm.datePickerOpenStatus.fechaVencimientoFactura"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaVencimientoFactura')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_plazo">Plazo</label>
+            <input type="text" class="form-control" name="plazo" id="field_plazo"
+                    ng-model="vm.evento.plazo"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaEntrega">Fecha Entrega</label>
+                <div class="input-group">
+                    <input id="field_fechaEntrega" type="text" class="form-control" name="fechaEntrega" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.fechaEntrega" is-open="vm.datePickerOpenStatus.fechaEntrega"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaEntrega')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_letra">Letra</label>
+            <input type="text" class="form-control" name="letra" id="field_letra"
+                    ng-model="vm.evento.letra"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_estadoLetra">Estado Letra</label>
+            <input type="text" class="form-control" name="estadoLetra" id="field_estadoLetra"
+                    ng-model="vm.evento.estadoLetra"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaEmisionLetra">Fecha Emision Letra</label>
+                <div class="input-group">
+                    <input id="field_fechaEmisionLetra" type="text" class="form-control" name="fechaEmisionLetra" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.fechaEmisionLetra" is-open="vm.datePickerOpenStatus.fechaEmisionLetra"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaEmisionLetra')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_plazoPago">Plazo Pago</label>
+            <input type="text" class="form-control" name="plazoPago" id="field_plazoPago"
+                    ng-model="vm.evento.plazoPago"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_vencimientoPago">Vencimiento Pago</label>
+                <div class="input-group">
+                    <input id="field_vencimientoPago" type="text" class="form-control" name="vencimientoPago" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.vencimientoPago" is-open="vm.datePickerOpenStatus.vencimientoPago"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('vencimientoPago')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_saldoCobrar">Saldo Cobrar</label>
+            <input type="number" class="form-control" name="saldoCobrar" id="field_saldoCobrar"
+                    ng-model="vm.evento.saldoCobrar"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_montoDetraccion">Monto Detraccion</label>
+            <input type="number" class="form-control" name="montoDetraccion" id="field_montoDetraccion"
+                    ng-model="vm.evento.montoDetraccion"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_clienteEstado">Estado</label>
+            <input type="text" class="form-control" name="clienteEstado" id="field_clienteEstado"
+                    ng-model="vm.evento.clienteEstado"
+                     />
+        </div>
+
+        <h3>Proveedor</h3>
+
+        <div class="form-group">
+            <label class="control-label" for="field_proveedorGuia">Guia de Remision</label>
+            <input type="text" class="form-control" name="proveedorGuia" id="field_proveedorGuia"
+                    ng-model="vm.evento.proveedorGuia"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_proveedorFactura">Factura</label>
+            <input type="text" class="form-control" name="proveedorFactura" id="field_proveedorFactura"
+                    ng-model="vm.evento.proveedorFactura"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_proveedorRuc">Ruc</label>
+            <input type="text" class="form-control" name="proveedorRuc" id="field_proveedorRuc"
+                    ng-model="vm.evento.proveedorRuc"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_proveedorRazonSocial">Razon Social</label>
+            <input type="text" class="form-control" name="proveedorRazonSocial" id="field_proveedorRazonSocial"
+                    ng-model="vm.evento.proveedorRazonSocial"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_materialTransporte">Material Transporte</label>
+            <input type="text" class="form-control" name="materialTransporte" id="field_materialTransporte"
+                    ng-model="vm.evento.materialTransporte"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaSalida">Fecha Salida</label>
+                <div class="input-group">
+                    <input id="field_fechaSalida" type="text" class="form-control" name="fechaSalida" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.fechaSalida" is-open="vm.datePickerOpenStatus.fechaSalida"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaSalida')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_montoServicio">Monto Servicio</label>
+            <input type="number" class="form-control" name="montoServicio" id="field_montoServicio"
+                    ng-model="vm.evento.montoServicio"
+                   ng-blur="calcularProveedorTotal()"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_adelanto1">Adelanto 1</label>
+            <input type="number" class="form-control" name="adelanto1" id="field_adelanto1"
+                    ng-model="vm.evento.adelanto1"
+                   ng-blur="calcularProveedorTotal()"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaAdelanto1">Fecha Adelanto 1</label>
+                <div class="input-group">
+                    <input id="field_fechaAdelanto1" type="text" class="form-control" name="fechaAdelanto1" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.fechaAdelanto1" is-open="vm.datePickerOpenStatus.fechaAdelanto1"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaAdelanto1')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_adelanto2">Adelanto 2</label>
+            <input type="number" class="form-control" name="adelanto2" id="field_adelanto2"
+                    ng-model="vm.evento.adelanto2"
+                   ng-blur="calcularProveedorTotal()"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaAdelanto2">Fecha Adelanto 2</label>
+                <div class="input-group">
+                    <input id="field_fechaAdelanto2" type="text" class="form-control" name="fechaAdelanto2" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.fechaAdelanto2" is-open="vm.datePickerOpenStatus.fechaAdelanto2"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaAdelanto2')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_adelanto3">Adelanto 3</label>
+            <input type="number" class="form-control" name="adelanto3" id="field_adelanto3"
+                    ng-model="vm.evento.adelanto3"
+                   ng-blur="calcularProveedorTotal()"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaAdelanto3">Fecha Adelanto 3</label>
+                <div class="input-group">
+                    <input id="field_fechaAdelanto3" type="text" class="form-control" name="fechaAdelanto3" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.fechaAdelanto3" is-open="vm.datePickerOpenStatus.fechaAdelanto3"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaAdelanto3')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_adelanto4">Adelanto 4</label>
+            <input type="number" class="form-control" name="adelanto4" id="field_adelanto4"
+                    ng-model="vm.evento.adelanto4"
+                   ng-blur="calcularProveedorTotal()"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaAdelanto4">Fecha Adelanto 4</label>
+                <div class="input-group">
+                    <input id="field_fechaAdelanto4" type="text" class="form-control" name="fechaAdelanto4" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.fechaAdelanto4" is-open="vm.datePickerOpenStatus.fechaAdelanto4"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaAdelanto4')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_total">Total</label>
+            <input type="number" class="form-control" name="total" id="field_total"
+                   ng-model="vm.evento.total"
+            />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_fechaPagoSaldo">Fecha Pago Saldo</label>
+                <div class="input-group">
+                    <input id="field_fechaPagoSaldo" type="text" class="form-control" name="fechaPagoSaldo" uib-datepicker-popup="{{dateformat}}" ng-model="vm.evento.fechaPagoSaldo" is-open="vm.datePickerOpenStatus.fechaPagoSaldo"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fechaPagoSaldo')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_proveedorMontoDetraccion">Monto Detraccion</label>
+            <input type="number" class="form-control" name="proveedorMontoDetraccion" id="field_proveedorMontoDetraccion"
+                    ng-model="vm.evento.proveedorMontoDetraccion"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_proveedorComisionDetraccion">Comision Detraccion</label>
+            <input type="number" class="form-control" name="proveedorComisionDetraccion" id="field_proveedorComisionDetraccion"
+                    ng-model="vm.evento.proveedorComisionDetraccion"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_proveedorTotalPagar">Total a Pagar</label>
+            <input type="number" class="form-control" name="proveedorTotalPagar" id="field_proveedorTotalPagar"
+                    ng-model="vm.evento.proveedorTotalPagar"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_proveedorEstado">Estado</label>
+            <input type="text" class="form-control" name="proveedorEstado" id="field_proveedorEstado"
+                    ng-model="vm.evento.proveedorEstado"
+                     />
+        </div>
+
+
+        <h3>Compra</h3>
+        <div class="form-group">
+            <label class="control-label" for="field_compraFactura">Factura</label>
+            <input type="text" class="form-control" name="compraFactura" id="field_compraFactura"
+                    ng-model="vm.evento.compraFactura"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_compraProveedor">Proveedor</label>
+            <input type="text" class="form-control" name="compraProveedor" id="field_compraProveedor"
+                    ng-model="vm.evento.compraProveedor"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_compraProducto">Producto</label>
+            <input type="text" class="form-control" name="compraProducto" id="field_compraProducto"
+                    ng-model="vm.evento.compraProducto"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_compraTotal">Total (Sin IGV)</label>
+            <input type="number" class="form-control" name="compraTotal" id="field_compraTotal"
+                    ng-model="vm.evento.compraTotal"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_compraTotalIgv">Total (Con Igv)</label>
+            <input type="number" class="form-control" name="compraTotalIgv" id="field_compraTotalIgv"
+                    ng-model="vm.evento.compraTotalIgv"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_compraEstado">Estado</label>
+            <input type="text" class="form-control" name="compraEstado" id="field_compraEstado"
+                    ng-model="vm.evento.compraEstado"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

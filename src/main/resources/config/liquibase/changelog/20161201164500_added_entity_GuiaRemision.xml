@@ -85,6 +85,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="guia_remision_remitente" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="guia_remision" columnName="fecha_ingreso" columnDataType="datetime"/>

@@ -1,0 +1,206 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "numeroOrdenVenta",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "clienteGuia",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "clienteFactura",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "clienteRuc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "clienteRazonSocial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "clientePeso",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "clienteMonto",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "clienteTotal",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "clienteAdelanto",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fechaEmisionFactura",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fechaVencimientoFactura",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "plazo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaEntrega",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "letra",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estadoLetra",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaEmisionLetra",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "plazoPago",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "vencimientoPago",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "saldoCobrar",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "montoDetraccion",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "clienteEstado",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "proveedorGuia",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "proveedorFactura",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "proveedorRuc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "proveedorRazonSocial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "materialTransporte",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaSalida",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "montoServicio",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "adelanto1",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fechaAdelanto1",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "adelanto2",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fechaAdelanto2",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "adelanto3",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fechaAdelanto3",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "adelanto4",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fechaAdelanto4",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fechaPagoSaldo",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "proveedorMontoDetraccion",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "proveedorComisionDetraccion",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "proveedorTotalPagar",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "proveedorEstado",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "compraFactura",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "compraProveedor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "compraProducto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "compraTotal",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "compraTotalIgv",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "compraEstado",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170411070639",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "evento",
+    "pagination": "pager"
+}
