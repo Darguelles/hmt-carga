@@ -12,10 +12,12 @@ import com.hmt.carga.web.rest.util.PaginationUtil;
 import net.sf.jasperreports.engine.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +28,7 @@ import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.format.TextStyle;
 import java.util.*;
 
@@ -79,9 +82,12 @@ public class FacturaResource {
 
 
 
+    @Autowired
+    private PDFExporter pdfExporter;
+
     @RequestMapping(value = "/factura/pdf/{codigoFactura}", method = RequestMethod.GET)
     @Timed
-    public @ResponseBody byte[] exportFacturaAsPDF(HttpServletResponse response, @PathVariable String codigoFactura) throws JRException {
+    public @ResponseBody ResponseEntity<byte[]> exportFacturaAsPDF(HttpServletResponse response, @PathVariable String codigoFactura) throws JRException, SQLException {
 
         response.setHeader("Content-Disposition", "inline; filename=file.pdf");
         response.setContentType("application/pdf");
@@ -91,10 +97,10 @@ public class FacturaResource {
         Factura factura = facturaService.findOneByCodigo(codigoFactura);
 
         Map<String, Object> parameters = new HashMap();
-        parameters.put("nombreCliente", factura.getCliente().getNombre());
-        parameters.put("direccionCliente", factura.getCliente().getDireccion());
-        parameters.put("rucCliente", factura.getCliente().getRuc().toString());
-        parameters.put("condicionPago", factura.getCliente().getCondicionPago().getNombre());
+        parameters.put("nombreCliente", factura.getCliente().getNombre()!=null ? factura.getCliente().getNombre(): "");
+        parameters.put("direccionCliente", factura.getCliente().getDireccion()!=null ? factura.getCliente().getDireccion() : "" );
+        parameters.put("rucCliente", factura.getCliente().getRuc()!=null ? factura.getCliente().getRuc().toString(): "");
+        parameters.put("condicionPago", factura.getCliente().getCondicionPago().getNombre()!=null ? factura.getCliente().getCondicionPago().getNombre() : "");
         parameters.put("idFactura", codigoFactura);
         parameters.put("totalLetras", NumberConverter.convertir(factura.getPrecioTotal().toString(), true, " NUEVOS SOLES"));
         parameters.put("subTotal", factura.getPrecioBase());
@@ -104,12 +110,24 @@ public class FacturaResource {
         parameters.put("fechaActualMes", String.valueOf(factura.getFecha().getMonth().getDisplayName(TextStyle.FULL, new Locale("es_PE"))));
         parameters.put("fechaActualAnio", String.valueOf(factura.getFecha().getYear()-2000));
 
-        Connection conn = PDFExporter.getConnection();
 
         JasperReport report = JasperCompileManager.compileReport(jasperStream);
-        JasperPrint print = JasperFillManager.fillReport(report, parameters, conn);
+        JasperPrint print = JasperFillManager.fillReport(report, parameters, pdfExporter.getConnection());
         byte[] file = JasperExportManager.exportReportToPdf(print);
-        return file;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+
+        String filename = "Factura-"+codigoFactura+".pdf";
+        headers.setContentDispositionFormData(filename, filename);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+        ResponseEntity<byte[]> pdfEntity = new ResponseEntity<byte[]>(file, headers, HttpStatus.OK);
+
+        System.out.println("EXPORT PROCESS COMPLETE");
+        System.out.println(file);
+        System.out.println(pdfEntity);
+        return pdfEntity;
     }
 
 

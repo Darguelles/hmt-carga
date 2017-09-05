@@ -5,9 +5,9 @@
         .module('hmtcargaApp')
         .controller('GuiaRemisionDialogController', GuiaRemisionDialogController);
 
-    GuiaRemisionDialogController.$inject = ['$location','$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte', 'Factura', 'CotizacionFilter'];
+    GuiaRemisionDialogController.$inject = ['$window','$location','$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'GuiaRemision', 'Cotizacion', 'Proveedor', 'Transporte', 'Factura', 'CotizacionFilter'];
 
-    function GuiaRemisionDialogController ($location, $timeout, $scope, $stateParams, $uibModalInstance, entity, GuiaRemision, Cotizacion, Proveedor, Transporte, Factura, CotizacionFilter) {
+    function GuiaRemisionDialogController ($window, $location, $timeout, $scope, $stateParams, $uibModalInstance, entity, GuiaRemision, Cotizacion, Proveedor, Transporte, Factura, CotizacionFilter) {
         var vm = this;
 
         vm.guiaRemision = entity;
@@ -29,7 +29,9 @@
         $scope.date_code = new Date();
 
         $scope.getPdf = function(id){
-            window.open('/api/guia-remisions/pdf/'+id);
+            console.log('OPEN FOR '+id)
+            console.log('http://www.grupohmperu.com/hmtcarga/api/guia-remisions/pdf/'+id)
+            $window.open('http://www.grupohmperu.com/hmtcarga/api/guia-remisions/pdf/'+id);
         }
 
         $timeout(function (){

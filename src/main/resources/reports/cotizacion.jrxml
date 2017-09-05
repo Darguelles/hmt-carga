@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-11T01:41:49 -->
+<!-- 2017-07-19T22:38:12 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cotizacion" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4072b19d-bb63-457c-936e-e1a4aeaa210d">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<subDataset name="Dataset1" uuid="7882437b-2a61-41e8-abbb-da831f303fcd">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
 	<parameter name="nombreCliente" class="java.lang.String"/>
 	<parameter name="rucCliente" class="java.lang.Long"/>
 	<parameter name="direccionCliente" class="java.lang.String"/>
@@ -22,6 +27,7 @@
     <parameter name="terminosycondiciones" class="java.io.InputStream"/>
     <parameter name="advertencia" class="java.io.InputStream"/>
     <parameter name="firma" class="java.io.InputStream"/>
+	<parameter name="piePagina" class="java.lang.InputStream"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -31,11 +37,11 @@
 	<title>
 		<band height="120" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="240" height="100" uuid="428a9db5-b8db-4360-bdf4-1b4658da8dce"/>
+				<reportElement x="40" y="20" width="210" height="80" uuid="428a9db5-b8db-4360-bdf4-1b4658da8dce"/>
 				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="310" y="0" width="240" height="100" uuid="2ada1790-2dbd-49ee-a878-ebdb9bd55273"/>
+				<reportElement x="310" y="20" width="210" height="80" uuid="2ada1790-2dbd-49ee-a878-ebdb9bd55273"/>
 				<imageExpression><![CDATA[$P{logo2}]]></imageExpression>
 			</image>
 		</band>
@@ -43,150 +49,263 @@
 	<pageHeader>
 		<band height="266" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20" uuid="1500d04b-2a6b-401d-8a4c-9bf7d802bbe0"/>
+				<reportElement x="40" y="0" width="100" height="20" uuid="1500d04b-2a6b-401d-8a4c-9bf7d802bbe0"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Señores:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="20" width="280" height="20" uuid="18105b43-0b48-447f-a371-517df5eba706"/>
+				<reportElement x="40" y="20" width="270" height="20" uuid="18105b43-0b48-447f-a371-517df5eba706"/>
 				<textElement>
 					<font isBold="true" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nombreCliente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="40" width="280" height="20" uuid="f192c0a1-1b70-4611-8d6f-9218a9e1fa82"/>
+				<reportElement x="40" y="40" width="270" height="20" uuid="f192c0a1-1b70-4611-8d6f-9218a9e1fa82"/>
 				<textElement>
 					<font isBold="true" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{rucCliente}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="60" width="280" height="20" uuid="6821ec85-0dc8-4670-b402-d0900a509c20"/>
+				<reportElement x="40" y="60" width="270" height="20" uuid="6821ec85-0dc8-4670-b402-d0900a509c20"/>
 				<textFieldExpression><![CDATA[$P{direccionCliente}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="380" y="110" width="170" height="20" uuid="1fac88a2-fdfd-454d-8536-5ff51732ee95"/>
+				<reportElement x="390" y="100" width="130" height="30" uuid="1fac88a2-fdfd-454d-8536-5ff51732ee95"/>
 				<textElement>
 					<font isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Asunto: Cotización de Transporte]]></text>
 			</staticText>
 			<textField pattern="MMMM d, yyyy">
-				<reportElement x="420" y="0" width="120" height="20" uuid="63352ee8-e77e-4209-a434-ccafe7ab0bb6"/>
+				<reportElement x="430" y="0" width="90" height="20" uuid="63352ee8-e77e-4209-a434-ccafe7ab0bb6"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="390" y="0" width="30" height="20" uuid="4ef2b0ee-9269-47cc-8ff4-0d8cc6f91399"/>
+				<reportElement x="400" y="0" width="30" height="20" uuid="4ef2b0ee-9269-47cc-8ff4-0d8cc6f91399"/>
 				<text><![CDATA[Lima, ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="132" width="550" height="57" uuid="5831832e-9ca5-4867-bad7-d1de653e63ae"/>
-				<text><![CDATA[De nuestra consideracion....]]></text>
+				<reportElement x="40" y="132" width="480" height="18" uuid="5831832e-9ca5-4867-bad7-d1de653e63ae"/>
+				<text><![CDATA[De nuestra consideracion :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="110" y="230" width="120" height="30" uuid="b3914d27-bba3-4838-96b4-469d58680cd9"/>
+				<reportElement x="140" y="230" width="110" height="30" uuid="b3914d27-bba3-4838-96b4-469d58680cd9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{destino}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="190" width="110" height="40" uuid="bfe907a3-68f4-498e-8572-baa033115c20"/>
+				<reportElement x="30" y="190" width="110" height="40" uuid="bfe907a3-68f4-498e-8572-baa033115c20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Origen]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="230" width="110" height="30" uuid="2f44a3e6-1ee7-43df-81e6-3c2798727b2c"/>
+				<reportElement x="30" y="230" width="110" height="30" uuid="2f44a3e6-1ee7-43df-81e6-3c2798727b2c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{origen}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="230" y="190" width="140" height="40" uuid="0481be16-5c95-4816-aac8-91dcf081516c"/>
+				<reportElement x="250" y="190" width="120" height="40" uuid="0481be16-5c95-4816-aac8-91dcf081516c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Mercaderia a Transportar]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="190" width="120" height="40" uuid="bfc00e99-9b06-4ec9-8698-453cdf245c28"/>
+				<reportElement x="140" y="190" width="110" height="40" uuid="bfc00e99-9b06-4ec9-8698-453cdf245c28"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Destino]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="230" y="230" width="140" height="30" uuid="660ba18c-fac0-4fda-8085-a8bdbcc12923"/>
+				<reportElement x="250" y="230" width="120" height="30" uuid="660ba18c-fac0-4fda-8085-a8bdbcc12923"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{mercaderia}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="480" y="190" width="70" height="40" uuid="8b43ae4e-436d-4102-bb29-9d60e9bf0c25"/>
+				<reportElement x="450" y="190" width="50" height="40" uuid="8b43ae4e-436d-4102-bb29-9d60e9bf0c25"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Precio Flete + IGV]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="370" y="190" width="110" height="40" uuid="865f100d-6ad3-4e43-9c67-24b16e4c4c71"/>
+				<reportElement x="370" y="190" width="80" height="40" uuid="865f100d-6ad3-4e43-9c67-24b16e4c4c71"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tipo de Unidad]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="480" y="230" width="70" height="30" uuid="950b2df0-a320-49dc-887f-48eff1097fc9"/>
+				<reportElement x="450" y="230" width="50" height="30" uuid="950b2df0-a320-49dc-887f-48eff1097fc9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{precio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="230" width="110" height="30" uuid="b4111e93-a662-4559-8768-631afa15510c"/>
+				<reportElement x="370" y="230" width="80" height="30" uuid="b4111e93-a662-4559-8768-631afa15510c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{tipoUnidad}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="80" width="70" height="20" uuid="cc53e75e-fe01-4cc1-8faf-55d016a1f22b"/>
-				<text><![CDATA[Atencion: ]]></text>
+				<reportElement x="40" y="80" width="50" height="20" uuid="cc53e75e-fe01-4cc1-8faf-55d016a1f22b"/>
+				<text><![CDATA[Atención: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="70" y="80" width="290" height="20" uuid="a2b80268-74e3-4c94-8252-89a349bba010"/>
+				<reportElement x="90" y="80" width="250" height="20" uuid="a2b80268-74e3-4c94-8252-89a349bba010"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{destinatario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="70" y="100" width="290" height="20" uuid="2c6f0e5b-8af0-435f-ab00-1004f77fb181"/>
+				<reportElement x="90" y="100" width="250" height="20" uuid="2c6f0e5b-8af0-435f-ab00-1004f77fb181"/>
 				<textElement>
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="40" y="150" width="480" height="40" uuid="8067f2c8-3377-431a-b9a9-f8887ca625a0"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Por medio de la presente lo saludamos y aprovechamos para hacerle llegar nuestra cotización referida al servicio de transporte de carga solicitada.]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<pageFooter>
-		<band height="384" splitType="Stretch">
+		<band height="400" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="180" width="280" height="20" uuid="d0da8eff-bfeb-4ebd-b64d-a4ed6bde3ae1"/>
+				<reportElement x="130" y="195" width="250" height="15" uuid="d0da8eff-bfeb-4ebd-b64d-a4ed6bde3ae1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{formaPago}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="160" width="544" height="20" uuid="ae5d061e-a5bc-4921-92be-3f6e9bf74429"/>
-				<textFieldExpression><![CDATA[$P{condiciones}]]></textFieldExpression>
+				<reportElement x="40" y="180" width="480" height="15" uuid="ae5d061e-a5bc-4921-92be-3f6e9bf74429"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[- $P{condiciones}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="0" y="40" width="550" height="120" uuid="c4987205-62d4-46d2-80ba-cb5672d85e6e"/>
-				<imageExpression><![CDATA[$P{terminosycondiciones}]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="177" y="210" width="200" height="160" uuid="4da54c11-9ace-43dd-ac17-c2a46cffe22f"/>
+				<reportElement x="215" y="275" width="125" height="105" uuid="4da54c11-9ace-43dd-ac17-c2a46cffe22f"/>
 				<imageExpression><![CDATA[$P{firma}]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="40" y="0" width="480" height="30" uuid="2838bcf2-65ab-4ea4-b907-ef9439c48a28"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Las operaciones se realizarán hasta el lugar donde puedan ingresar libremente los semi-remolques o camiones.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="30" width="480" height="15" uuid="5f33f2e9-1196-41cb-9569-bda5ac86bb15"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[TERMINOS Y CONDICIONES DEL SERVICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="75" width="480" height="15" uuid="35e3d744-7073-4008-99fa-6a1a196b04d8"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[- HM Transport cuenta con los EPP y SCTR Salud - Pensión requeridos para un adecuado servicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="90" width="480" height="15" uuid="811ed939-4f72-4f88-87f6-ead4aa359b83"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[- La tarifa NO incluye labores de carga / descarga en el punto de origen / destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="105" width="480" height="15" uuid="0f760e28-b60a-4de3-a64a-1beb38a5dc16"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[- Seguimiento total de la carga por medio de GPS y equipos de comunicacion RPC - RPM.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="120" width="480" height="15" uuid="9c6d167b-9d39-4fd2-b735-5fed443e23a3"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[- Contamos con toda la documentación en regla (SAT, Licencia, DNI) y GRT para el servicio.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="135" width="480" height="15" uuid="2d07e919-a46b-4381-b806-fc4fac2013de"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[- Se aplicará la tarifa de S/.400 + IGV diaria por sobreestadía, no atención o parcial (stand by) cuando es plataforma de 30Tn.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="165" width="480" height="15" uuid="053b5f76-56d5-4250-9b70-850f79eb6169"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[- El stand by o sobreestadía aplica tanto en origen como en destino (4 horas a más).]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="195" width="90" height="15" uuid="c8801b2d-7696-4d9e-94bf-3d88af9ca4b6"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Forma de pago : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="210" width="480" height="15" uuid="7d0423b0-971f-46f7-9f09-db777f4ce5c9"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Validez de la oferta : 15 días.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="225" width="100" height="20" uuid="dba9097d-e891-409c-a69e-64c663c95095"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[DISPONIBILIDAD : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="225" width="380" height="20" uuid="df672c4e-4e38-48ca-b4d4-defc91fafd7f"/>
+				<text><![CDATA[En forma inmediata, segun los requerimientos solicitados por el cliente.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="245" width="480" height="30" uuid="a4c887b2-137d-43cc-9800-7adce4bfbc81"/>
+				<text><![CDATA[De contar con su aprobación sirvase emitir la orden de servicio. Agradecemos por anticipado la atención brindada a la presente y quedamos a la espera de su pronta respuesta.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="45" width="480" height="15" uuid="d0f05274-9c2e-49c5-b7a6-076716f79ee5"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[- HM Transport cuenta con una poliza de carga de hasta 120 mil soles por embarque.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="60" width="480" height="15" uuid="f55c38a9-0e30-477f-9f46-71729fa9a898"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[- HM Transport cuenta con poliza de responsabilidad civil ante cualquier eventualidad en ruta.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="150" width="480" height="15" uuid="3a4410d5-1e48-484a-80bd-b8b315eb24a5"/>
+				<textElement>
+					<font size="8" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[- Se aplicará la tarifa de USD 250 + IGV diaria por sobreestadía, no atención o parcial (stand by) cuando es Cama Baja.]]></text>
+			</staticText>
 			<image>
-				<reportElement x="0" y="0" width="550" height="30" uuid="90a0a69e-e4e8-4851-a840-b9555c56e20a"/>
-				<imageExpression><![CDATA[$P{advertencia}]]></imageExpression>
+				<reportElement x="100" y="380" width="359" height="19" uuid="fc75cc51-1386-4feb-843b-a152a6f498de"/>
+				<imageExpression><![CDATA[$P{piePagina}]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

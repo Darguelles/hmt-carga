@@ -56,7 +56,7 @@ public class CotizacionResource {
         }
         Cotizacion result = cotizacionService.save(cotizacion);
 
-        mailService.sendEmailWithAttachment(cotizacion.getEmail(), "HMT System - Aprobación de orden de venta", "Se adjunta la cotización requerida.", false, true, "factura", result);
+        mailService.sendEmailWithAttachment(cotizacion.getEmail(), "HMT System - Cotizacion de Transporte", "Reciba el presente documento de parte de Grupo HM Peru", false, true, "factura", result);
 
 
         return ResponseEntity.created(new URI("/api/cotizacions/" + result.getId()))

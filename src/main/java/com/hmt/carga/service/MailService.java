@@ -9,6 +9,7 @@ import net.sf.jasperreports.engine.*;
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -29,7 +30,6 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -60,7 +60,8 @@ public class MailService {
     @Inject
     private SpringTemplateEngine templateEngine;
 
-
+    @Autowired
+    private PDFExporter pdfExporter;
 
     @Async
     public void sendEmailWithAttachment(String to, String subject, String content, boolean isMultipart, boolean isHtml, String attachmentDocument, Cotizacion cotizacion) {
@@ -116,11 +117,10 @@ public class MailService {
                 parameters.put("terminosycondiciones", this.getClass().getResourceAsStream("/reports/images/terminos_y_condiciones.png"));
                 parameters.put("advertencia", this.getClass().getResourceAsStream("/reports/images/Item.png"));
                 parameters.put("firma", this.getClass().getResourceAsStream("/reports/images/firma.png"));
-
-                Connection conn = PDFExporter.getConnection();
+                parameters.put("piePagina", this.getClass().getResourceAsStream("/reports/images/pie_de_pagina.png"));
 
                 JasperReport report = JasperCompileManager.compileReport(jasperStream);
-                JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, conn);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, pdfExporter.getConnection());
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
@@ -129,18 +129,17 @@ public class MailService {
                 messageBodyPart = new MimeBodyPart();
 
                 messageBodyPart.setDataHandler(new DataHandler(source));
-                messageBodyPart.setFileName("La coti.pdf");
+                messageBodyPart.setFileName("HMTransportes-Cotizacion.pdf");
                 multipart.addBodyPart(messageBodyPart);
-
             }
 
             mimeMessage.setContent(multipart);
 
             javaMailSender.send(mimeMessage);
-            System.out.println("Sending email " + "SENDED");
-            log.debug("Sent e-mail to User '{}'", to);
+            System.out.println("Sending email " + "SENT");
+            log.info("Sent e-mail to User '{}'", to);
         } catch (Exception e) {
-            log.warn("E-mail could not be sent to user '{}'", to, e);
+            log.error("E-mail could not be sent to user '{}'", to, e);
         }
     }
 

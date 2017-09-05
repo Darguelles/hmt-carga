@@ -75,6 +75,8 @@ public class OrdenVentaResource {
 
     private String generateEmailOrdenVenta(OrdenVenta ordenVenta) {
         StringBuilder sb = new StringBuilder("<h3>Tiene una nueva orden de venta: </h3>");
+        sb.append("<label>Reciba el presente documento de parte de Grupo HM Peru</label>");
+        sb.append("<br></br>");
         sb.append("<b>Codigo de cotización : " + ordenVenta.getCotizacion().getId() + "</b>");
         sb.append("<br></br>");
         sb.append("<b>Servicio :</b>" + ordenVenta.getCotizacion().getServicio().getNombre());
@@ -90,6 +92,7 @@ public class OrdenVentaResource {
         sb.append("<b>Mercaderia :</b>" + ordenVenta.getCotizacion().getMercaderia());
         sb.append("<br></br>");
         sb.append("<b>Precio :</b>" + ordenVenta.getCotizacion().getPrecio());
+        sb.append("<label>El precio no incluye IGV</label>");
 
         return sb.toString();
     }

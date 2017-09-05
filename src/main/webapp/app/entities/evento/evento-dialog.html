@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myEventoLabel">Create or edit a Evento</h4>
+        <h4 class="modal-title" id="myEventoLabel">Crear Registro ADM</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
@@ -123,10 +123,15 @@
         </div>
         <div class="form-group">
             <label class="control-label" for="field_estadoLetra">Estado Letra</label>
-            <input type="text" class="form-control" name="estadoLetra" id="field_estadoLetra"
-                    ng-model="vm.evento.estadoLetra"
-                     />
+            <!--<input type="text" class="form-control" name="estadoLetra" id="field_estadoLetra"-->
+                    <!--ng-model="vm.evento.estadoLetra"-->
+                     <!--/>-->
+            <select class="form-control" id="field_estadoLetra" name="estadoLetra" ng-model="vm.evento.estadoLetra">
+                <option value="ACEPTADO" >ACEPTADO.</option>
+                <option value="NO ACEPTADO" >NO ACEPTADO.</option>
+            </select>
         </div>
+
         <div class="form-group">
             <label class="control-label" for="field_fechaEmisionLetra">Fecha Emision Letra</label>
                 <div class="input-group">
@@ -167,9 +172,13 @@
         </div>
         <div class="form-group">
             <label class="control-label" for="field_clienteEstado">Estado</label>
-            <input type="text" class="form-control" name="clienteEstado" id="field_clienteEstado"
-                    ng-model="vm.evento.clienteEstado"
-                     />
+            <!--<input type="text" class="form-control" name="clienteEstado" id="field_clienteEstado"-->
+                    <!--ng-model="vm.evento.clienteEstado"-->
+                     <!--/>-->
+            <select class="form-control" id="field_clienteEstado" name="clienteEstado" ng-model="vm.evento.clienteEstado">
+                <option value="CANCELADO" >CANCELADO</option>
+                <option value="PENDIENTE" >PENDIENTE</option>
+            </select>
         </div>
 
         <h3>Proveedor</h3>
@@ -328,9 +337,13 @@
         </div>
         <div class="form-group">
             <label class="control-label" for="field_proveedorEstado">Estado</label>
-            <input type="text" class="form-control" name="proveedorEstado" id="field_proveedorEstado"
-                    ng-model="vm.evento.proveedorEstado"
-                     />
+            <!--<input type="text" class="form-control" name="proveedorEstado" id="field_proveedorEstado"-->
+                    <!--ng-model="vm.evento.proveedorEstado"-->
+                     <!--/>-->
+            <select class="form-control" id="field_proveedorEstado" name="proveedorEstado" ng-model="vm.evento.proveedorEstado">
+                <option value="CANCELADO" >CANCELADO</option>
+                <option value="PENDIENTE" >PENDIENTE</option>
+            </select>
         </div>
 
 
@@ -367,18 +380,22 @@
         </div>
         <div class="form-group">
             <label class="control-label" for="field_compraEstado">Estado</label>
-            <input type="text" class="form-control" name="compraEstado" id="field_compraEstado"
-                    ng-model="vm.evento.compraEstado"
-                     />
+            <!--<input type="text" class="form-control" name="compraEstado" id="field_compraEstado"-->
+                    <!--ng-model="vm.evento.compraEstado"-->
+                     <!--/>-->
+            <select class="form-control" id="field_compraEstado" name="compraEstado" ng-model="vm.evento.compraEstado">
+                <option value="CANCELADO" >CANCELADO</option>
+                <option value="PENDIENTE" >PENDIENTE</option>
+            </select>
         </div>
 
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
         </button>
     </div>
 </form>

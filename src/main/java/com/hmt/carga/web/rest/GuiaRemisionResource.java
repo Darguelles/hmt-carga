@@ -14,10 +14,12 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,6 +56,9 @@ public class GuiaRemisionResource {
     @Inject
     private CotizacionService cotizacionService;
 
+    @Autowired
+    private PDFExporter pdfExporter;
+
     /**
      * POST  /guia-remisions : Create a new guiaRemision.
      *
@@ -85,7 +90,7 @@ public class GuiaRemisionResource {
 
     @RequestMapping(value = "/guia-remisions/pdf/{codigoGuia}", method = RequestMethod.GET)
     @Timed
-    public @ResponseBody byte[] exportFacturaAsPDF(HttpServletResponse response, @PathVariable String codigoGuia) throws JRException {
+    public @ResponseBody ResponseEntity<byte[]> exportFacturaAsPDF(HttpServletResponse response, @PathVariable String codigoGuia) throws JRException, SQLException {
 
         response.setHeader("Content-Disposition", "inline; filename=file.pdf");
         response.setContentType("application/pdf");
@@ -95,33 +100,44 @@ public class GuiaRemisionResource {
         GuiaRemision guia = guiaRemisionService.findOneByCodigo(codigoGuia);
 
         Map<String, Object> parameters = new HashMap();
-        parameters.put("direccionPartida", guia.getCotizacion().getOrigen().toString());
-        parameters.put("direccionLlegada", guia.getCotizacion().getDestino().toString());
+        parameters.put("direccionPartida", guia.getCotizacion().getOrigen()!=null? guia.getCotizacion().getOrigen().toString() :"");
+        parameters.put("direccionLlegada", guia.getCotizacion().getDestino()!=null? guia.getCotizacion().getDestino().toString() :"");
         parameters.put("remitente", "HM Transportes");
-        parameters.put("destinatario", guia.getCotizacion().getNombreReceptor().toString());
-        parameters.put("fechaSalida", guia.getFechaSalida().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
-        parameters.put("fechaingreso", guia.getFechaIngreso().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
-        parameters.put("marcaVehiculo", guia.getTransporte().getMarca().toString());
-        parameters.put("tracto", guia.getTransporte().getTracto().toString());
-        parameters.put("plataforma", guia.getTransporte().getPlacaCarreta().toString());
-        parameters.put("configuracionVehicular", guia.getTransporte().getTipoUnidad().getConfiguracion().toString());
-        parameters.put("conductor", guia.getTransporte().getNombreConductor().toString());
-        parameters.put("camaBaja", guia.getTransporte().getAnchoCarreta().toString());
-        parameters.put("certificacionInscripcion", guia.getTransporte().getSoat().toString());
-        parameters.put("licenciaConducir", guia.getTransporte().getLicenciaConductor().toString());
+        parameters.put("destinatario", guia.getCotizacion().getNombreReceptor()!=null? guia.getCotizacion().getNombreReceptor().toString() :"");
+        parameters.put("fechaSalida", guia.getFechaSalida()!=null? guia.getFechaSalida().format(DateTimeFormatter.ISO_LOCAL_DATE).toString() :"");
+        parameters.put("fechaingreso", guia.getFechaIngreso()!=null?  guia.getFechaIngreso().format(DateTimeFormatter.ISO_LOCAL_DATE).toString() :"");
+        parameters.put("marcaVehiculo", guia.getTransporte().getMarca()!=null? guia.getTransporte().getMarca().toString() :"");
+        parameters.put("tracto", guia.getTransporte().getTracto()!=null? guia.getTransporte().getTracto().toString() :"");
+        parameters.put("plataforma", guia.getTransporte().getPlacaCarreta()!=null? guia.getTransporte().getPlacaCarreta().toString() :"");
+        parameters.put("configuracionVehicular", guia.getTransporte().getTipoUnidad().getConfiguracion()!=null? guia.getTransporte().getTipoUnidad().getConfiguracion().toString() :"");
+        parameters.put("conductor", guia.getTransporte().getNombreConductor()!=null? guia.getTransporte().getNombreConductor().toString():"");
+        parameters.put("camaBaja", guia.getTransporte().getAnchoCarreta()!=null? guia.getTransporte().getAnchoCarreta().toString() :"");
+        parameters.put("certificacionInscripcion", guia.getTransporte().getSoat()!=null ? guia.getTransporte().getSoat().toString() :"");
+        parameters.put("licenciaConducir", guia.getTransporte().getLicenciaConductor()!=null? guia.getTransporte().getLicenciaConductor().toString() :"");
         parameters.put("datosEmpresa", "UNDEFINED");
-        parameters.put("observaciones", guia.getObservaciones());
-        parameters.put("fechaEmision", guia.getFechaEmision().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
-        parameters.put("fechaTraslado", guia.getFechaTraslado().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
-        parameters.put("numeroGuia", guia.getCodigo().toString());
+        parameters.put("observaciones", guia.getObservaciones()!=null? guia.getObservaciones() :"");
+        parameters.put("fechaEmision", guia.getFechaEmision()!=null? guia.getFechaEmision().format(DateTimeFormatter.ISO_LOCAL_DATE).toString() :"");
+        parameters.put("fechaTraslado", guia.getFechaTraslado()!=null? guia.getFechaTraslado().format(DateTimeFormatter.ISO_LOCAL_DATE).toString() :"");
+        parameters.put("numeroGuia", guia.getCodigo()!=null? guia.getCodigo().toString().toString() :"");
 
 
-        Connection conn = PDFExporter.getConnection();
 
         JasperReport report = JasperCompileManager.compileReport(jasperStream);
-        JasperPrint print = JasperFillManager.fillReport(report, parameters, conn);
+        JasperPrint print = JasperFillManager.fillReport(report, parameters, pdfExporter.getConnection());
         byte[] file = JasperExportManager.exportReportToPdf(print);
-        return file;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+
+        String filename = "GuiaRemision-"+codigoGuia+".pdf";
+        headers.setContentDispositionFormData(filename, filename);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+        ResponseEntity<byte[]> pdfEntity = new ResponseEntity<byte[]>(file, headers, HttpStatus.OK);
+
+        System.out.println("EXPORT PROCESS COMPLETE");
+        System.out.println(file);
+        System.out.println(pdfEntity);
+        return pdfEntity;
     }
 
     /**

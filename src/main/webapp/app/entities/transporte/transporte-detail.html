@@ -1,6 +1,6 @@
 
 <div>
-    <h2><span>Transporte</span> {{vm.transporte.id}}</h2>
+    <h2><span>Transporte N° </span> {{vm.transporte.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
@@ -93,11 +93,11 @@
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Volver</span>
     </button>
 
     <button type="button" ui-sref="transporte-detail.edit({id:vm.transporte.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-xs hidden-sm"> Edit</span>
+        <span class="hidden-xs hidden-sm"> Editar</span>
     </button>
 </div>

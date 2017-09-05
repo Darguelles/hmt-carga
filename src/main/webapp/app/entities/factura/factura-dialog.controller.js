@@ -7,9 +7,9 @@
 
 
 
-    FacturaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Factura', 'Cliente', 'Servicio', 'GuiaRemisionFilter', 'FileSaver', '$http'];
+    FacturaDialogController.$inject = ['$http', '$window', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Factura', 'Cliente', 'Servicio', 'GuiaRemisionFilter'];
 
-    function FacturaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Factura, Cliente, Servicio, GuiaRemisionFilter, FileSaver, $http) {
+    function FacturaDialogController ($http, $window, $timeout, $scope, $stateParams, $uibModalInstance, entity, Factura, Cliente, Servicio, GuiaRemisionFilter) {
         var vm = this;
 
         vm.factura = entity;
@@ -96,7 +96,9 @@
 
 
         $scope.getPdf = function(id){
-            window.open('/api/factura/pdf/'+id);
+            console.log('OPEN FOR '+id)
+            console.log('http://www.grupohmperu.com/hmtcarga/api/factura/pdf/'+id);
+            $window.open('http://www.grupohmperu.com/hmtcarga/api/factura/pdf/'+id);
         }
 
 

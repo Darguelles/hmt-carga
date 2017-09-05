@@ -18,10 +18,12 @@
 
         $scope.calcularClienteTotal = function(){
             vm.evento.clienteTotal = vm.evento.clienteMonto - vm.evento.clienteAdelanto;
+            vm.evento.montoDetraccion = vm.evento.clienteTotal * 0.04
         }
 
         $scope.calcularProveedorTotal = function(){
             vm.evento.total = vm.evento.montoServicio - (vm.evento.adelanto1+vm.evento.adelanto2+vm.evento.adelanto3+vm.evento.adelanto4);
+            vm.evento.proveedorMontoDetraccion = vm.evento.total * 0.04
         }
 
 
